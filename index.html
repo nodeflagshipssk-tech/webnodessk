@@ -928,22 +928,35 @@
   function renderNews(items){
     const el=document.getElementById('newsList');
     if(!items||!items.length){el.innerHTML='<div class="col-12 text-center py-4 text-muted" style="font-size:.85rem">ยังไม่มีข่าวประชาสัมพันธ์</div>';return;}
-    el.innerHTML=items.slice(0,4).map(n=>`
+    el.innerHTML=items.slice(0,4).map(n=>{
+      const ytId=n.video||'';
+      const thumbSrc=n.image||(ytId?`https://img.youtube.com/vi/${ytId}/hqdefault.jpg`:'');
+      const hasAction=ytId||n.url;
+      const cardClick=ytId?`onclick="openYtModal('${ytId}')" style="cursor:pointer"`:n.url?`onclick="window.open('${n.url}','_blank')" style="cursor:pointer"`:'';
+      const thumbHtml=thumbSrc
+        ?`<div class="news-thumb-wrap"${ytId?' onclick="openYtModal(\''+ytId+'\')" style="cursor:pointer"':''} style="position:relative;flex-shrink:0">
+            <img src="${thumbSrc}" class="news-thumb" alt="" onerror="this.outerHTML='<div class=\\"news-thumb-ph ${n.type}\\"><i class=\\"bi ${newsIconMap[n.type]||\'bi-newspaper\'}\\"></i></div>'">
+            ${ytId?'<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,.6);color:white;display:flex;align-items:center;justify-content:center;font-size:.9rem;padding-left:3px"><i class=\'bi bi-play-fill\'></i></div>':''}
+          </div>`
+        :`<div class="news-thumb-ph ${n.type}"><i class="bi ${newsIconMap[n.type]||'bi-newspaper'}"></i></div>`;
+      return `
       <div class="col-md-6">
-        <div class="news-card${n.url?' has-url':''}" ${n.url?`onclick="window.open('${n.url}','_blank')"`:''}>
-          ${n.image?`<img src="${n.image}" class="news-thumb" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="news-thumb-ph ${n.type}" style="display:none"><i class="bi ${newsIconMap[n.type]||'bi-newspaper'}"></i></div>`:`<div class="news-thumb-ph ${n.type}"><i class="bi ${newsIconMap[n.type]||'bi-newspaper'}"></i></div>`}
+        <div class="news-card${hasAction?' has-url':''}" ${cardClick}>
+          ${thumbHtml}
           <div class="news-body">
             <div class="news-source-tag ${n.type}"><i class="bi bi-building me-1"></i>${n.source}</div>
             <div class="news-title">${n.title}</div>
-            <div class="news-meta"><i class="bi bi-calendar3 me-1"></i>${n.date}${n.url?' &nbsp;<i class="bi bi-box-arrow-up-right" style="font-size:.65rem"></i>':''}</div>
+            <div class="news-meta"><i class="bi bi-calendar3 me-1"></i>${n.date}${ytId?' &nbsp;<i class="bi bi-play-circle" style="font-size:.75rem"></i>':n.url?' &nbsp;<i class="bi bi-box-arrow-up-right" style="font-size:.65rem"></i>':''}</div>
           </div>
         </div>
-      </div>`).join('');
+      </div>`;
+    }).join('');
   }
   const newsFallback=[
-    {title:'ขับขี่ปลอดภัย ลดความเร็ว ลดอุบัติเหตุ ช่วงเทศกาลสงกรานต์ 2569',source:'ศปถ.จังหวัดศรีสะเกษ',date:'1 มี.ค. 2569',type:'road',image:'assets/news/songkran-2569.jpg',url:''},
-    {title:'ประกาศเขตควบคุมการบริโภคเครื่องดื่มแอลกอฮอล์ในพื้นที่สาธารณะ',source:'พชอ.กันทรลักษ์',date:'มี.ค. 2569',type:'alc',image:'',url:''},
-    {title:'มรภ.ศรีสะเกษ จัดประชุมติดตามผลการดำเนินงานโครงการย่อย ครั้งที่ 1',source:'หน่วยจัดการ Nodeflagship ศรีสะเกษ',date:'ก.พ. 2569',type:'blue',image:'',url:''}
+    {title:'ขับขี่ปลอดภัย ลดความเร็ว ลดอุบัติเหตุ ช่วงเทศกาลสงกรานต์ 2569',source:'ศปถ.จังหวัดศรีสะเกษ',date:'1 มี.ค. 2569',type:'road',image:'assets/news/songkran-2569.jpg',video:'',url:''},
+    {title:'10 Agenda + วาระพิเศษ ศรีสะเกษ',source:'หน่วยจัดการ Nodeflagship ศรีสะเกษ',date:'2568',type:'blue',image:'',video:'7NOg7-T-bIA',url:'https://www.youtube.com/watch?v=7NOg7-T-bIA'},
+    {title:'ประกาศเขตควบคุมการบริโภคเครื่องดื่มแอลกอฮอล์ในพื้นที่สาธารณะ',source:'พชอ.กันทรลักษ์',date:'มี.ค. 2569',type:'alc',image:'',video:'',url:''},
+    {title:'มรภ.ศรีสะเกษ จัดประชุมติดตามผลการดำเนินงานโครงการย่อย ครั้งที่ 1',source:'หน่วยจัดการ Nodeflagship ศรีสะเกษ',date:'ก.พ. 2569',type:'blue',image:'',video:'',url:''}
   ];
   fetch('_data/news.json').then(r=>r.json()).then(d=>renderNews(d.news)).catch(()=>renderNews(newsFallback));
 </script>

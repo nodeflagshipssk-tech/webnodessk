@@ -6,7 +6,17 @@
       "date": "1 มี.ค. 2569",
       "type": "road",
       "image": "assets/news/songkran-2569.jpg",
+      "video": "",
       "url": ""
+    },
+    {
+      "title": "10 Agenda + วาระพิเศษ ศรีสะเกษ",
+      "source": "หน่วยจัดการ Nodeflagship ศรีสะเกษ",
+      "date": "2568",
+      "type": "blue",
+      "image": "",
+      "video": "7NOg7-T-bIA",
+      "url": "https://www.youtube.com/watch?v=7NOg7-T-bIA"
     },
     {
       "title": "ประกาศเขตควบคุมการบริโภคเครื่องดื่มแอลกอฮอล์ในพื้นที่สาธารณะ",
@@ -14,6 +24,7 @@
       "date": "มี.ค. 2569",
       "type": "alc",
       "image": "",
+      "video": "",
       "url": ""
     },
     {
@@ -22,6 +33,7 @@
       "date": "ก.พ. 2569",
       "type": "blue",
       "image": "",
+      "video": "",
       "url": ""
     }
   ]
