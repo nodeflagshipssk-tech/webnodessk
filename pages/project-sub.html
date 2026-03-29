@@ -1,0 +1,492 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>โครงการย่อย — Nodeflagship ศรีสะเกษ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../assets/css/portal.css">
+  <style>
+    .sub-card {
+      background:white; border-radius:14px; padding:16px 20px;
+      box-shadow:0 2px 10px rgba(0,0,0,.06); margin-bottom:12px;
+      border-left:4px solid;
+      display:flex; align-items:center; gap:14px;
+      text-decoration:none; color:var(--text-dark);
+      transition:transform .18s, box-shadow .18s;
+    }
+    .sub-card:hover { transform:translateX(4px); box-shadow:0 6px 20px rgba(0,0,0,.1); }
+    .sub-no {
+      width:38px; height:38px; border-radius:10px;
+      display:flex; align-items:center; justify-content:center;
+      font-weight:700; font-size:.9rem; flex-shrink:0;
+    }
+    .sub-card h6 { font-size:.9rem; font-weight:600; margin:0 0 2px; }
+    .sub-card small { color:var(--text-muted); font-size:.78rem; font-weight:300; }
+    .filter-btn {
+      border:1px solid #e2e8f0; background:white; border-radius:10px;
+      padding:6px 16px; font-size:.85rem; font-weight:500;
+      cursor:pointer; transition:all .15s; font-family:'Kanit',sans-serif;
+    }
+    .filter-btn.active-road { background:var(--road); color:white; border-color:var(--road); }
+    .filter-btn.active-alc  { background:var(--alcohol); color:white; border-color:var(--alcohol); }
+    .filter-btn.active-all  { background:var(--primary); color:white; border-color:var(--primary); }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg main-navbar sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="../index.html"><i class="bi bi-geo-alt-fill me-1"></i>Nodeflagship <span class="brand-sub">ศรีสะเกษ</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Toggle">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link" href="../index.html"><i class="bi bi-house me-1"></i>หน้าแรก</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle road-nav" href="#" role="button" data-bs-toggle="dropdown"><i class="bi bi-cone-striped me-1"></i>อุบัติเหตุ</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="road-blackspot.html"><i class="bi bi-pin-map"></i>จุดเสี่ยงอุบัติเหตุ</a></li>
+            <li><a class="dropdown-item" href="road-accident.html"><i class="bi bi-exclamation-triangle"></i>สถิติอุบัติเหตุ</a></li>
+            <li><a class="dropdown-item" href="road-helmet.html"><i class="bi bi-shield-fill-check"></i>การสวมหมวกนิรภัย</a></li>
+            <li><a class="dropdown-item" href="road-capacity.html"><i class="bi bi-speedometer2"></i>ศักยภาพ ศปถ.</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="road-dashboard.html"><i class="bi bi-graph-up-arrow"></i>Dashboard ถนน</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle alc-nav" href="#" role="button" data-bs-toggle="dropdown"><i class="bi bi-droplet me-1"></i>แอลกอฮอล์</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="alc-tambon.html"><i class="bi bi-houses"></i>ศักยภาพตำบล</a></li>
+            <li><a class="dropdown-item" href="alc-drinker.html"><i class="bi bi-person-x"></i>ผู้ดื่มแอลกอฮอล์</a></li>
+            <li><a class="dropdown-item" href="alc-merit.html"><i class="bi bi-flower1"></i>งานบุญปลอดเหล้า</a></li>
+            <li><a class="dropdown-item" href="alc-model.html"><i class="bi bi-person-check"></i>บุคคลต้นแบบ</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="alc-dashboard.html"><i class="bi bi-pie-chart"></i>Dashboard แอลกอฮอล์</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><i class="bi bi-briefcase me-1"></i>โครงการ</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="project-main.html"><i class="bi bi-building"></i>โครงการหน่วยจัดการ</a></li>
+            <li><a class="dropdown-item" href="project-sub.html"><i class="bi bi-diagram-3"></i>โครงการย่อย 27 โครงการ</a></li>
+            <li><a class="dropdown-item" href="project-team.html"><i class="bi bi-people"></i>คณะทำงาน</a></li>
+            <li><a class="dropdown-item" href="project-docs.html"><i class="bi bi-file-earmark-text"></i>คู่มือและเอกสาร</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="project-dashboard.html"><i class="bi bi-bar-chart-line"></i>Dashboard ภาพรวม</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="guide.html"><i class="bi bi-book me-1"></i>คู่มือ</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html"><i class="bi bi-envelope me-1"></i>ติดต่อ</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="logo-bar"><div class="container"><div class="logo-wrap">
+  <img src="../assets/logos/logo-ddpm.png" alt="ปภ." onerror="this.style.display='none'">
+  <div class="logo-divider"></div>
+  <img src="../assets/logos/logo-sskru.png" alt="มรภ.ศรีสะเกษ" onerror="this.src='https://www.sskru.ac.th/wp-content/uploads/2023/05/SSKRU-LOGO1.png'">
+  <div class="logo-divider"></div>
+  <img src="../assets/logos/logo-thaihealth.png" alt="สสส." onerror="this.src='https://www.thaihealth.or.th/wp-content/uploads/2023/08/Logo-thaihealth.png'">
+  <div class="logo-divider"></div>
+  <img src="../assets/logos/logo-policy-center.png" alt="ศูนย์พัฒนานโยบาย" onerror="this.style.display='none'">
+</div></div></div>
+
+<div class="page-hero hero-blue"><div class="container">
+  <nav aria-label="breadcrumb"><ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="../index.html">หน้าแรก</a></li>
+    <li class="breadcrumb-item"><a href="#">การบริหารจัดการโครงการ</a></li>
+    <li class="breadcrumb-item active">โครงการย่อย 27 โครงการ</li>
+  </ol></nav>
+  <h1><i class="bi bi-diagram-3 me-2"></i>โครงการย่อย 27 โครงการ</h1>
+  <p>โครงการย่อยภายใต้ Node Flagship ศรีสะเกษ ปี 2568–2569 ทั้ง 2 ประเด็นยุทธศาสตร์</p>
+</div></div>
+
+<div class="content-wrap">
+
+  <div class="row g-3 mb-4">
+    <div class="col-6 col-md-3"><div class="mini-stat"><div class="num blue">27</div><div class="lbl">โครงการทั้งหมด</div></div></div>
+    <div class="col-6 col-md-3"><div class="mini-stat"><div class="num" style="color:var(--road)">19</div><div class="lbl">ประเด็นถนน</div></div></div>
+    <div class="col-6 col-md-3"><div class="mini-stat"><div class="num alc">8</div><div class="lbl">ประเด็นแอลกอฮอล์</div></div></div>
+    <div class="col-6 col-md-3"><div class="mini-stat"><div class="num blue">13</div><div class="lbl">อำเภอ</div></div></div>
+  </div>
+
+  <!-- filter -->
+  <div class="d-flex gap-2 mb-3 flex-wrap">
+    <button class="filter-btn active-all" onclick="filterProjects('all',this)">ทั้งหมด (27)</button>
+    <button class="filter-btn" onclick="filterProjects('road',this)">
+      <i class="bi bi-cone-striped me-1" style="color:var(--road)"></i>ความปลอดภัยทางถนน (19)
+    </button>
+    <button class="filter-btn" onclick="filterProjects('alc',this)">
+      <i class="bi bi-droplet me-1" style="color:var(--alcohol)"></i>ลดการบริโภคแอลกอฮอล์ (8)
+    </button>
+  </div>
+
+  <div id="projectList">
+
+    <!-- ══════════ ประเด็นลดการบริโภคแอลกอฮอล์ (ALC 1–8) ══════════ -->
+
+    <a href="#" class="sub-card" data-type="alc" style="border-color:var(--alcohol)">
+      <div class="sub-no" style="background:rgba(46,125,94,.12);color:var(--alcohol)">01</div>
+      <div>
+        <h6>พัฒนากลไกคณะกรรมการพัฒนาคุณภาพชีวิตอำเภอราษีไศล</h6>
+        <small><i class="bi bi-droplet me-1"></i>ลดการบริโภคแอลกอฮอล์ • พชอ.ราษีไศล • ดำเนินการ</small><br>
+        <small style="color:var(--alcohol);font-weight:500"><i class="bi bi-droplet-fill me-1"></i>พี่เลี้ยงหลัก: ผศ.ดร.จุฑามาศ แก้วจันดี</small><br>
+        <small class="text-muted">รหัส 68-00146-01 | สัญญา 68-01344 | ผู้รับทุน: นางสาว ณัฏฐ์นรี คำดี</small>
+      </div>
+      <i class="bi bi-chevron-right ms-auto text-muted flex-shrink-0"></i>
+    </a>
+
+    <a href="#" class="sub-card" data-type="alc" style="border-color:var(--alcohol)">
+      <div class="sub-no" style="background:rgba(46,125,94,.12);color:var(--alcohol)">02</div>
+      <div>
+        <h6>ลดการบริโภคเครื่องดื่มแอลกอฮอล์ พชต.ดู่</h6>
+        <small><i class="bi bi-droplet me-1"></i>ลดการบริโภคแอลกอฮอล์ • ต.ดู่ อ.ราษีไศล • ดำเนินการ</small><br>
+        <small style="color:var(--alcohol);font-weight:500"><i class="bi bi-droplet-fill me-1"></i>พี่เลี้ยงหลัก: ผศ.ดร.จุฑามาศ แก้วจันดี</small><br>
+        <small class="text-muted">รหัส 68-00146-02 | สัญญา 68-01345 | ผู้รับทุน: นาย ลำไพร ธรรมวัตร</small>
+      </div>
+      <i class="bi bi-chevron-right ms-auto text-muted flex-shrink-0"></i>
+    </a>
+
+    <a href="#" class="sub-card" data-type="alc" style="border-color:var(--alcohol)">
+      <div class="sub-no" style="background:rgba(46,125,94,.12);color:var(--alcohol)">03</div>
+      <div>
+        <h6>พชอ.ขุนหาญ ร่วมใจขับเคลื่อนลดการบริโภคเครื่องดื่มแอลกอฮอล์</h6>
+        <small><i class="bi bi-droplet me-1"></i>ลดการบริโภคแอลกอฮอล์ • พชอ.ขุนหาญ • ดำเนินการ</small><br>
+        <small style="color:var(--alcohol);font-weight:500"><i class="bi bi-droplet-fill me-1"></i>พี่เลี้ยงหลัก: น.ส.สุวัลยา โต๊ะสิงห์, นายวรจักร เกตุแก้ว</small><br>
+        <small class="text-muted">รหัส 68-00146-03 | สัญญา 68-01349 | ผู้รับทุน: นางสาว ศศิธร คงสมกาย</small>
+      </div>
+      <i class="bi bi-chevron-right ms-auto text-muted flex-shrink-0"></i>
+    </a>
+
+    <a href="#" class="sub-card" data-type="alc" style="border-color:var(--alcohol)">
+      <div class="sub-no" style="background:rgba(46,125,94,.12);color:var(--alcohol)">04</div>
+      <div>
+        <h6>พัฒนาระบบการลดการบริโภคเครื่องดื่มแอลกอฮอล์โดย พชอ.ไพรบึง</h6>
+        <small><i class="bi bi-droplet me-1"></i>ลดการบริโภคแอลกอฮอล์ • พชอ.ไพรบึง • ดำเนินการ</small><br>
+        <small style="color:var(--alcohol);font-weight:500"><i class="bi bi-droplet-fill me-1"></i>พี่เลี้ยงหลัก: น.ส.สุวัลยา โต๊ะสิงห์, นายวรจักร เกตุแก้ว</small><br>
+        <small class="text-muted">รหัส 68-00146-04 | สัญญา 68-01350 | ผู้รับทุน: นางสาว ศรีสมบูรณ์ คำผง</small>
+      </div>
+      <i class="bi bi-chevron-right ms-auto text-muted flex-shrink-0"></i>
+    </a>
+
+    <a href="#" class="sub-card" data-type="alc" style="border-color:var(--alcohol)">
+      <div class="sub-no" style="background:rgba(46,125,94,.12);color:var(--alcohol)">05</div>
+      <div>
+        <h6>ลดการบริโภคเครื่องดื่มแอลกอฮอล์ในอำเภอพยุห์</h6>
+        <small><i class="bi bi-droplet me-1"></i>ลดการบริโภคแอลกอฮอล์ • พชอ.พยุห์ • ดำเนินการ</small><br>
+        <small style="color:var(--alcohol);font-weight:500"><i class="bi bi-droplet-fill me-1"></i>พี่เลี้ยงหลัก: ดร.ชญานิน กฤติยะโชติ</small><br>
+        <small class="text-muted">รหัส 68-00146-05 | สัญญา 68-01351 | ผู้รับทุน: นาง กชภัส อรุณโรจน์</small>
+      </div>
+      <i class="bi bi-chevron-right ms-auto text-muted flex-shrink-0"></i>
+    </a>
+
+    <a href="#" class="sub-card" data-type="alc" style="border-color:var(--alcohol)">
+      <div class="sub-no" style="background:rgba(46,125,94,.12);color:var(--alcohol)">06</div>
+      <div>
+        <h6>เสริมพลังคณะกรรมการตำบลโนนปูนลดการบริโภคเครื่องดื่มแอลกอฮอล์และส่งเสริมงานบุญประเพณีปลอดเหล้า</h6>
+        <small><i class="bi bi-droplet me-1"></i>ลดการบริโภคแอลกอฮอล์ • ต.โนนปูน อ.ไพรบึง • ดำเนินการ</small><br>
+        <small style="color:var(--alcohol);font-weight:500"><i class="bi bi-droplet-fill me-1"></i>พี่เลี้ยงหลัก: น.ส.สุวัลยา โต๊ะสิงห์, นายวรจักร เกตุแก้ว</small><br>
+        <small class="text-muted">รหัส 68-00146-06 | สัญญา 68-01352 | ผู้รับทุน: นาย วัชรินทร์ พันแก่น</small>
+      </div>
+      <i class="bi bi-chevron-right ms-auto text-muted flex-shrink-0"></i>
+    </a>
+
+    <a href="#" class="sub-card" data-type="alc" style="border-color:var(--alcohol)">
+      <div class="sub-no" style="background:rgba(46,125,94,.12);color:var(--alcohol)">07</div>
+      <div>
+        <h6>ตำบลโนนสูงร่วมใจ พัฒนากลไกขับเคลื่อนการลดการบริโภคเครื่องดื่มแอลกอฮอล์</h6>
+        <small><i class="bi bi-droplet me-1"></i>ลดการบริโภคแอลกอฮอล์ • ต.โนนสูง อ.ขุนหาญ • ดำเนินการ</small><br>
+        <small style="color:var(--alcohol);font-weight:500"><i class="bi bi-droplet-fill me-1"></i>พี่เลี้ยงหลัก: น.ส.สุวัลยา โต๊ะสิงห์, นายวรจักร เกตุแก้ว</small><br>
+        <small class="text-muted">รหัส 68-00146-07 | สัญญา 68-01353 | ผู้รับทุน: นาย ทุนวิถี ทามาดาล</small>
+      </div>
+      <i class="bi bi-chevron-right ms-auto text-muted flex-shrink-0"></i>
+    </a>
+
+    <a href="#" class="sub-card" data-type="alc" style="border-color:var(--alcohol)">
+      <div class="sub-no" style="background:rgba(46,125,94,.12);color:var(--alcohol)">08</div>
+      <div>
+        <h6>ตำบลพรหมสวัสดิ์ร่วมใจลดเหล้า สร้างสุขภาวะยั่งยืน</h6>
+        <small><i class="bi bi-droplet me-1"></i>ลดการบริโภคแอลกอฮอล์ • ต.พรหมสวัสดิ์ อ.พยุห์ • ดำเนินการ</small><br>
+        <small style="color:var(--alcohol);font-weight:500"><i class="bi bi-droplet-fill me-1"></i>พี่เลี้ยงหลัก: ดร.ชญานิน กฤติยะโชติ</small><br>
+        <small class="text-muted">รหัส 68-00146-08 | สัญญา 68-01354 | ผู้รับทุน: นาย ธนาดุล ชัยศรี</small>
+      </div>
+      <i class="bi bi-chevron-right ms-auto text-muted flex-shrink-0"></i>
+    </a>
+
+    <!-- ══════════ ประเด็นความปลอดภัยทางถนน (RST 9–27) ══════════ -->
+
+    <a href="#" class="sub-card" data-type="road" style="border-color:var(--road)">
+      <div class="sub-no" style="background:rgba(212,96,10,.12);color:var(--road)">09</div>
+      <div>
+        <h6>เสริมสร้างกลไกศูนย์ปฏิบัติการความปลอดภัยทางถนนอำเภอขุขันธ์เพื่อลดอุบัติเหตุทางถนน</h6>
+        <small><i class="bi bi-cone-striped me-1"></i>ความปลอดภัยทางถนน • อ.ขุขันธ์ • ดำเนินการ</small><br>
+        <small style="color:var(--road);font-weight:500"><i class="bi bi-cone-striped me-1"></i>พี่เลี้ยงหลัก: ผศ.ดร.อนุพันธ์ สุวรรณพันธ์</small><br>
+        <small class="text-muted">รหัส 68-00146-09 | สัญญา 68-01358 | ผู้รับทุน: นาย พันธุ์ทิพย์ แสงแก้ว</small>
+      </div>
+      <i class="bi bi-chevron-right ms-auto text-muted flex-shrink-0"></i>
+    </a>
+
+    <a href="#" class="sub-card" data-type="road" style="border-color:var(--road)">
+      <div class="sub-no" style="background:rgba(212,96,10,.12);color:var(--road)">10</div>
+      <div>
+        <h6>เสริมสร้างศูนย์ปฏิบัติการความปลอดภัยทางถนนตำบลโพนเขวา เพื่อลดอุบัติเหตุทางถนนอย่างยั่งยืน</h6>
+        <small><i class="bi bi-cone-striped me-1"></i>ความปลอดภัยทางถนน • ต.โพนเขวา อ.เมืองศรีสะเกษ • ดำเนินการ</small><br>
+        <small style="color:var(--road);font-weight:500"><i class="bi bi-cone-striped me-1"></i>พี่เลี้ยงหลัก: อ.กฤตภาส สีหะวงษ์, ดร.กุสุมา มีศิลป์</small><br>
+        <small class="text-muted">รหัส 68-00146-10 | สัญญา 68-01359 | ผู้รับทุน: นางอุทัง ทิมพิทักษ์</small>
+      </div>
+      <i class="bi bi-chevron-right ms-auto text-muted flex-shrink-0"></i>
+    </a>
+
+    <a href="#" class="sub-card" data-type="road" style="border-color:var(--road)">
+      <div class="sub-no" style="background:rgba(212,96,10,.12);color:var(--road)">11</div>
+      <div>
+        <h6>พัฒนากลไกศูนย์ปฏิบัติการความปลอดภัยทางถนนตำบลละลม</h6>
+        <small><i class="bi bi-cone-striped me-1"></i>ความปลอดภัยทางถนน • ต.ละลม อ.ภูสิงห์ • ดำเนินการ</small><br>
+        <small style="color:var(--road);font-weight:500"><i class="bi bi-cone-striped me-1"></i>พี่เลี้ยงหลัก: อ.สุภาภรณ์ ทัศนพงศ์</small><br>
+        <small class="text-muted">รหัส 68-00146-11 | สัญญา 68-01376 | ผู้รับทุน: นาย ชลิต ถนอมศรี</small>
+      </div>
+      <i class="bi bi-chevron-right ms-auto text-muted flex-shrink-0"></i>
+    </a>
+
+    <a href="#" class="sub-card" data-type="road" style="border-color:var(--road)">
+      <div class="sub-no" style="background:rgba(212,96,10,.12);color:var(--road)">12</div>
+      <div>
+        <h6>เสริมสร้างศักยภาพศูนย์ปฏิบัติการความปลอดภัยทางถนนอำเภอปรางค์กู่</h6>
+        <small><i class="bi bi-cone-striped me-1"></i>ความปลอดภัยทางถนน • อ.ปรางค์กู่ • ดำเนินการ</small><br>
+        <small style="color:var(--road);font-weight:500"><i class="bi bi-cone-striped me-1"></i>พี่เลี้ยงหลัก: อ.สุภาภรณ์ ทัศนพงศ์</small><br>
+        <small class="text-muted">รหัส 68-00146-12 | สัญญา 68-01377 | ผู้รับทุน: นาย วิษณุ สำเริง</small>
+      </div>
+      <i class="bi bi-chevron-right ms-auto text-muted flex-shrink-0"></i>
+    </a>
+
+    <a href="#" class="sub-card" data-type="road" style="border-color:var(--road)">
+      <div class="sub-no" style="background:rgba(212,96,10,.12);color:var(--road)">13</div>
+      <div>
+        <h6>พัฒนาและยกระดับกลไกศูนย์ปฏิบัติการความปลอดภัยทางถนนอำเภอกันทรลักษ์ต้นแบบสู่แหล่งเรียนรู้</h6>
+        <small><i class="bi bi-cone-striped me-1"></i>ความปลอดภัยทางถนน • อ.กันทรลักษ์ • ดำเนินการ</small><br>
+        <small style="color:var(--road);font-weight:500"><i class="bi bi-cone-striped me-1"></i>พี่เลี้ยงหลัก: ดร.ชญานิน กฤติยะโชติ, น.ส.จุหารัตน์ วงศ์ใหญ่</small><br>
+        <small class="text-muted">รหัส 68-00146-13 | สัญญา 68-01380 | ผู้รับทุน: นาย จำเริญชัย ใจเครือ</small>
+      </div>
+      <i class="bi bi-chevron-right ms-auto text-muted flex-shrink-0"></i>
+    </a>
+
+    <a href="#" class="sub-card" data-type="road" style="border-color:var(--road)">
+      <div class="sub-no" style="background:rgba(212,96,10,.12);color:var(--road)">14</div>
+      <div>
+        <h6>พัฒนากลไกศูนย์ปฏิบัติการความปลอดภัยทางถนนตำบลผักแพว</h6>
+        <small><i class="bi bi-cone-striped me-1"></i>ความปลอดภัยทางถนน • ต.ผักแพว อ.กันทรารมย์ • ดำเนินการ</small><br>
+        <small style="color:var(--road);font-weight:500"><i class="bi bi-cone-striped me-1"></i>พี่เลี้ยงหลัก: ดร.ชญานิน กฤติยะโชติ</small><br>
+        <small class="text-muted">รหัส 68-00146-14 | สัญญา 68-01379 | ผู้รับทุน: นาย วรเทพ วารินทร์</small>
+      </div>
+      <i class="bi bi-chevron-right ms-auto text-muted flex-shrink-0"></i>
+    </a>
+
+    <a href="#" class="sub-card" data-type="road" style="border-color:var(--road)">
+      <div class="sub-no" style="background:rgba(212,96,10,.12);color:var(--road)">15</div>
+      <div>
+        <h6>พัฒนาและยกระดับกลไกศูนย์ปฏิบัติการความปลอดภัยทางถนนตำบลกุดเสลา ต้นแบบสู่แหล่งเรียนรู้</h6>
+        <small><i class="bi bi-cone-striped me-1"></i>ความปลอดภัยทางถนน • ต.กุดเสลา อ.กันทรลักษ์ • ดำเนินการ</small><br>
+        <small style="color:var(--road);font-weight:500"><i class="bi bi-cone-striped me-1"></i>พี่เลี้ยงหลัก: ดร.ชญานิน กฤติยะโชติ, น.ส.จุหารัตน์ วงศ์ใหญ่</small><br>
+        <small class="text-muted">รหัส 68-00146-15 | สัญญา 68-01361 | ผู้รับทุน: นาย นิรันดร์ชัย ถุงจันทร์</small>
+      </div>
+      <i class="bi bi-chevron-right ms-auto text-muted flex-shrink-0"></i>
+    </a>
+
+    <a href="#" class="sub-card" data-type="road" style="border-color:var(--road)">
+      <div class="sub-no" style="background:rgba(212,96,10,.12);color:var(--road)">16</div>
+      <div>
+        <h6>ขับเคลื่อนการจัดการความปลอดภัยทางถนนตำบลน้ำอ้อม</h6>
+        <small><i class="bi bi-cone-striped me-1"></i>ความปลอดภัยทางถนน • ต.น้ำอ้อม อ.กันทรลักษ์ • ดำเนินการ</small><br>
+        <small style="color:var(--road);font-weight:500"><i class="bi bi-cone-striped me-1"></i>พี่เลี้ยงหลัก: ดร.ชญานิน กฤติยะโชติ, น.ส.จุหารัตน์ วงศ์ใหญ่</small><br>
+        <small class="text-muted">รหัส 68-00146-16 | สัญญา 68-01362 | ผู้รับทุน: นาย ทวี บุญชิต</small>
+      </div>
+      <i class="bi bi-chevron-right ms-auto text-muted flex-shrink-0"></i>
+    </a>
+
+    <a href="#" class="sub-card" data-type="road" style="border-color:var(--road)">
+      <div class="sub-no" style="background:rgba(212,96,10,.12);color:var(--road)">17</div>
+      <div>
+        <h6>เสริมสร้างความปลอดภัยทางถนนตำบลยางชุมใหญ่ สู่การลดอุบัติเหตุอย่างยั่งยืน</h6>
+        <small><i class="bi bi-cone-striped me-1"></i>ความปลอดภัยทางถนน • ต.ยางชุมใหญ่ อ.ยางชุมน้อย • ดำเนินการ</small><br>
+        <small style="color:var(--road);font-weight:500"><i class="bi bi-cone-striped me-1"></i>พี่เลี้ยงหลัก: อ.กฤตภาส สีหะวงษ์, ดร.กุสุมา มีศิลป์</small><br>
+        <small class="text-muted">รหัส 68-00146-17 | สัญญา 68-01363 | ผู้รับทุน: นาง สุรัถยา สุวรรณหงษ์</small>
+      </div>
+      <i class="bi bi-chevron-right ms-auto text-muted flex-shrink-0"></i>
+    </a>
+
+    <a href="#" class="sub-card" data-type="road" style="border-color:var(--road)">
+      <div class="sub-no" style="background:rgba(212,96,10,.12);color:var(--road)">18</div>
+      <div>
+        <h6>พัฒนาศูนย์ปฏิบัติการความปลอดภัยทางถนนเชิงบูรณาการอำเภอเมืองศรีสะเกษ</h6>
+        <small><i class="bi bi-cone-striped me-1"></i>ความปลอดภัยทางถนน • อ.เมืองศรีสะเกษ • ดำเนินการ</small><br>
+        <small style="color:var(--road);font-weight:500"><i class="bi bi-cone-striped me-1"></i>พี่เลี้ยงหลัก: ผศ.ดร.อนุพันธ์ สุวรรณพันธ์, ดร.กุสุมา มีศิลป์</small><br>
+        <small class="text-muted">รหัส 68-00146-18 | สัญญา 68-01364 | ผู้รับทุน: นาย ศรายุธ สีละออง</small>
+      </div>
+      <i class="bi bi-chevron-right ms-auto text-muted flex-shrink-0"></i>
+    </a>
+
+    <a href="#" class="sub-card" data-type="road" style="border-color:var(--road)">
+      <div class="sub-no" style="background:rgba(212,96,10,.12);color:var(--road)">19</div>
+      <div>
+        <h6>ยกระดับศูนย์ปฏิบัติการความปลอดภัยทางถนนอำเภอยางชุมน้อย สู่การบูรณาการจัดการความปลอดภัยอย่างยั่งยืน</h6>
+        <small><i class="bi bi-cone-striped me-1"></i>ความปลอดภัยทางถนน • อ.ยางชุมน้อย • ดำเนินการ</small><br>
+        <small style="color:var(--road);font-weight:500"><i class="bi bi-cone-striped me-1"></i>พี่เลี้ยงหลัก: อ.กฤตภาส สีหะวงษ์, ดร.กุสุมา มีศิลป์</small><br>
+        <small class="text-muted">รหัส 68-00146-19 | สัญญา 68-01365 | ผู้รับทุน: นาย นิพนธ์ ถาดทอง</small>
+      </div>
+      <i class="bi bi-chevron-right ms-auto text-muted flex-shrink-0"></i>
+    </a>
+
+    <a href="#" class="sub-card" data-type="road" style="border-color:var(--road)">
+      <div class="sub-no" style="background:rgba(212,96,10,.12);color:var(--road)">20</div>
+      <div>
+        <h6>การจัดการความปลอดภัยทางถนนแบบมีส่วนร่วมเพื่อลดอุบัติเหตุในตำบลหนองไฮ</h6>
+        <small><i class="bi bi-cone-striped me-1"></i>ความปลอดภัยทางถนน • ต.หนองไฮ อ.เมืองศรีสะเกษ • ดำเนินการ</small><br>
+        <small style="color:var(--road);font-weight:500"><i class="bi bi-cone-striped me-1"></i>พี่เลี้ยงหลัก: น.ส.พัชรินทร์ ธุชาวัน, ผศ.ดร.อนุพันธ์ สุวรรณพันธ์</small><br>
+        <small class="text-muted">รหัส 68-00146-20 | สัญญา 68-01375 | ผู้รับทุน: นางสาว ชำมะนาต ศุภกรพาณิชย์</small>
+      </div>
+      <i class="bi bi-chevron-right ms-auto text-muted flex-shrink-0"></i>
+    </a>
+
+    <a href="#" class="sub-card" data-type="road" style="border-color:var(--road)">
+      <div class="sub-no" style="background:rgba(212,96,10,.12);color:var(--road)">21</div>
+      <div>
+        <h6>เสริมสร้างศูนย์ปฏิบัติการความปลอดภัยทางถนนตำบลไพรเพื่อลดอุบัติเหตุอย่างยั่งยืน</h6>
+        <small><i class="bi bi-cone-striped me-1"></i>ความปลอดภัยทางถนน • ต.ไพร อ.ขุนหาญ • ดำเนินการ</small><br>
+        <small style="color:var(--road);font-weight:500"><i class="bi bi-cone-striped me-1"></i>พี่เลี้ยงหลัก: ดร.ชญานิน กฤติยะโชติ</small><br>
+        <small class="text-muted">รหัส 68-00146-21 | สัญญา 68-01366 | ผู้รับทุน: นาย ชาญชัย ไชยโคตร</small>
+      </div>
+      <i class="bi bi-chevron-right ms-auto text-muted flex-shrink-0"></i>
+    </a>
+
+    <a href="#" class="sub-card" data-type="road" style="border-color:var(--road)">
+      <div class="sub-no" style="background:rgba(212,96,10,.12);color:var(--road)">22</div>
+      <div>
+        <h6>หนองบัวปลอดภัย หยุดอุบัติเหตุ สร้างวินัยจราจร</h6>
+        <small><i class="bi bi-cone-striped me-1"></i>ความปลอดภัยทางถนน • ต.หนองบัว อ.กันทรารมย์ • ดำเนินการ</small><br>
+        <small style="color:var(--road);font-weight:500"><i class="bi bi-cone-striped me-1"></i>พี่เลี้ยงหลัก: นายธีรบูลย์ รัชตะวิมลรัตน์, ดร.ชญานิน กฤติยะโชติ</small><br>
+        <small class="text-muted">รหัส 68-00146-22 | สัญญา 68-01367 | ผู้รับทุน: นาง ธนิษฐา โพธิจักร์</small>
+      </div>
+      <i class="bi bi-chevron-right ms-auto text-muted flex-shrink-0"></i>
+    </a>
+
+    <a href="#" class="sub-card" data-type="road" style="border-color:var(--road)">
+      <div class="sub-no" style="background:rgba(212,96,10,.12);color:var(--road)">23</div>
+      <div>
+        <h6>เสริมสร้างศักยภาพศูนย์ปฏิบัติการความปลอดภัยทางถนนอำเภอห้วยทับทัน</h6>
+        <small><i class="bi bi-cone-striped me-1"></i>ความปลอดภัยทางถนน • อ.ห้วยทับทัน • ดำเนินการ</small><br>
+        <small style="color:var(--road);font-weight:500"><i class="bi bi-cone-striped me-1"></i>พี่เลี้ยงหลัก: ผศ.ดร.อนุพันธ์ สุวรรณพันธ์</small><br>
+        <small class="text-muted">รหัส 68-00146-23 | สัญญา 68-01368 | ผู้รับทุน: นาย สุรชัย จันทรศรี</small>
+      </div>
+      <i class="bi bi-chevron-right ms-auto text-muted flex-shrink-0"></i>
+    </a>
+
+    <a href="#" class="sub-card" data-type="road" style="border-color:var(--road)">
+      <div class="sub-no" style="background:rgba(212,96,10,.12);color:var(--road)">24</div>
+      <div>
+        <h6>เสริมสร้างศักยภาพศูนย์ปฏิบัติการความปลอดภัยทางถนนตำบลหนองเชียงทูน เพื่อลดอุบัติเหตุอย่างยั่งยืน</h6>
+        <small><i class="bi bi-cone-striped me-1"></i>ความปลอดภัยทางถนน • ต.หนองเชียงทูน อ.ปรางค์กู่ • ดำเนินการ</small><br>
+        <small style="color:var(--road);font-weight:500"><i class="bi bi-cone-striped me-1"></i>พี่เลี้ยงหลัก: อ.สุภาภรณ์ ทัศนพงศ์</small><br>
+        <small class="text-muted">รหัส 68-00146-24 | สัญญา 68-01369 | ผู้รับทุน: ส.อ. ศักดา คมขำ</small>
+      </div>
+      <i class="bi bi-chevron-right ms-auto text-muted flex-shrink-0"></i>
+    </a>
+
+    <a href="#" class="sub-card" data-type="road" style="border-color:var(--road)">
+      <div class="sub-no" style="background:rgba(212,96,10,.12);color:var(--road)">25</div>
+      <div>
+        <h6>พัฒนาศูนย์ปฏิบัติการความปลอดภัยทางถนนองค์การบริหารส่วนตำบลปรือใหญ่</h6>
+        <small><i class="bi bi-cone-striped me-1"></i>ความปลอดภัยทางถนน • ต.ปรือใหญ่ อ.ขุขันธ์ • ดำเนินการ</small><br>
+        <small style="color:var(--road);font-weight:500"><i class="bi bi-cone-striped me-1"></i>พี่เลี้ยงหลัก: ผศ.ดร.อนุพันธ์ สุวรรณพันธ์</small><br>
+        <small class="text-muted">รหัส 68-00146-25 | สัญญา 68-01370 | ผู้รับทุน: นาย เจตน์จิตร สัมพุทธานนท์</small>
+      </div>
+      <i class="bi bi-chevron-right ms-auto text-muted flex-shrink-0"></i>
+    </a>
+
+    <a href="#" class="sub-card" data-type="road" style="border-color:var(--road)">
+      <div class="sub-no" style="background:rgba(212,96,10,.12);color:var(--road)">26</div>
+      <div>
+        <h6>พัฒนาศูนย์ปฏิบัติการความปลอดภัยทางถนนตำบลหนองไฮสู่การเป็นตำบลขับขี่ปลอดภัย</h6>
+        <small><i class="bi bi-cone-striped me-1"></i>ความปลอดภัยทางถนน • ต.หนองไฮ อ.อุทุมพรพิสัย • ดำเนินการ</small><br>
+        <small style="color:var(--road);font-weight:500"><i class="bi bi-cone-striped me-1"></i>พี่เลี้ยงหลัก: อ.กฤตภาส สีหะวงษ์, ผศ.ดร.จุฑามาศ แก้วจันดี</small><br>
+        <small class="text-muted">รหัส 68-00146-26 | สัญญา 68-01374 | ผู้รับทุน: นาย มานพ ผาเงิน</small>
+      </div>
+      <i class="bi bi-chevron-right ms-auto text-muted flex-shrink-0"></i>
+    </a>
+
+    <a href="#" class="sub-card" data-type="road" style="border-color:var(--road)">
+      <div class="sub-no" style="background:rgba(212,96,10,.12);color:var(--road)">27</div>
+      <div>
+        <h6>เสริมสร้างศูนย์ปฏิบัติการความปลอดภัยทางถนนอำเภอกันทรารมย์เพื่อลดอุบัติเหตุจราจร</h6>
+        <small><i class="bi bi-cone-striped me-1"></i>ความปลอดภัยทางถนน • อ.กันทรารมย์ • ดำเนินการ</small><br>
+        <small style="color:var(--road);font-weight:500"><i class="bi bi-cone-striped me-1"></i>พี่เลี้ยงหลัก: ดร.ชญานิน กฤติยะโชติ</small><br>
+        <small class="text-muted">รหัส 68-00146-27 | สัญญา 68-01378 | ผู้รับทุน: นาง อุษณีย์ ติละบาล</small>
+      </div>
+      <i class="bi bi-chevron-right ms-auto text-muted flex-shrink-0"></i>
+    </a>
+
+  </div>
+
+  <div class="mt-4">
+    <a href="../index.html" class="btn btn-outline-secondary" style="border-radius:12px;font-weight:500">
+      <i class="bi bi-arrow-left me-2"></i>กลับหน้าหลัก
+    </a>
+  </div>
+</div>
+
+<div class="partners-section">
+  <div class="partners-label">หน่วยงานที่สนับสนุน</div>
+  <div class="partners-box">
+    <img src="../assets/logos/logo-ddpm.png" alt="ปภ." onerror="this.style.display='none'">
+    <div class="partners-divider"></div>
+    <img src="../assets/logos/logo-sskru.png" alt="มรภ.ศรีสะเกษ" onerror="this.src='https://www.sskru.ac.th/wp-content/uploads/2023/05/SSKRU-LOGO1.png'">
+    <div class="partners-divider"></div>
+    <img src="../assets/logos/logo-thaihealth.png" alt="สสส." onerror="this.src='https://www.thaihealth.or.th/wp-content/uploads/2023/08/Logo-thaihealth.png'">
+    <div class="partners-divider"></div>
+    <img src="../assets/logos/logo-section6.png" alt="สำนัก 6" onerror="this.style.display='none'">
+    <div class="partners-divider"></div>
+    <img src="../assets/logos/logo-policy-center.png" alt="ศูนย์พัฒนานโยบาย" onerror="this.style.display='none'">
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-text">
+      <p class="mb-1"><strong style="opacity:.9">หน่วยจัดการขับเคลื่อนประเด็นยุทธศาสตร์ (Nodeflagship) จังหวัดศรีสะเกษ</strong></p>
+      <p class="mb-0">สนับสนุนโดย สำนักสร้างสรรค์โอกาส (สำนัก 6) สำนักงานกองทุนสนับสนุนการสร้างเสริมสุขภาพ (สสส.) | ปี 2568–2569</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function filterProjects(type, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    b.classList.remove('active-all','active-road','active-alc');
+  });
+  const cls = type === 'all' ? 'active-all' : type === 'road' ? 'active-road' : 'active-alc';
+  btn.classList.add(cls);
+  document.querySelectorAll('[data-type]').forEach(el => {
+    el.style.display = (type === 'all' || el.dataset.type === type) ? '' : 'none';
+  });
+}
+</script>
+<script>
+(function(){
+  var p=location.pathname.split('/').pop()||'index.html';
+  document.querySelectorAll('.main-navbar .dropdown-item').forEach(function(a){
+    if((a.getAttribute('href')||'')===p){
+      a.classList.add('active');
+      var dt=a.closest('.dropdown')&&a.closest('.dropdown').querySelector('.nav-link.dropdown-toggle');
+      if(dt)dt.classList.add('active');
+    }
+  });
+  document.querySelectorAll('.main-navbar .nav-link:not(.dropdown-toggle)').forEach(function(a){
+    if((a.getAttribute('href')||'').split('/').pop()===p)a.classList.add('active');
+  });
+})();
+</script>
+</body>
+</html>

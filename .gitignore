@@ -1,0 +1,20 @@
+# ไฟล์ขนาดใหญ่ — ไม่ต้องขึ้น GitHub
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+
+# ไฟล์ระบบ Windows
+Thumbs.db
+desktop.ini
+
+# ไฟล์ระบบ Mac
+.DS_Store
+
+# ไฟล์ Claude Code
+.claude/
+
+# ไฟล์ชั่วคราว
+*.tmp
+*.bak

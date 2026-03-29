@@ -1,0 +1,306 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Status Report — Nodeflagship ศรีสะเกษ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../assets/css/portal.css">
+  <style>
+    .report-card {
+      background:white; border-radius:16px; padding:20px 24px;
+      box-shadow:0 2px 12px rgba(0,0,0,.06); margin-bottom:14px;
+      border-left:4px solid var(--primary);
+    }
+    .report-card .report-date { font-size:.78rem; color:var(--text-muted); font-weight:300; }
+    .report-card h6 { font-size:.95rem; font-weight:700; margin:4px 0 6px; }
+    .progress-bar-custom {
+      height: 8px; border-radius: 8px; background: #e2e8f0;
+      overflow: hidden; margin-top: 8px;
+    }
+    .progress-fill { height: 100%; border-radius: 8px; transition: width 1s ease; }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg main-navbar sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="../index.html"><i class="bi bi-geo-alt-fill me-1"></i>Nodeflagship <span class="brand-sub">ศรีสะเกษ</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Toggle">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link" href="../index.html"><i class="bi bi-house me-1"></i>หน้าแรก</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle road-nav" href="#" role="button" data-bs-toggle="dropdown"><i class="bi bi-cone-striped me-1"></i>อุบัติเหตุ</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="road-blackspot.html"><i class="bi bi-pin-map"></i>จุดเสี่ยงอุบัติเหตุ</a></li>
+            <li><a class="dropdown-item" href="road-accident.html"><i class="bi bi-exclamation-triangle"></i>สถิติอุบัติเหตุ</a></li>
+            <li><a class="dropdown-item" href="road-helmet.html"><i class="bi bi-shield-fill-check"></i>การสวมหมวกนิรภัย</a></li>
+            <li><a class="dropdown-item" href="road-capacity.html"><i class="bi bi-speedometer2"></i>ศักยภาพ ศปถ.</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="road-dashboard.html"><i class="bi bi-graph-up-arrow"></i>Dashboard ถนน</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle alc-nav" href="#" role="button" data-bs-toggle="dropdown"><i class="bi bi-droplet me-1"></i>แอลกอฮอล์</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="alc-tambon.html"><i class="bi bi-houses"></i>ศักยภาพตำบล</a></li>
+            <li><a class="dropdown-item" href="alc-drinker.html"><i class="bi bi-person-x"></i>ผู้ดื่มแอลกอฮอล์</a></li>
+            <li><a class="dropdown-item" href="alc-merit.html"><i class="bi bi-flower1"></i>งานบุญปลอดเหล้า</a></li>
+            <li><a class="dropdown-item" href="alc-model.html"><i class="bi bi-person-check"></i>บุคคลต้นแบบ</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="alc-dashboard.html"><i class="bi bi-pie-chart"></i>Dashboard แอลกอฮอล์</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><i class="bi bi-briefcase me-1"></i>โครงการ</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="project-main.html"><i class="bi bi-building"></i>โครงการหน่วยจัดการ</a></li>
+            <li><a class="dropdown-item" href="project-sub.html"><i class="bi bi-diagram-3"></i>โครงการย่อย 27 โครงการ</a></li>
+            <li><a class="dropdown-item" href="project-team.html"><i class="bi bi-people"></i>คณะทำงาน</a></li>
+            <li><a class="dropdown-item" href="project-docs.html"><i class="bi bi-file-earmark-text"></i>คู่มือและเอกสาร</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="project-dashboard.html"><i class="bi bi-bar-chart-line"></i>Dashboard ภาพรวม</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="guide.html"><i class="bi bi-book me-1"></i>คู่มือ</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html"><i class="bi bi-envelope me-1"></i>ติดต่อ</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="logo-bar"><div class="container"><div class="logo-wrap">
+  <img src="../assets/logos/logo-ddpm.png" alt="ปภ." onerror="this.style.display='none'">
+  <div class="logo-divider"></div>
+  <img src="../assets/logos/logo-sskru.png" alt="มรภ.ศรีสะเกษ" onerror="this.src='https://www.sskru.ac.th/wp-content/uploads/2023/05/SSKRU-LOGO1.png'">
+  <div class="logo-divider"></div>
+  <img src="../assets/logos/logo-thaihealth.png" alt="สสส." onerror="this.src='https://www.thaihealth.or.th/wp-content/uploads/2023/08/Logo-thaihealth.png'">
+  <div class="logo-divider"></div>
+  <img src="../assets/logos/logo-policy-center.png" alt="ศูนย์พัฒนานโยบาย" onerror="this.style.display='none'">
+</div></div></div>
+
+<div class="page-hero hero-blue"><div class="container">
+  <nav aria-label="breadcrumb"><ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="../index.html">หน้าแรก</a></li>
+    <li class="breadcrumb-item active">Status Report</li>
+  </ol></nav>
+  <h1><i class="bi bi-file-earmark-bar-graph me-2"></i>Status Report</h1>
+  <p>รายงานความก้าวหน้าการดำเนินงาน Node Flagship ศรีสะเกษ ปี 2568–2569</p>
+</div></div>
+
+<div class="content-wrap">
+  <div class="row g-4">
+    <div class="col-md-8">
+      <div class="info-card mb-4">
+        <h5><i class="bi bi-graph-up me-2"></i>ความก้าวหน้าตัวชี้วัดหลัก</h5>
+
+        <div class="mb-3">
+          <div class="d-flex justify-content-between mb-1">
+            <span style="font-size:.9rem;font-weight:600"><i class="bi bi-cone-striped me-1" style="color:var(--road)"></i>ลดจุดเสี่ยง ≥ 50%</span>
+            <span style="font-size:.85rem;color:var(--text-muted)">0 / เป้าหมาย</span>
+          </div>
+          <div class="progress-bar-custom"><div class="progress-fill" style="width:0%;background:var(--road)"></div></div>
+        </div>
+
+        <div class="mb-3">
+          <div class="d-flex justify-content-between mb-1">
+            <span style="font-size:.9rem;font-weight:600"><i class="bi bi-shield-check me-1" style="color:var(--road)"></i>อัตราสวมหมวก ≥ 80%</span>
+            <span style="font-size:.85rem;color:var(--text-muted)">0% / 80%</span>
+          </div>
+          <div class="progress-bar-custom"><div class="progress-fill" style="width:0%;background:var(--road)"></div></div>
+        </div>
+
+        <div class="mb-3">
+          <div class="d-flex justify-content-between mb-1">
+            <span style="font-size:.9rem;font-weight:600"><i class="bi bi-flower1 me-1" style="color:var(--alcohol)"></i>งานบุญปลอดเหล้า ≥ 80%</span>
+            <span style="font-size:.85rem;color:var(--text-muted)">0% / 80%</span>
+          </div>
+          <div class="progress-bar-custom"><div class="progress-fill" style="width:0%;background:var(--alcohol)"></div></div>
+        </div>
+
+        <div class="mb-3">
+          <div class="d-flex justify-content-between mb-1">
+            <span style="font-size:.9rem;font-weight:600"><i class="bi bi-person-check me-1" style="color:var(--alcohol)"></i>ผู้ดื่มลด/เลิก ≥ 30%</span>
+            <span style="font-size:.85rem;color:var(--text-muted)">0% / 30%</span>
+          </div>
+          <div class="progress-bar-custom"><div class="progress-fill" style="width:0%;background:var(--alcohol)"></div></div>
+        </div>
+
+        <div class="mb-3">
+          <div class="d-flex justify-content-between mb-1">
+            <span style="font-size:.9rem;font-weight:600"><i class="bi bi-diagram-3 me-1" style="color:var(--primary)"></i>โครงการย่อยที่เปิดดำเนินการแล้ว</span>
+            <span style="font-size:.85rem;color:var(--text-muted)">27 / 27 โครงการ</span>
+          </div>
+          <div class="progress-bar-custom"><div class="progress-fill" style="width:100%;background:var(--primary)"></div></div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h5><i class="bi bi-archive me-2"></i>รายงานตามช่วงเวลา</h5>
+        <div class="report-card">
+          <div class="report-date"><i class="bi bi-calendar3 me-1"></i>ช่วงที่ 1 (16 มิ.ย. – 30 ก.ย. 2568)</div>
+          <h6>รายงานความก้าวหน้า ครั้งที่ 1</h6>
+          <div class="d-flex align-items-center gap-2">
+            <span class="badge" style="background:#ffc107;color:#000;padding:4px 10px;border-radius:6px;font-size:.78rem">รอรายงาน</span>
+            <span style="font-size:.8rem;color:var(--text-muted)">กำหนดส่ง: ตุลาคม 2568</span>
+          </div>
+        </div>
+        <div class="report-card" style="border-color:#e2e8f0;opacity:.6">
+          <div class="report-date"><i class="bi bi-calendar3 me-1"></i>ช่วงที่ 2 (ต.ค. 2568 – ม.ค. 2569)</div>
+          <h6>รายงานความก้าวหน้า ครั้งที่ 2</h6>
+          <span class="badge" style="background:#e2e8f0;color:#64748b;padding:4px 10px;border-radius:6px;font-size:.78rem">ยังไม่ถึงกำหนด</span>
+        </div>
+        <div class="report-card" style="border-color:#e2e8f0;opacity:.6">
+          <div class="report-date"><i class="bi bi-calendar3 me-1"></i>สิ้นสุดโครงการ (15 เม.ย. 2569)</div>
+          <h6>รายงานฉบับสมบูรณ์</h6>
+          <span class="badge" style="background:#e2e8f0;color:#64748b;padding:4px 10px;border-radius:6px;font-size:.78rem">ยังไม่ถึงกำหนด</span>
+        </div>
+      </div>
+
+      <!-- ทะเบียนโครงการย่อย -->
+      <div class="info-card mt-4">
+        <h5><i class="bi bi-table me-2"></i>ทะเบียนโครงการย่อย</h5>
+        <div class="mb-3 d-flex gap-2 flex-wrap">
+          <span class="badge" style="background:rgba(46,125,94,.15);color:var(--alcohol);padding:5px 12px;border-radius:8px;font-size:.82rem"><i class="bi bi-droplet me-1"></i>แอลกอฮอล์ 8 โครงการ</span>
+          <span class="badge" style="background:rgba(212,96,10,.12);color:var(--road);padding:5px 12px;border-radius:8px;font-size:.82rem"><i class="bi bi-cone-striped me-1"></i>ถนน 19 โครงการ</span>
+        </div>
+        <div style="overflow-x:auto">
+          <table class="table table-sm table-hover" style="font-size:.82rem">
+            <thead style="background:#f8fafc">
+              <tr>
+                <th style="width:40px">#</th>
+                <th style="width:110px">รหัส</th>
+                <th>ชื่อโครงการ</th>
+                <th style="width:130px">ผู้รับทุน</th>
+                <th style="width:70px;text-align:center">สถานะ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td colspan="5" style="background:#e8f5ef;font-weight:600;color:var(--alcohol);font-size:.8rem"><i class="bi bi-droplet me-1"></i>ประเด็นลดการบริโภคแอลกอฮอล์</td></tr>
+              <tr><td>01</td><td><small class="text-muted">68-00146-01</small></td><td>พัฒนากลไกคณะกรรมการพัฒนาคุณภาพชีวิตอำเภอราษีไศล</td><td>นางสาว ณัฏฐ์นรี คำดี</td><td style="text-align:center"><span style="color:var(--alcohol);font-size:.75rem">●</span> ดำเนินการ</td></tr>
+              <tr><td>02</td><td><small class="text-muted">68-00146-02</small></td><td>ลดการบริโภคเครื่องดื่มแอลกอฮอล์ พชต.ดู่</td><td>นาย ลำไพร ธรรมวัตร</td><td style="text-align:center"><span style="color:var(--alcohol);font-size:.75rem">●</span> ดำเนินการ</td></tr>
+              <tr><td>03</td><td><small class="text-muted">68-00146-03</small></td><td>พชอ.ขุนหาญ ร่วมใจขับเคลื่อนลดการบริโภคเครื่องดื่มแอลกอฮอล์</td><td>นางสาว ศศิธร คงสมกาย</td><td style="text-align:center"><span style="color:var(--alcohol);font-size:.75rem">●</span> ดำเนินการ</td></tr>
+              <tr><td>04</td><td><small class="text-muted">68-00146-04</small></td><td>พัฒนาระบบการลดการบริโภคเครื่องดื่มแอลกอฮอล์โดย พชอ.ไพรบึง</td><td>นางสาว ศรีสมบูรณ์ คำผง</td><td style="text-align:center"><span style="color:var(--alcohol);font-size:.75rem">●</span> ดำเนินการ</td></tr>
+              <tr><td>05</td><td><small class="text-muted">68-00146-05</small></td><td>ลดการบริโภคเครื่องดื่มแอลกอฮอล์ในอำเภอพยุห์</td><td>นาง กชภัส อรุณโรจน์</td><td style="text-align:center"><span style="color:var(--alcohol);font-size:.75rem">●</span> ดำเนินการ</td></tr>
+              <tr><td>06</td><td><small class="text-muted">68-00146-06</small></td><td>เสริมพลังคณะกรรมการตำบลโนนปูนลดการบริโภคเครื่องดื่มแอลกอฮอล์ฯ</td><td>นาย วัชรินทร์ พันแก่น</td><td style="text-align:center"><span style="color:var(--alcohol);font-size:.75rem">●</span> ดำเนินการ</td></tr>
+              <tr><td>07</td><td><small class="text-muted">68-00146-07</small></td><td>ตำบลโนนสูงร่วมใจ พัฒนากลไกขับเคลื่อนการลดการบริโภคเครื่องดื่มแอลกอฮอล์</td><td>นาย ทุนวิถี ทามาดาล</td><td style="text-align:center"><span style="color:var(--alcohol);font-size:.75rem">●</span> ดำเนินการ</td></tr>
+              <tr><td>08</td><td><small class="text-muted">68-00146-08</small></td><td>ตำบลพรหมสวัสดิ์ร่วมใจลดเหล้า สร้างสุขภาวะยั่งยืน</td><td>นาย ธนาดุล ชัยศรี</td><td style="text-align:center"><span style="color:var(--alcohol);font-size:.75rem">●</span> ดำเนินการ</td></tr>
+              <tr><td colspan="5" style="background:#fdf1ea;font-weight:600;color:var(--road);font-size:.8rem"><i class="bi bi-cone-striped me-1"></i>ประเด็นความปลอดภัยทางถนน</td></tr>
+              <tr><td>09</td><td><small class="text-muted">68-00146-09</small></td><td>เสริมสร้างกลไก ศปถ. อ.ขุขันธ์ เพื่อลดอุบัติเหตุทางถนน</td><td>นาย พันธุ์ทิพย์ แสงแก้ว</td><td style="text-align:center"><span style="color:var(--road);font-size:.75rem">●</span> ดำเนินการ</td></tr>
+              <tr><td>10</td><td><small class="text-muted">68-00146-10</small></td><td>เสริมสร้าง ศปถ. ต.โพนเขวา เพื่อลดอุบัติเหตุทางถนนอย่างยั่งยืน</td><td>นางอุทัง ทิมพิทักษ์</td><td style="text-align:center"><span style="color:var(--road);font-size:.75rem">●</span> ดำเนินการ</td></tr>
+              <tr><td>11</td><td><small class="text-muted">68-00146-11</small></td><td>พัฒนากลไก ศปถ. ต.ละลม</td><td>นาย ชลิต ถนอมศรี</td><td style="text-align:center"><span style="color:var(--road);font-size:.75rem">●</span> ดำเนินการ</td></tr>
+              <tr><td>12</td><td><small class="text-muted">68-00146-12</small></td><td>เสริมสร้างศักยภาพ ศปถ. อ.ปรางค์กู่</td><td>นาย วิษณุ สำเริง</td><td style="text-align:center"><span style="color:var(--road);font-size:.75rem">●</span> ดำเนินการ</td></tr>
+              <tr><td>13</td><td><small class="text-muted">68-00146-13</small></td><td>พัฒนาและยกระดับกลไก ศปถ. อ.กันทรลักษ์ ต้นแบบสู่แหล่งเรียนรู้</td><td>นาย จำเริญชัย ใจเครือ</td><td style="text-align:center"><span style="color:var(--road);font-size:.75rem">●</span> ดำเนินการ</td></tr>
+              <tr><td>14</td><td><small class="text-muted">68-00146-14</small></td><td>พัฒนากลไก ศปถ. ต.ผักแพว</td><td>นาย วรเทพ วารินทร์</td><td style="text-align:center"><span style="color:var(--road);font-size:.75rem">●</span> ดำเนินการ</td></tr>
+              <tr><td>15</td><td><small class="text-muted">68-00146-15</small></td><td>พัฒนาและยกระดับกลไก ศปถ. ต.กุดเสลา ต้นแบบสู่แหล่งเรียนรู้</td><td>นาย นิรันดร์ชัย ถุงจันทร์</td><td style="text-align:center"><span style="color:var(--road);font-size:.75rem">●</span> ดำเนินการ</td></tr>
+              <tr><td>16</td><td><small class="text-muted">68-00146-16</small></td><td>ขับเคลื่อนการจัดการความปลอดภัยทางถนน ต.น้ำอ้อม</td><td>นาย ทวี บุญชิต</td><td style="text-align:center"><span style="color:var(--road);font-size:.75rem">●</span> ดำเนินการ</td></tr>
+              <tr><td>17</td><td><small class="text-muted">68-00146-17</small></td><td>เสริมสร้างความปลอดภัยทางถนน ต.ยางชุมใหญ่ สู่การลดอุบัติเหตุอย่างยั่งยืน</td><td>นาง สุรัถยา สุวรรณหงษ์</td><td style="text-align:center"><span style="color:var(--road);font-size:.75rem">●</span> ดำเนินการ</td></tr>
+              <tr><td>18</td><td><small class="text-muted">68-00146-18</small></td><td>พัฒนา ศปถ. เชิงบูรณาการ อ.เมืองศรีสะเกษ</td><td>นาย ศรายุธ สีละออง</td><td style="text-align:center"><span style="color:var(--road);font-size:.75rem">●</span> ดำเนินการ</td></tr>
+              <tr><td>19</td><td><small class="text-muted">68-00146-19</small></td><td>ยกระดับ ศปถ. อ.ยางชุมน้อย สู่การบูรณาการจัดการความปลอดภัยอย่างยั่งยืน</td><td>นาย นิพนธ์ ถาดทอง</td><td style="text-align:center"><span style="color:var(--road);font-size:.75rem">●</span> ดำเนินการ</td></tr>
+              <tr><td>20</td><td><small class="text-muted">68-00146-20</small></td><td>การจัดการความปลอดภัยทางถนนแบบมีส่วนร่วม ต.หนองไฮ อ.เมืองฯ</td><td>นางสาว ชำมะนาต ศุภกรพาณิชย์</td><td style="text-align:center"><span style="color:var(--road);font-size:.75rem">●</span> ดำเนินการ</td></tr>
+              <tr><td>21</td><td><small class="text-muted">68-00146-21</small></td><td>เสริมสร้าง ศปถ. ต.ไพร เพื่อลดอุบัติเหตุอย่างยั่งยืน</td><td>นาย ชาญชัย ไชยโคตร</td><td style="text-align:center"><span style="color:var(--road);font-size:.75rem">●</span> ดำเนินการ</td></tr>
+              <tr><td>22</td><td><small class="text-muted">68-00146-22</small></td><td>หนองบัวปลอดภัย หยุดอุบัติเหตุ สร้างวินัยจราจร</td><td>นาง ธนิษฐา โพธิจักร์</td><td style="text-align:center"><span style="color:var(--road);font-size:.75rem">●</span> ดำเนินการ</td></tr>
+              <tr><td>23</td><td><small class="text-muted">68-00146-23</small></td><td>เสริมสร้างศักยภาพ ศปถ. อ.ห้วยทับทัน</td><td>นาย สุรชัย จันทรศรี</td><td style="text-align:center"><span style="color:var(--road);font-size:.75rem">●</span> ดำเนินการ</td></tr>
+              <tr><td>24</td><td><small class="text-muted">68-00146-24</small></td><td>เสริมสร้างศักยภาพ ศปถ. ต.หนองเชียงทูน เพื่อลดอุบัติเหตุอย่างยั่งยืน</td><td>ส.อ. ศักดา คมขำ</td><td style="text-align:center"><span style="color:var(--road);font-size:.75rem">●</span> ดำเนินการ</td></tr>
+              <tr><td>25</td><td><small class="text-muted">68-00146-25</small></td><td>พัฒนา ศปถ. อบต.ปรือใหญ่</td><td>นาย เจตน์จิตร สัมพุทธานนท์</td><td style="text-align:center"><span style="color:var(--road);font-size:.75rem">●</span> ดำเนินการ</td></tr>
+              <tr><td>26</td><td><small class="text-muted">68-00146-26</small></td><td>พัฒนา ศปถ. ต.หนองไฮ สู่การเป็นตำบลขับขี่ปลอดภัย</td><td>นาย มานพ ผาเงิน</td><td style="text-align:center"><span style="color:var(--road);font-size:.75rem">●</span> ดำเนินการ</td></tr>
+              <tr><td>27</td><td><small class="text-muted">68-00146-27</small></td><td>เสริมสร้าง ศปถ. อ.กันทรารมย์ เพื่อลดอุบัติเหตุจราจร</td><td>นาง อุษณีย์ ติละบาล</td><td style="text-align:center"><span style="color:var(--road);font-size:.75rem">●</span> ดำเนินการ</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="info-card mb-3">
+        <h5><i class="bi bi-link-45deg me-2"></i>ลิงก์ที่เกี่ยวข้อง</h5>
+        <div class="d-grid gap-2">
+          <a href="project-dashboard.html" class="btn btn-outline-primary d-flex align-items-center gap-2" style="border-radius:12px;justify-content:flex-start">
+            <i class="bi bi-bar-chart-line"></i> Dashboard ภาพรวม
+          </a>
+          <a href="road-dashboard.html" class="btn d-flex align-items-center gap-2" style="border-radius:12px;justify-content:flex-start;border:1px solid var(--road);color:var(--road)">
+            <i class="bi bi-cone-striped"></i> Dashboard ถนน
+          </a>
+          <a href="alc-dashboard.html" class="btn d-flex align-items-center gap-2" style="border-radius:12px;justify-content:flex-start;border:1px solid var(--alcohol);color:var(--alcohol)">
+            <i class="bi bi-droplet"></i> Dashboard แอลกอฮอล์
+          </a>
+          <a href="project-docs.html" class="btn btn-outline-secondary d-flex align-items-center gap-2" style="border-radius:12px;justify-content:flex-start">
+            <i class="bi bi-file-earmark-text"></i> เอกสารโครงการ
+          </a>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h5><i class="bi bi-calendar-event me-2"></i>กำหนดการสำคัญ</h5>
+        <div style="font-size:.84rem">
+          <div class="d-flex justify-content-between py-2 border-bottom" style="border-color:#f0f4f8!important">
+            <span style="color:var(--text-muted)">เริ่มดำเนินโครงการ</span>
+            <strong>16 มิ.ย. 68</strong>
+          </div>
+          <div class="d-flex justify-content-between py-2 border-bottom" style="border-color:#f0f4f8!important">
+            <span style="color:var(--text-muted)">รายงานครั้งที่ 1</span>
+            <strong>ต.ค. 68</strong>
+          </div>
+          <div class="d-flex justify-content-between py-2 border-bottom" style="border-color:#f0f4f8!important">
+            <span style="color:var(--text-muted)">รายงานครั้งที่ 2</span>
+            <strong>ม.ค. 69</strong>
+          </div>
+          <div class="d-flex justify-content-between pt-2">
+            <span style="color:var(--text-muted)">รายงานฉบับสมบูรณ์</span>
+            <strong>15 เม.ย. 69</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <a href="../index.html" class="btn btn-outline-secondary" style="border-radius:12px;font-weight:500">
+      <i class="bi bi-arrow-left me-2"></i>กลับหน้าหลัก
+    </a>
+  </div>
+</div>
+
+<div class="partners-section">
+  <div class="partners-label">หน่วยงานที่สนับสนุน</div>
+  <div class="partners-box">
+    <img src="../assets/logos/logo-ddpm.png" alt="ปภ." onerror="this.style.display='none'">
+    <div class="partners-divider"></div>
+    <img src="../assets/logos/logo-sskru.png" alt="มรภ.ศรีสะเกษ" onerror="this.src='https://www.sskru.ac.th/wp-content/uploads/2023/05/SSKRU-LOGO1.png'">
+    <div class="partners-divider"></div>
+    <img src="../assets/logos/logo-thaihealth.png" alt="สสส." onerror="this.src='https://www.thaihealth.or.th/wp-content/uploads/2023/08/Logo-thaihealth.png'">
+    <div class="partners-divider"></div>
+    <img src="../assets/logos/logo-section6.png" alt="สำนัก 6" onerror="this.style.display='none'">
+    <div class="partners-divider"></div>
+    <img src="../assets/logos/logo-policy-center.png" alt="ศูนย์พัฒนานโยบาย" onerror="this.style.display='none'">
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-text">
+      <p class="mb-1"><strong style="opacity:.9">หน่วยจัดการขับเคลื่อนประเด็นยุทธศาสตร์ (Nodeflagship) จังหวัดศรีสะเกษ</strong></p>
+      <p class="mb-0">สนับสนุนโดย สำนักสร้างสรรค์โอกาส (สำนัก 6) สำนักงานกองทุนสนับสนุนการสร้างเสริมสุขภาพ (สสส.) | ปี 2568–2569</p>
+    </div>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function(){
+  var p=location.pathname.split('/').pop()||'index.html';
+  document.querySelectorAll('.main-navbar .dropdown-item').forEach(function(a){
+    if((a.getAttribute('href')||'')===p){
+      a.classList.add('active');
+      var dt=a.closest('.dropdown')&&a.closest('.dropdown').querySelector('.nav-link.dropdown-toggle');
+      if(dt)dt.classList.add('active');
+    }
+  });
+  document.querySelectorAll('.main-navbar .nav-link:not(.dropdown-toggle)').forEach(function(a){
+    if((a.getAttribute('href')||'').split('/').pop()===p)a.classList.add('active');
+  });
+})();
+</script>
+</body>
+</html>

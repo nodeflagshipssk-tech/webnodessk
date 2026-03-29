@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard แอลกอฮอล์ — Nodeflagship ศรีสะเกษ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../assets/css/portal.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg main-navbar sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="../index.html"><i class="bi bi-geo-alt-fill me-1"></i>Nodeflagship <span class="brand-sub">ศรีสะเกษ</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Toggle">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link" href="../index.html"><i class="bi bi-house me-1"></i>หน้าแรก</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle road-nav" href="#" role="button" data-bs-toggle="dropdown"><i class="bi bi-cone-striped me-1"></i>อุบัติเหตุ</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="road-blackspot.html"><i class="bi bi-pin-map"></i>จุดเสี่ยงอุบัติเหตุ</a></li>
+            <li><a class="dropdown-item" href="road-accident.html"><i class="bi bi-exclamation-triangle"></i>สถิติอุบัติเหตุ</a></li>
+            <li><a class="dropdown-item" href="road-helmet.html"><i class="bi bi-shield-fill-check"></i>การสวมหมวกนิรภัย</a></li>
+            <li><a class="dropdown-item" href="road-capacity.html"><i class="bi bi-speedometer2"></i>ศักยภาพ ศปถ.</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="road-dashboard.html"><i class="bi bi-graph-up-arrow"></i>Dashboard ถนน</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle alc-nav" href="#" role="button" data-bs-toggle="dropdown"><i class="bi bi-droplet me-1"></i>แอลกอฮอล์</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="alc-tambon.html"><i class="bi bi-houses"></i>ศักยภาพตำบล</a></li>
+            <li><a class="dropdown-item" href="alc-drinker.html"><i class="bi bi-person-x"></i>ผู้ดื่มแอลกอฮอล์</a></li>
+            <li><a class="dropdown-item" href="alc-merit.html"><i class="bi bi-flower1"></i>งานบุญปลอดเหล้า</a></li>
+            <li><a class="dropdown-item" href="alc-model.html"><i class="bi bi-person-check"></i>บุคคลต้นแบบ</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="alc-dashboard.html"><i class="bi bi-pie-chart"></i>Dashboard แอลกอฮอล์</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><i class="bi bi-briefcase me-1"></i>โครงการ</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="project-main.html"><i class="bi bi-building"></i>โครงการหน่วยจัดการ</a></li>
+            <li><a class="dropdown-item" href="project-sub.html"><i class="bi bi-diagram-3"></i>โครงการย่อย 27 โครงการ</a></li>
+            <li><a class="dropdown-item" href="project-team.html"><i class="bi bi-people"></i>คณะทำงาน</a></li>
+            <li><a class="dropdown-item" href="project-docs.html"><i class="bi bi-file-earmark-text"></i>คู่มือและเอกสาร</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="project-dashboard.html"><i class="bi bi-bar-chart-line"></i>Dashboard ภาพรวม</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="guide.html"><i class="bi bi-book me-1"></i>คู่มือ</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html"><i class="bi bi-envelope me-1"></i>ติดต่อ</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="logo-bar"><div class="container"><div class="logo-wrap">
+  <img src="../assets/logos/logo-ddpm.png" alt="ปภ." onerror="this.style.display='none'">
+  <div class="logo-divider"></div>
+  <img src="../assets/logos/logo-sskru.png" alt="มรภ.ศรีสะเกษ" onerror="this.src='https://www.sskru.ac.th/wp-content/uploads/2023/05/SSKRU-LOGO1.png'">
+  <div class="logo-divider"></div>
+  <img src="../assets/logos/logo-thaihealth.png" alt="สสส." onerror="this.src='https://www.thaihealth.or.th/wp-content/uploads/2023/08/Logo-thaihealth.png'">
+  <div class="logo-divider"></div>
+  <img src="../assets/logos/logo-policy-center.png" alt="ศูนย์พัฒนานโยบาย" onerror="this.style.display='none'">
+</div></div></div>
+
+<div class="page-hero hero-alc"><div class="container">
+  <nav aria-label="breadcrumb"><ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="../index.html">หน้าแรก</a></li>
+    <li class="breadcrumb-item"><a href="#">ลดการบริโภคแอลกอฮอล์</a></li>
+    <li class="breadcrumb-item active">Dashboard แอลกอฮอล์</li>
+  </ol></nav>
+  <h1><i class="bi bi-pie-chart me-2"></i>Dashboard การลดการบริโภคแอลกอฮอล์</h1>
+  <p>ภาพรวมผลการดำเนินงาน ศักยภาพตำบล ผู้ดื่ม งานบุญ และบุคคลต้นแบบ</p>
+</div></div>
+
+<div class="content-wrap">
+  <div class="row g-3 mb-4">
+    <div class="col-6 col-md-3"><div class="mini-stat" style="border-top:3px solid var(--alcohol)"><div class="num alc">—</div><div class="lbl">ตำบลผ่านเกณฑ์</div></div></div>
+    <div class="col-6 col-md-3"><div class="mini-stat" style="border-top:3px solid #198754"><div class="num" style="color:#198754">—</div><div class="lbl">งานบุญปลอดเหล้า</div></div></div>
+    <div class="col-6 col-md-3"><div class="mini-stat" style="border-top:3px solid #ffc107"><div class="num" style="color:#b8860b">—</div><div class="lbl">ผู้เลิกดื่มสำเร็จ</div></div></div>
+    <div class="col-6 col-md-3"><div class="mini-stat" style="border-top:3px solid var(--primary)"><div class="num blue">—</div><div class="lbl">บุคคลต้นแบบ</div></div></div>
+  </div>
+
+  <div class="row g-4 mb-4">
+    <div class="col-md-8">
+      <div class="info-card">
+        <h5><i class="bi bi-bar-chart-line me-2"></i>จำนวนงานบุญปลอดเหล้ารายเดือน (ตัวอย่าง)</h5>
+        <canvas id="chartMerit" height="180"></canvas>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="info-card">
+        <h5><i class="bi bi-pie-chart me-2"></i>ระดับการปลอดเหล้า</h5>
+        <canvas id="chartLevel" height="220"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="launch-card border-alc">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <h5 class="fw-bold mb-2"><i class="bi bi-plug me-2" style="color:var(--alcohol)"></i>เชื่อมต่อ Dashboard กับ GAS Data</h5>
+        <p class="text-muted mb-2" style="font-size:.88rem;font-weight:300">ระบุ GAS Deployment URL เพื่อดึงข้อมูลจริงมาแสดงใน Dashboard</p>
+        <div class="d-flex gap-2 flex-wrap align-items-center">
+          <input type="text" class="form-control" id="gasUrl" placeholder="ระบุ GAS Deployment URL..."
+            style="max-width:360px;border-radius:10px">
+          <button class="btn" style="background:var(--alcohol);color:white;border-radius:10px;font-weight:500"
+            onclick="saveUrl()"><i class="bi bi-save me-1"></i>บันทึก</button>
+        </div>
+      </div>
+      <div class="col-md-4 text-center mt-3 mt-md-0">
+        <div style="background:rgba(46,125,94,.08);border-radius:16px;padding:20px;display:inline-block">
+          <i class="bi bi-hdd-network" style="font-size:3.5rem;color:var(--alcohol);opacity:.5"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <a href="../index.html" class="btn btn-outline-secondary" style="border-radius:12px;font-weight:500">
+      <i class="bi bi-arrow-left me-2"></i>กลับหน้าหลัก
+    </a>
+  </div>
+</div>
+
+<div class="partners-section">
+  <div class="partners-label">หน่วยงานที่สนับสนุน</div>
+  <div class="partners-box">
+    <img src="../assets/logos/logo-ddpm.png" alt="ปภ." onerror="this.style.display='none'">
+    <div class="partners-divider"></div>
+    <img src="../assets/logos/logo-sskru.png" alt="มรภ.ศรีสะเกษ" onerror="this.src='https://www.sskru.ac.th/wp-content/uploads/2023/05/SSKRU-LOGO1.png'">
+    <div class="partners-divider"></div>
+    <img src="../assets/logos/logo-thaihealth.png" alt="สสส." onerror="this.src='https://www.thaihealth.or.th/wp-content/uploads/2023/08/Logo-thaihealth.png'">
+    <div class="partners-divider"></div>
+    <img src="../assets/logos/logo-section6.png" alt="สำนัก 6" onerror="this.style.display='none'">
+    <div class="partners-divider"></div>
+    <img src="../assets/logos/logo-policy-center.png" alt="ศูนย์พัฒนานโยบาย" onerror="this.style.display='none'">
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-text">
+      <p class="mb-1"><strong style="opacity:.9">หน่วยจัดการขับเคลื่อนประเด็นยุทธศาสตร์ (Nodeflagship) จังหวัดศรีสะเกษ</strong></p>
+      <p class="mb-0">สนับสนุนโดย สำนักสร้างสรรค์โอกาส (สำนัก 6) สำนักงานกองทุนสนับสนุนการสร้างเสริมสุขภาพ (สสส.) | ปี 2568–2569</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  new Chart(document.getElementById('chartMerit'), {
+    type: 'bar',
+    data: {
+      labels: ['ต.ค.','พ.ย.','ธ.ค.','ม.ค.','ก.พ.','มี.ค.'],
+      datasets: [{
+        label: 'งานบุญปลอดเหล้า',
+        data: [0,0,0,0,0,0],
+        backgroundColor: 'rgba(46,125,94,.7)',
+        borderRadius: 8
+      }]
+    },
+    options: {
+      responsive:true,
+      plugins:{legend:{display:false}},
+      scales:{y:{beginAtZero:true,grid:{color:'#f0f4f8'}},x:{grid:{display:false}}}
+    }
+  });
+  new Chart(document.getElementById('chartLevel'), {
+    type:'doughnut',
+    data:{
+      labels:['ปลอดเหล้า 100%','มีบางส่วน','ยังไม่ปลอด'],
+      datasets:[{data:[0,0,0],backgroundColor:['#2E7D5E','#3da37a','#94a3b8'],borderWidth:0}]
+    },
+    options:{
+      responsive:true,
+      plugins:{legend:{position:'bottom',labels:{font:{family:'Kanit'},padding:16}}},
+      cutout:'65%'
+    }
+  });
+  function saveUrl() {
+    const url = document.getElementById('gasUrl').value;
+    if(url){ localStorage.setItem('gasUrl_alc',url); alert('บันทึก URL แล้ว'); }
+  }
+</script>
+<script>
+(function(){
+  var p=location.pathname.split('/').pop()||'index.html';
+  document.querySelectorAll('.main-navbar .dropdown-item').forEach(function(a){
+    if((a.getAttribute('href')||'')===p){
+      a.classList.add('active');
+      var dt=a.closest('.dropdown')&&a.closest('.dropdown').querySelector('.nav-link.dropdown-toggle');
+      if(dt)dt.classList.add('active');
+    }
+  });
+  document.querySelectorAll('.main-navbar .nav-link:not(.dropdown-toggle)').forEach(function(a){
+    if((a.getAttribute('href')||'').split('/').pop()===p)a.classList.add('active');
+  });
+})();
+</script>
+</body>
+</html>

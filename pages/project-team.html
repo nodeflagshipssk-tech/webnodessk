@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>คณะทำงาน — Nodeflagship ศรีสะเกษ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../assets/css/portal.css">
+  <style>
+    /* ─── SECTION LABELS ─── */
+    .sec-label {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: .78rem; font-weight: 700; letter-spacing: .8px; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 30px; margin-bottom: 18px;
+    }
+    .sec-label.blue { background: rgba(21,76,106,.1); color: var(--primary); }
+    .sec-label.road { background: rgba(212,96,10,.1);  color: var(--road); }
+    .sec-label.alc  { background: rgba(46,125,94,.1);  color: var(--alcohol); }
+    .sec-label.gray { background: #f0f2f5; color: #5a6478; }
+
+    /* ─── SECTION WRAPPER ─── */
+    .team-section {
+      border-radius: 20px; padding: 24px; margin-bottom: 20px;
+    }
+    .team-section.road { background: #FFF7F2; border: 1px solid rgba(212,96,10,.15); }
+    .team-section.alc  { background: #F3FBF7; border: 1px solid rgba(46,125,94,.15); }
+    .team-section.blue { background: #F2F8FC; border: 1px solid rgba(21,76,106,.12); }
+    .team-section.white { background: white; box-shadow: 0 2px 14px rgba(0,0,0,.06); }
+
+    /* ─── PERSON CARD — standard ─── */
+    .pc {
+      background: white; border-radius: 14px;
+      padding: 14px 16px; margin-bottom: 0;
+      border-left: 4px solid transparent;
+      box-shadow: 0 1px 8px rgba(0,0,0,.06);
+      transition: transform .18s, box-shadow .18s;
+      height: 100%;
+    }
+    .pc:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,.10); }
+    .pc.road  { border-left-color: var(--road); }
+    .pc.alc   { border-left-color: var(--alcohol); }
+    .pc.blue  { border-left-color: var(--primary); }
+    .pc.gray  { border-left-color: #b0b8c8; }
+    .pc-name  { font-size: .95rem; font-weight: 700; color: var(--text-dark); margin: 0 0 3px; line-height: 1.35; }
+    .pc-role  { font-size: .8rem; color: var(--text-muted); font-weight: 400; line-height: 1.4; }
+    .pc-org   { font-size: .75rem; color: #94a3b8; font-weight: 300; margin-top: 2px; }
+
+    /* ─── FEATURED LEADER CARD ─── */
+    .pc-lead {
+      background: linear-gradient(135deg, #EBF5FB 0%, #d5eaf7 100%);
+      border: 2px solid #aed6f1;
+      border-radius: 20px; padding: 28px 22px; text-align: center;
+      transition: transform .18s, box-shadow .18s; height: 100%;
+    }
+    .pc-lead:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(21,76,106,.15); }
+    .pc-lead .lead-icon {
+      width: 56px; height: 56px; background: var(--primary);
+      border-radius: 50%; margin: 0 auto 14px;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 1.4rem;
+    }
+    .pc-lead .lead-badge {
+      display: inline-block; background: var(--primary); color: white;
+      font-size: .72rem; font-weight: 600; padding: 3px 12px;
+      border-radius: 20px; margin-bottom: 10px; letter-spacing: .3px;
+    }
+    .pc-lead .lead-name { font-size: 1.1rem; font-weight: 800; color: var(--primary); margin-bottom: 4px; }
+    .pc-lead .lead-org  { font-size: .82rem; color: #5a8aac; font-weight: 400; }
+
+    /* ─── LIST STYLE (กลไกจังหวัด) ─── */
+    .tm-list { list-style: none; padding: 0; margin: 0; }
+    .tm-list li {
+      display: flex; align-items: center; gap: 12px;
+      padding: 11px 14px; margin-bottom: 7px; border-radius: 12px;
+      background: white; box-shadow: 0 1px 5px rgba(0,0,0,.05);
+      transition: background .15s;
+    }
+    .tm-list li:hover { background: #f8fafc; }
+    .tm-list-icon {
+      width: 32px; height: 32px; border-radius: 9px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: .9rem;
+    }
+    .tm-list-icon.road { background: rgba(212,96,10,.1); color: var(--road); }
+    .tm-list-icon.alc  { background: rgba(46,125,94,.1);  color: var(--alcohol); }
+    .tm-list li strong { font-size: .9rem; font-weight: 600; color: var(--text-dark); display: block; }
+    .tm-list li small  { font-size: .78rem; color: var(--text-muted); font-weight: 300; }
+
+    .divider-label {
+      text-align: center; color: var(--text-muted);
+      font-size: .78rem; font-weight: 500; margin: 28px 0 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .divider-label::before, .divider-label::after {
+      content: ''; flex: 1; height: 1px; background: #e2e8f0;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg main-navbar sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="../index.html"><i class="bi bi-geo-alt-fill me-1"></i>Nodeflagship <span class="brand-sub">ศรีสะเกษ</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Toggle">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link" href="../index.html"><i class="bi bi-house me-1"></i>หน้าแรก</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle road-nav" href="#" role="button" data-bs-toggle="dropdown"><i class="bi bi-cone-striped me-1"></i>อุบัติเหตุ</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="road-blackspot.html"><i class="bi bi-pin-map"></i>จุดเสี่ยงอุบัติเหตุ</a></li>
+            <li><a class="dropdown-item" href="road-accident.html"><i class="bi bi-exclamation-triangle"></i>สถิติอุบัติเหตุ</a></li>
+            <li><a class="dropdown-item" href="road-helmet.html"><i class="bi bi-shield-fill-check"></i>การสวมหมวกนิรภัย</a></li>
+            <li><a class="dropdown-item" href="road-capacity.html"><i class="bi bi-speedometer2"></i>ศักยภาพ ศปถ.</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="road-dashboard.html"><i class="bi bi-graph-up-arrow"></i>Dashboard ถนน</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle alc-nav" href="#" role="button" data-bs-toggle="dropdown"><i class="bi bi-droplet me-1"></i>แอลกอฮอล์</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="alc-tambon.html"><i class="bi bi-houses"></i>ศักยภาพตำบล</a></li>
+            <li><a class="dropdown-item" href="alc-drinker.html"><i class="bi bi-person-x"></i>ผู้ดื่มแอลกอฮอล์</a></li>
+            <li><a class="dropdown-item" href="alc-merit.html"><i class="bi bi-flower1"></i>งานบุญปลอดเหล้า</a></li>
+            <li><a class="dropdown-item" href="alc-model.html"><i class="bi bi-person-check"></i>บุคคลต้นแบบ</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="alc-dashboard.html"><i class="bi bi-pie-chart"></i>Dashboard แอลกอฮอล์</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><i class="bi bi-briefcase me-1"></i>โครงการ</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="project-main.html"><i class="bi bi-building"></i>โครงการหน่วยจัดการ</a></li>
+            <li><a class="dropdown-item" href="project-sub.html"><i class="bi bi-diagram-3"></i>โครงการย่อย 27 โครงการ</a></li>
+            <li><a class="dropdown-item active" href="project-team.html"><i class="bi bi-people"></i>คณะทำงาน</a></li>
+            <li><a class="dropdown-item" href="project-docs.html"><i class="bi bi-file-earmark-text"></i>คู่มือและเอกสาร</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="project-dashboard.html"><i class="bi bi-bar-chart-line"></i>Dashboard ภาพรวม</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="guide.html"><i class="bi bi-book me-1"></i>คู่มือ</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html"><i class="bi bi-envelope me-1"></i>ติดต่อ</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="logo-bar"><div class="container"><div class="logo-wrap">
+  <img src="../assets/logos/logo-ddpm.png" alt="ปภ." onerror="this.style.display='none'">
+  <div class="logo-divider"></div>
+  <img src="../assets/logos/logo-sskru.png" alt="มรภ.ศรีสะเกษ" onerror="this.src='https://www.sskru.ac.th/wp-content/uploads/2023/05/SSKRU-LOGO1.png'">
+  <div class="logo-divider"></div>
+  <img src="../assets/logos/logo-thaihealth.png" alt="สสส." onerror="this.src='https://www.thaihealth.or.th/wp-content/uploads/2023/08/Logo-thaihealth.png'">
+  <div class="logo-divider"></div>
+  <img src="../assets/logos/logo-policy-center.png" alt="ศูนย์พัฒนานโยบาย" onerror="this.style.display='none'">
+</div></div></div>
+
+<div class="page-hero hero-blue"><div class="container">
+  <nav aria-label="breadcrumb"><ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="../index.html">หน้าแรก</a></li>
+    <li class="breadcrumb-item"><a href="project-main.html">บริหารจัดการโครงการ</a></li>
+    <li class="breadcrumb-item active">คณะทำงาน</li>
+  </ol></nav>
+  <h1><i class="bi bi-people me-2"></i>คณะทำงาน Node Flagship ศรีสะเกษ</h1>
+  <p>ทีมงานและภาคีเครือข่ายที่ร่วมขับเคลื่อนงาน Node Flagship จ.ศรีสะเกษ ปี 2568–2569</p>
+</div></div>
+
+<div class="content-wrap">
+
+  <!-- ═══ ที่ปรึกษา + ผู้ทรงคุณวุฒิ ═══ -->
+  <div class="row g-4 mb-4">
+
+    <div class="col-md-4">
+      <div class="team-section white h-100">
+        <div class="sec-label blue"><i class="bi bi-person-check-fill"></i>ที่ปรึกษา</div>
+        <div class="pc blue">
+          <div class="pc-name">นายจันทร์ โต๊ะสิงห์</div>
+          <div class="pc-role">นายกองค์การบริหารส่วนตำบลเสียว</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <div class="team-section white h-100">
+        <div class="sec-label blue"><i class="bi bi-award-fill"></i>ผู้ทรงคุณวุฒิ</div>
+        <div class="row g-3">
+          <div class="col-sm-6">
+            <div class="pc gray">
+              <div class="pc-name">นพ.ทนง วีระแสงพงษ์</div>
+              <div class="pc-role">นายแพทย์สาธารณสุขจังหวัดศรีสะเกษ</div>
+              <div class="pc-org">สสจ.ศรีสะเกษ</div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="pc gray">
+              <div class="pc-name">นายพีรพงค์ หมื่นผ่อง</div>
+              <div class="pc-role">หัวหน้าสำนักงานป้องกันและบรรเทาสาธารณภัย</div>
+              <div class="pc-org">ปภ.จ.ศรีสะเกษ</div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="pc gray">
+              <div class="pc-name">นายมงคล ปัญญาประชุม</div>
+              <div class="pc-role">หัวหน้าศูนย์ปฏิบัติการควบคุมโรคไม่ติดต่อ</div>
+              <div class="pc-org">สคล.อีสานล่าง</div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="pc gray">
+              <div class="pc-name">นางเปรมปรีดิ์ ชวนะนรเศรษฐ์</div>
+              <div class="pc-role">หัวหน้าศูนย์อำนวยการความปลอดภัยทางถนน</div>
+              <div class="pc-org">สอจร.อีสานล่าง</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══ โครงสร้างหน่วยจัดการ ═══ -->
+  <div class="team-section white mb-4">
+    <div class="sec-label blue"><i class="bi bi-building-fill"></i>โครงสร้างหน่วยจัดการ</div>
+
+    <!-- หัวหน้า -->
+    <div class="row justify-content-center mb-4">
+      <div class="col-md-4 col-sm-8">
+        <div class="pc-lead">
+          <div class="lead-icon"><i class="bi bi-person-fill-gear"></i></div>
+          <div class="lead-badge">หัวหน้าหน่วยจัดการ</div>
+          <div class="lead-name">ดร.ชญานิน กฤติยะโชติ</div>
+          <div class="lead-org">ศูนย์พัฒนานโยบายสาธารณะ มรภ.ศรีสะเกษ</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ทีมงานหน่วยจัดการ -->
+    <div class="row g-3">
+      <div class="col-sm-6 col-md-3">
+        <div class="pc blue">
+          <div class="pc-name">ผศ.ดร.อนุพันธ์ สุวรรณพันธ์</div>
+          <div class="pc-role">หัวหน้าส่วนสนับสนุนวิชาการ</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <div class="pc blue">
+          <div class="pc-name">ผศ.ดร.จุฑามาศ แก้วจันดี</div>
+          <div class="pc-role">หัวหน้าส่วนอำนวยการ</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <div class="pc blue">
+          <div class="pc-name">นายรัฐเสน คำรัตน์</div>
+          <div class="pc-role">การเงิน / บัญชี</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <div class="pc blue">
+          <div class="pc-name">น.ส.ชัญญานุช แซ่ผ่าน</div>
+          <div class="pc-role">ธุรการ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ พี่เลี้ยงประเด็นถนน ═══ -->
+  <div class="team-section road mb-4">
+    <div class="sec-label road"><i class="bi bi-cone-striped"></i>พี่เลี้ยงประเด็นความปลอดภัยทางถนน</div>
+    <div class="row g-3">
+      <div class="col-sm-6 col-md-3">
+        <div class="pc road">
+          <div class="pc-name">อ.กฤตภาส สีหะวงษ์</div>
+          <div class="pc-role">พี่เลี้ยงประเด็นถนน</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <div class="pc road">
+          <div class="pc-name">อ.สุภาภรณ์ ทัศนพงศ์</div>
+          <div class="pc-role">พี่เลี้ยงประเด็นถนน</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <div class="pc road">
+          <div class="pc-name">ดร.กุสุมา มีศิลป์</div>
+          <div class="pc-role">พี่เลี้ยงประเด็นถนน</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <div class="pc road">
+          <div class="pc-name">น.ส.พัชรินทร์ ธุชาวัน</div>
+          <div class="pc-role">พี่เลี้ยงประเด็นถนน</div>
+          <div class="pc-org">สำนักงาน ปภ.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ พี่เลี้ยงประเด็นแอลกอฮอล์ ═══ -->
+  <div class="team-section alc mb-4">
+    <div class="sec-label alc"><i class="bi bi-droplet-fill"></i>พี่เลี้ยงประเด็นการลดการบริโภคเครื่องดื่มแอลกอฮอล์</div>
+    <div class="row g-3">
+      <div class="col-sm-6 col-md-4">
+        <div class="pc alc">
+          <div class="pc-name">ผศ.ดร.จุฑามาศ แก้วจันดี</div>
+          <div class="pc-role">พี่เลี้ยงประเด็นแอลกอฮอล์</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="pc alc">
+          <div class="pc-name">นางปราณี ไชยชาญ</div>
+          <div class="pc-role">พี่เลี้ยงประเด็นแอลกอฮอล์</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="pc alc">
+          <div class="pc-name">น.ส.สุวัลยา โต๊ะสิงห์</div>
+          <div class="pc-role">พี่เลี้ยงประเด็นแอลกอฮอล์</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="pc alc">
+          <div class="pc-name">นายวรจักร เกตุแก้ว</div>
+          <div class="pc-role">พี่เลี้ยงประเด็นแอลกอฮอล์</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="pc alc">
+          <div class="pc-name">นางสาวอริษา ไกรสงค์</div>
+          <div class="pc-role">พี่เลี้ยงประเด็นแอลกอฮอล์</div>
+          <div class="pc-org">สสจ.ศรีสะเกษ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ คณะทำงานกลไกจังหวัด ═══ -->
+  <div class="team-section white mb-4">
+    <div class="sec-label blue"><i class="bi bi-diagram-3-fill"></i>คณะทำงานกลไกจังหวัด</div>
+    <div class="row g-4">
+
+      <div class="col-md-6">
+        <div class="sec-label road" style="font-size:.73rem; margin-bottom:12px">
+          <i class="bi bi-cone-striped"></i>ประเด็นความปลอดภัยทางถนน
+        </div>
+        <ul class="tm-list">
+          <li>
+            <div class="tm-list-icon road"><i class="bi bi-person-fill"></i></div>
+            <div><strong>นายประสิทธิ์ บุญเสนอ</strong><small>สนง.ป้องกันและบรรเทาสาธารณภัย</small></div>
+          </li>
+          <li>
+            <div class="tm-list-icon road"><i class="bi bi-person-fill"></i></div>
+            <div><strong>น.ส.พัชรินทร์ ธุชาวัน</strong><small>สำนักงาน ปภ.</small></div>
+          </li>
+          <li>
+            <div class="tm-list-icon road"><i class="bi bi-person-fill"></i></div>
+            <div><strong>นายดาว อินสุวรรณ</strong><small>แขวงทางหลวงศรีสะเกษ</small></div>
+          </li>
+          <li>
+            <div class="tm-list-icon road"><i class="bi bi-person-fill"></i></div>
+            <div><strong>นายภาณิน วงศ์พุฒิ</strong><small>บริษัทกลางคุ้มครองผู้ประสบภัย</small></div>
+          </li>
+          <li>
+            <div class="tm-list-icon road"><i class="bi bi-person-fill"></i></div>
+            <div><strong>นายอนุชาติ ทุ้มกลาง</strong><small>สนง.ขนส่งจังหวัดศรีสะเกษ</small></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-6">
+        <div class="sec-label alc" style="font-size:.73rem; margin-bottom:12px">
+          <i class="bi bi-droplet-fill"></i>ประเด็นการลดการบริโภคแอลกอฮอล์
+        </div>
+        <ul class="tm-list">
+          <li>
+            <div class="tm-list-icon alc"><i class="bi bi-person-fill"></i></div>
+            <div><strong>ดร.สมัย ลาประวัติ</strong><small>สำนักงานสาธารณสุขจังหวัดศรีสะเกษ</small></div>
+          </li>
+          <li>
+            <div class="tm-list-icon alc"><i class="bi bi-person-fill"></i></div>
+            <div><strong>นางสาวอริษา ไกรสงค์</strong><small>สำนักงานสาธารณสุขจังหวัดศรีสะเกษ</small></div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="mt-2 d-flex gap-2">
+    <a href="project-main.html" class="btn btn-outline-secondary" style="border-radius:12px;font-weight:500">
+      <i class="bi bi-arrow-left me-2"></i>บริหารจัดการโครงการ
+    </a>
+    <a href="../index.html" class="btn btn-outline-secondary" style="border-radius:12px;font-weight:500">
+      <i class="bi bi-house me-2"></i>หน้าหลัก
+    </a>
+  </div>
+
+</div>
+
+<div class="partners-section">
+  <div class="partners-label">หน่วยงานที่สนับสนุน</div>
+  <div class="partners-box">
+    <img src="../assets/logos/logo-ddpm.png" alt="ปภ." onerror="this.style.display='none'">
+    <div class="partners-divider"></div>
+    <img src="../assets/logos/logo-sskru.png" alt="มรภ.ศรีสะเกษ" onerror="this.src='https://www.sskru.ac.th/wp-content/uploads/2023/05/SSKRU-LOGO1.png'">
+    <div class="partners-divider"></div>
+    <img src="../assets/logos/logo-thaihealth.png" alt="สสส." onerror="this.src='https://www.thaihealth.or.th/wp-content/uploads/2023/08/Logo-thaihealth.png'">
+    <div class="partners-divider"></div>
+    <img src="../assets/logos/logo-section6.png" alt="สำนัก 6" onerror="this.style.display='none'">
+    <div class="partners-divider"></div>
+    <img src="../assets/logos/logo-policy-center.png" alt="ศูนย์พัฒนานโยบาย" onerror="this.style.display='none'">
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-text">
+      <p class="mb-1"><strong style="opacity:.9">หน่วยจัดการขับเคลื่อนประเด็นยุทธศาสตร์ (Nodeflagship) จังหวัดศรีสะเกษ</strong></p>
+      <p class="mb-0">สนับสนุนโดย สำนักสร้างสรรค์โอกาส (สำนัก 6) สสส. | ปี 2568–2569</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function(){
+  var p=location.pathname.split('/').pop()||'index.html';
+  document.querySelectorAll('.main-navbar .dropdown-item').forEach(function(a){
+    if((a.getAttribute('href')||'')===p){
+      a.classList.add('active');
+      var dt=a.closest('.dropdown')&&a.closest('.dropdown').querySelector('.nav-link.dropdown-toggle');
+      if(dt)dt.classList.add('active');
+    }
+  });
+})();
+</script>
+</body>
+</html>

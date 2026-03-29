@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nodeflagship ศรีสะเกษ — หน่วยจัดการขับเคลื่อนประเด็นยุทธศาสตร์</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <style>
+    :root {
+      --primary: #154C6A; --primary-light: #1e6d99;
+      --road: #D4600A; --road-light: #F07D2E;
+      --alcohol: #2E7D5E; --alcohol-light: #3da37a;
+      --light-bg: #fdf7f2; --text-dark: #1e2a35; --text-muted: #64748b;
+      --warm-card: #fffbf7; --warm-accent: #fef3e8;
+    }
+    * { box-sizing: border-box; }
+    body { font-family: 'Kanit', sans-serif; background: var(--light-bg); color: var(--text-dark); margin: 0; }
+
+    /* ─── DOCS PILL (in navbar) ─────────────────── */
+    .nav-doc-pill {
+      background: var(--primary); color: white; padding: 7px 16px;
+      border-radius: 20px; font-weight: 700; font-size: .82rem;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+      transition: background .18s; white-space: nowrap;
+    }
+    .nav-doc-pill:hover { background: var(--primary-light); color: white; }
+    @media (max-width: 991px) { .nav-doc-pill { margin: 4px 0; } }
+
+    /* ─── MAIN NAVBAR ──────────────────────────── */
+    .main-navbar {
+      background: white;
+      box-shadow: 0 3px 24px rgba(0,0,0,.09);
+      border-bottom: 3px solid var(--primary);
+      padding: 0; position: sticky; top: 0; z-index: 1050;
+    }
+    .main-navbar .container { padding-top: 0; padding-bottom: 0; }
+    /* Brand */
+    .nav-brand-wrap { display: flex; align-items: center; gap: 10px; padding: 10px 0; text-decoration: none; }
+    .nav-brand-icon {
+      width: 50px; height: 50px; border-radius: 16px; flex-shrink: 0;
+      background: linear-gradient(135deg, #F07D2E 0%, #154C6A 55%, #2E7D5E 100%);
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: .95rem; font-weight: 900; letter-spacing: -.5px;
+      box-shadow: 0 4px 14px rgba(21,76,106,.25);
+    }
+    .nav-brand-text { line-height: 1.25; }
+    .nav-brand-name { font-size: .95rem; font-weight: 800; color: var(--primary); display: block; }
+    .nav-brand-sub  { font-size: .75rem; color: var(--text-muted); font-weight: 400; display: block; }
+    /* Icon nav links */
+    .nav-icon-item { list-style: none; }
+    .nav-icon-link {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 10px 12px; border-radius: 12px; text-decoration: none;
+      color: var(--text-dark); transition: all .18s; gap: 3px;
+      min-width: 72px; margin: 6px 1px;
+    }
+    .nav-icon-link .nil-icon { font-size: 1.6rem; line-height: 1; }
+    .nav-icon-link .nil-text { font-size: .82rem; font-weight: 600; white-space: nowrap; }
+    .nav-icon-link:hover  { background: var(--light-bg); color: var(--primary); }
+    .nav-icon-link.active { background: rgba(21,76,106,.08); color: var(--primary); }
+    .nav-icon-link.road-nav:hover, .nav-icon-link.road-nav.active { background: rgba(212,96,10,.1); color: var(--road); }
+    .nav-icon-link.alc-nav:hover,  .nav-icon-link.alc-nav.active  { background: rgba(46,125,94,.1); color: var(--alcohol); }
+    /* Dropdown */
+    .nav-icon-item.dropdown .dropdown-menu {
+      border: none; box-shadow: 0 10px 40px rgba(0,0,0,.14);
+      border-radius: 16px; padding: 8px; margin-top: 4px; min-width: 220px;
+    }
+    .nav-icon-item .dropdown-item {
+      border-radius: 10px; font-size: .88rem; font-weight: 500;
+      padding: 9px 14px; display: flex; align-items: center; gap: 8px; color: var(--text-dark);
+    }
+    .nav-icon-item .dropdown-item:hover  { background: var(--light-bg); color: var(--primary); }
+    .nav-icon-item .dropdown-item.active { background: rgba(21,76,106,.08); color: var(--primary); font-weight: 600; }
+    .nav-icon-item .dropdown-item i { width: 18px; text-align: center; font-size: .9rem; }
+    .nav-icon-item .dropdown-divider { border-color: #e8eef4; margin: 4px 8px; }
+    /* Mobile nav */
+    @media (max-width: 991px) {
+      .nav-icon-link { flex-direction: row; min-width: unset; padding: 8px 12px; gap: 8px; margin: 2px 0; }
+      .nav-icon-link .nil-icon { font-size: 1.1rem; }
+      .nav-icon-link .nil-text { font-size: .88rem; }
+      .nav-icon-item.dropdown .dropdown-menu { box-shadow: none; background: #f8fafc; border-radius: 10px; }
+    }
+
+    /* ─── HERO CAROUSEL ────────────────────────── */
+    .hero-carousel { background: white; box-shadow: 0 4px 24px rgba(0,0,0,.08); }
+    .cs-img {
+      width: 100%; height: 420px; object-fit: cover; display: block;
+    }
+    .cs-placeholder {
+      width: 100%; height: 420px; display: flex;
+      align-items: center; justify-content: center;
+    }
+    .cs-ph-inner { text-align: center; color: rgba(255,255,255,.6); }
+    .cs-ph-inner i { font-size: 4rem; margin-bottom: 12px; display: block; }
+    .cs-ph-inner p { font-size: .9rem; font-weight: 300; }
+    /* Caption below image on white */
+    .cs-caption {
+      background: white; padding: 16px 0 20px;
+      border-top: 3px solid #f0f4f8;
+    }
+    .cs-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .77rem; font-weight: 700; padding: 3px 13px;
+      border-radius: 20px; margin-bottom: 8px; color: white;
+    }
+    .cs-caption h2 { font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-weight: 800; margin-bottom: 4px; color: var(--text-dark); }
+    .cs-caption p { font-size: .88rem; font-weight: 300; color: var(--text-muted); margin: 0; }
+    /* Indicators on white — use colored dots */
+    .carousel-indicators {
+      position: static; margin: 0;
+      padding: 10px 0 14px; justify-content: center;
+      background: white;
+    }
+    .carousel-indicators button {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #cbd5e1; border: none; margin: 0 3px;
+      transition: all .2s;
+    }
+    .carousel-indicators button.active { background: var(--primary); width: 28px; border-radius: 4px; }
+    .cs-upload-tip {
+      position: absolute; top: 14px; right: 16px; z-index: 5;
+      background: rgba(0,0,0,.38); color: rgba(255,255,255,.9);
+      font-size: .75rem; padding: 4px 12px; border-radius: 8px;
+    }
+    @media (max-width: 767px) { .cs-img, .cs-placeholder { height: 220px; } }
+
+    /* ─── STATS STRIP ──────────────────────────── */
+    .stats-strip { background: linear-gradient(135deg, #fef9f2 0%, #fff 50%, #f2fbf6 100%); box-shadow: 0 4px 20px rgba(0,0,0,.06); border-top: 1px solid #f0e8dc; }
+    .stat-cell {
+      display: flex; align-items: center; gap: 14px; padding: 20px 24px;
+      border-right: 1px solid #f0f3f5; flex: 1;
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-cell-icon {
+      width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+    }
+    .stat-cell-icon.blue { background: rgba(21,76,106,.1); color: var(--primary); }
+    .stat-cell-icon.road { background: rgba(212,96,10,.1); color: var(--road); }
+    .stat-cell-icon.alc  { background: rgba(46,125,94,.1);  color: var(--alcohol); }
+    .stat-cell-num { font-size: 2rem; font-weight: 800; line-height: 1.1; }
+    .stat-cell-num.blue { color: var(--primary); }
+    .stat-cell-num.road { color: var(--road); }
+    .stat-cell-num.alc  { color: var(--alcohol); }
+    .stat-cell-lbl { font-size: .8rem; color: var(--text-muted); font-weight: 400; }
+    @media (max-width: 767px) {
+      .stats-strip .d-flex { flex-wrap: wrap; }
+      .stat-cell { border-right: none; border-bottom: 1px solid #f0f3f5; flex: 0 0 50%; padding: 16px; }
+    }
+
+    /* ─── CALENDAR SECTION ─────────────────────── */
+    .cal-section { background: var(--warm-accent); border-top: 1px solid #f2e0cc; border-bottom: 1px solid #f2e0cc; padding: 28px 0; }
+    .cal-title { font-size: 1rem; font-weight: 800; color: var(--primary); margin-bottom: 14px; display: flex; align-items: center; gap: 7px; }
+    .cal-list { list-style: none; padding: 0; margin: 0; }
+    .cal-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+    .cal-item:last-child { border-bottom: none; }
+    .cal-date {
+      min-width: 54px; text-align: center; border-radius: 12px; padding: 6px 4px;
+      background: white; box-shadow: 0 2px 8px rgba(0,0,0,.07); flex-shrink: 0;
+    }
+    .cal-date .cd-day { font-size: 1.3rem; font-weight: 800; line-height: 1; }
+    .cal-date .cd-mon { font-size: .68rem; font-weight: 500; color: var(--text-muted); text-transform: uppercase; }
+    .cal-date.road .cd-day { color: var(--road); }
+    .cal-date.alc  .cd-day { color: var(--alcohol); }
+    .cal-date.blue .cd-day { color: var(--primary); }
+    .cal-info .ci-tag { font-size: .72rem; font-weight: 700; padding: 2px 10px; border-radius: 20px; display: inline-block; margin-bottom: 3px; }
+    .cal-info .ci-tag.road { background: rgba(212,96,10,.1); color: var(--road); }
+    .cal-info .ci-tag.alc  { background: rgba(46,125,94,.1);  color: var(--alcohol); }
+    .cal-info .ci-tag.blue { background: rgba(21,76,106,.1);  color: var(--primary); }
+    .cal-info .ci-title { font-size: .88rem; font-weight: 600; color: var(--text-dark); margin: 0; }
+    .cal-info .ci-sub   { font-size: .78rem; color: var(--text-muted); }
+
+    /* ─── DATA ACCESS SECTION ──────────────────── */
+    .data-section { padding: 44px 0 32px; }
+    .sec-heading { margin-bottom: 24px; }
+    .sec-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(21,76,106,.08); color: var(--primary);
+      font-size: .75rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      padding: 4px 14px; border-radius: 30px; margin-bottom: 8px;
+    }
+    .sec-heading h2 { font-size: 1.6rem; font-weight: 800; margin: 0 0 4px; }
+    .sec-heading p { color: var(--text-muted); font-size: .9rem; font-weight: 300; margin: 0; }
+    /* Data cards */
+    .dc {
+      background: white; border-radius: 22px; overflow: hidden;
+      box-shadow: 0 3px 18px rgba(0,0,0,.07); height: 100%;
+      transition: transform .22s, box-shadow .22s;
+    }
+    .dc:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(0,0,0,.12); }
+    .dc-head { padding: 22px 22px 18px; color: white; display: flex; align-items: center; gap: 16px; }
+    .dc-head.road { background: linear-gradient(135deg, var(--road-light), var(--road)); }
+    .dc-head.alc  { background: linear-gradient(135deg, var(--alcohol-light), var(--alcohol)); }
+    .dc-head-icon { font-size: 2.2rem; opacity: .9; }
+    .dc-head-title { font-size: 1.05rem; font-weight: 700; margin: 0 0 3px; }
+    .dc-head-sub   { font-size: .8rem; font-weight: 300; opacity: .88; margin: 0; }
+    .dc-body { padding: 14px 16px 8px; }
+    .dc-link {
+      display: flex; align-items: center; gap: 10px; padding: 10px 12px;
+      border-radius: 11px; text-decoration: none; color: var(--text-dark);
+      font-size: .88rem; font-weight: 500; transition: background .16s; margin-bottom: 3px;
+    }
+    .dc-link:hover { background: var(--light-bg); }
+    .dc-link .dli { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: .88rem; flex-shrink: 0; }
+    .dc-link .dli.road { background: rgba(212,96,10,.1); color: var(--road); }
+    .dc-link .dli.alc  { background: rgba(46,125,94,.1);  color: var(--alcohol); }
+    .dc-link .dlc { margin-left: auto; color: #cbd5e1; font-size: .75rem; }
+    .dc-foot { padding: 10px 16px 16px; }
+    .dc-dash {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 11px; border-radius: 13px; font-size: .9rem; font-weight: 700;
+      text-decoration: none; color: white; transition: filter .2s, transform .15s;
+    }
+    .dc-dash:hover { filter: brightness(.9); transform: translateY(-2px); color: white; }
+    .dc-dash.road { background: linear-gradient(135deg, var(--road-light), var(--road)); }
+    .dc-dash.alc  { background: linear-gradient(135deg, var(--alcohol-light), var(--alcohol)); }
+
+    /* ─── PM STRIP ─────────────────────────────── */
+    .pm-strip {
+      background: white; border-radius: 18px; padding: 16px 22px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+      display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+      border-left: 5px solid var(--primary);
+    }
+    .pm-label { font-weight: 700; font-size: .9rem; color: var(--primary); white-space: nowrap; display: flex; align-items: center; gap: 6px; }
+    .pm-links { display: flex; gap: 7px; flex-wrap: wrap; }
+    .pm-links a {
+      padding: 7px 13px; border-radius: 10px; background: rgba(21,76,106,.07);
+      color: var(--primary); text-decoration: none; font-size: .84rem; font-weight: 500;
+      transition: background .18s; display: flex; align-items: center; gap: 5px;
+    }
+    .pm-links a:hover { background: var(--primary); color: white; }
+
+    /* ─── PARTNERS / FOOTER ────────────────────── */
+    .partners-section { background: #edf2ea; border-top: 1px solid #d4e2cf; padding: 28px 16px; }
+    .partners-label { text-align: center; font-size: .75rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; }
+    .partners-box {
+      background: white; border-radius: 22px; padding: 18px 32px;
+      box-shadow: 0 2px 16px rgba(0,0,0,.07);
+      display: flex; align-items: center; justify-content: center; gap: 28px; flex-wrap: wrap;
+      max-width: 900px; margin: 0 auto;
+    }
+    .partners-box img { height: 50px; object-fit: contain; transition: transform .2s; }
+    .partners-box img:hover { transform: scale(1.1); }
+    .partners-divider { width: 1px; height: 42px; background: #e0ead8; flex-shrink: 0; }
+    footer { background: linear-gradient(135deg, #0d3350, var(--primary)); color: rgba(255,255,255,.75); padding: 22px; text-align: center; }
+    footer .footer-text { font-size: .82rem; font-weight: 300; }
+
+    @media (max-width: 767px) {
+      .partners-box { padding: 14px 16px; gap: 14px; }
+      .partners-box img { height: 36px; }
+      .partners-divider { display: none; }
+      .pm-strip { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+
+<!-- ══ MAIN NAVBAR (icon+text style) ══════════ -->
+<nav class="navbar navbar-expand-lg main-navbar">
+  <div class="container">
+    <!-- Brand -->
+    <a class="nav-brand-wrap" href="index.html">
+      <div class="nav-brand-icon">NF</div>
+      <div class="nav-brand-text">
+        <span class="nav-brand-name">Nodeflagship</span>
+        <span class="nav-brand-sub">จังหวัดศรีสะเกษ &nbsp;•&nbsp; ปี 2568–2569</span>
+      </div>
+    </a>
+
+    <button class="navbar-toggler border-0 ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+      <ul class="navbar-nav align-items-lg-center">
+
+        <li class="nav-icon-item">
+          <a class="nav-icon-link active" href="index.html">
+            <i class="bi bi-house-fill nil-icon"></i>
+            <span class="nil-text">หน้าหลัก</span>
+          </a>
+        </li>
+
+        <li class="nav-icon-item dropdown">
+          <a class="nav-icon-link road-nav" href="#" role="button" data-bs-toggle="dropdown">
+            <i class="bi bi-cone-striped nil-icon"></i>
+            <span class="nil-text">อุบัติเหตุ</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="pages/road-blackspot.html"><i class="bi bi-pin-map"></i>จุดเสี่ยงอุบัติเหตุ</a></li>
+            <li><a class="dropdown-item" href="pages/road-accident.html"><i class="bi bi-exclamation-triangle"></i>สถิติอุบัติเหตุ</a></li>
+            <li><a class="dropdown-item" href="pages/road-helmet.html"><i class="bi bi-shield-fill-check"></i>การสวมหมวกนิรภัย</a></li>
+            <li><a class="dropdown-item" href="pages/road-capacity.html"><i class="bi bi-speedometer2"></i>ศักยภาพ ศปถ.</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="pages/road-dashboard.html"><i class="bi bi-graph-up-arrow"></i>Dashboard ถนน</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-icon-item dropdown">
+          <a class="nav-icon-link alc-nav" href="#" role="button" data-bs-toggle="dropdown">
+            <i class="bi bi-droplet-fill nil-icon"></i>
+            <span class="nil-text">แอลกอฮอล์</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="pages/alc-tambon.html"><i class="bi bi-houses"></i>ศักยภาพตำบล</a></li>
+            <li><a class="dropdown-item" href="pages/alc-drinker.html"><i class="bi bi-person-x"></i>ผู้ดื่มแอลกอฮอล์</a></li>
+            <li><a class="dropdown-item" href="pages/alc-merit.html"><i class="bi bi-flower1"></i>งานบุญปลอดเหล้า</a></li>
+            <li><a class="dropdown-item" href="pages/alc-model.html"><i class="bi bi-person-check"></i>บุคคลต้นแบบ</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="pages/alc-dashboard.html"><i class="bi bi-pie-chart"></i>Dashboard แอลกอฮอล์</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-icon-item dropdown">
+          <a class="nav-icon-link" href="#" role="button" data-bs-toggle="dropdown">
+            <i class="bi bi-bar-chart-line-fill nil-icon"></i>
+            <span class="nil-text">Dashboard</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="pages/road-dashboard.html"><i class="bi bi-graph-up-arrow" style="color:var(--road)"></i>Dashboard ถนน</a></li>
+            <li><a class="dropdown-item" href="pages/alc-dashboard.html"><i class="bi bi-pie-chart" style="color:var(--alcohol)"></i>Dashboard แอลกอฮอล์</a></li>
+            <li><a class="dropdown-item" href="pages/project-dashboard.html"><i class="bi bi-bar-chart-line" style="color:var(--primary)"></i>Dashboard ภาพรวม</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-icon-item dropdown">
+          <a class="nav-icon-link" href="#" role="button" data-bs-toggle="dropdown">
+            <i class="bi bi-briefcase-fill nil-icon"></i>
+            <span class="nil-text">โครงการ</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="pages/project-main.html"><i class="bi bi-building"></i>โครงการหน่วยจัดการ</a></li>
+            <li><a class="dropdown-item" href="pages/project-sub.html"><i class="bi bi-diagram-3"></i>โครงการย่อย 27 โครงการ</a></li>
+            <li><a class="dropdown-item" href="pages/project-team.html"><i class="bi bi-people"></i>คณะทำงาน</a></li>
+            <li><a class="dropdown-item" href="pages/project-docs.html"><i class="bi bi-file-earmark-text"></i>คู่มือและเอกสาร</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-icon-item">
+          <a class="nav-icon-link" href="pages/guide.html">
+            <i class="bi bi-book-fill nil-icon"></i>
+            <span class="nil-text">คู่มือ</span>
+          </a>
+        </li>
+
+        <li class="nav-icon-item">
+          <a class="nav-icon-link" href="pages/contact.html">
+            <i class="bi bi-envelope-fill nil-icon"></i>
+            <span class="nil-text">ติดต่อ</span>
+          </a>
+        </li>
+
+        <li class="nav-icon-item ms-lg-2">
+          <a class="nav-doc-pill" href="pages/project-docs.html">
+            <i class="bi bi-file-earmark-arrow-down"></i> เอกสาร
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO CAROUSEL ══════════════════════════ -->
+<div id="heroCarousel" class="carousel slide carousel-fade hero-carousel" data-bs-ride="carousel" data-bs-interval="5000">
+  <div class="cs-upload-tip"><i class="bi bi-image me-1"></i>วางรูปใน assets/photos/activity-1.jpg ถึง activity-5.jpg</div>
+  <div class="carousel-inner">
+
+    <div class="carousel-item active">
+      <img src="assets/photos/activity-1.jpg" class="cs-img" alt=""
+        onerror="this.outerHTML='<div class=\'cs-placeholder\' style=\'background:linear-gradient(135deg,#2d8bbf 0%,#154C6A 100%)\'><div class=\'cs-ph-inner\'><i class=\'bi bi-image\'></i><p>วางรูปกิจกรรม<br>assets/photos/activity-1.jpg</p></div></div>'">
+      <div class="cs-caption">
+        <div class="container">
+          <div class="cs-badge" style="background:var(--primary)"><i class="bi bi-geo-alt-fill"></i>จ.ศรีสะเกษ ปี 2568–2569</div>
+          <h2>หน่วยจัดการขับเคลื่อนประเด็นยุทธศาสตร์ (Node Flagship) ศรีสะเกษ</h2>
+          <p>ศูนย์กลางข้อมูลและติดตามผลการดำเนินงาน 27 โครงการ ภายใต้การสนับสนุนของ สสส.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="carousel-item">
+      <img src="assets/photos/activity-2.jpg" class="cs-img" alt=""
+        onerror="this.outerHTML='<div class=\'cs-placeholder\' style=\'background:linear-gradient(135deg,#F07D2E 0%,#8B2E00 100%)\'></div>'">
+      <div class="cs-caption">
+        <div class="container">
+          <div class="cs-badge" style="background:var(--road)"><i class="bi bi-cone-striped"></i>ความปลอดภัยทางถนน</div>
+          <h2>ขับเคลื่อนกลไกความปลอดภัยทางถนน</h2>
+          <p>19 โครงการย่อย ใน 10 อำเภอ — เสริมศักยภาพ ศปถ. ลดจุดเสี่ยง ลดอุบัติเหตุ</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="carousel-item">
+      <img src="assets/photos/activity-3.jpg" class="cs-img" alt=""
+        onerror="this.outerHTML='<div class=\'cs-placeholder\' style=\'background:linear-gradient(135deg,#45b388 0%,#134030 100%)\'></div>'">
+      <div class="cs-caption">
+        <div class="container">
+          <div class="cs-badge" style="background:var(--alcohol)"><i class="bi bi-flower1"></i>ลดการบริโภคเครื่องดื่มแอลกอฮอล์ในชุมชน</div>
+          <h2>งานบุญปลอดเหล้า พัฒนาบุคคลต้นแบบ</h2>
+          <p>8 โครงการย่อย ใน 4 อำเภอ — สร้างกลไก พชอ. ลดการบริโภคในชุมชน</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="carousel-item">
+      <img src="assets/photos/activity-4.jpg" class="cs-img" alt=""
+        onerror="this.outerHTML='<div class=\'cs-placeholder\' style=\'background:linear-gradient(135deg,#1a6090 0%,#0a2236 100%)\'></div>'">
+      <div class="cs-caption">
+        <div class="container">
+          <div class="cs-badge" style="background:var(--primary)"><i class="bi bi-people-fill"></i>คณะทำงาน</div>
+          <h2>ทีมพี่เลี้ยงและภาคีเครือข่าย</h2>
+          <p>มหาวิทยาลัยราชภัฏศรีสะเกษ • สสจ. • ปภ. • สคล. • สอจร.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="carousel-item">
+      <img src="assets/photos/activity-5.jpg" class="cs-img" alt=""
+        onerror="this.outerHTML='<div class=\'cs-placeholder\' style=\'background:linear-gradient(135deg,#2d8bbf 0%,#45b388 100%)\'></div>'">
+      <div class="cs-caption">
+        <div class="container">
+          <div class="cs-badge" style="background:var(--primary)"><i class="bi bi-clipboard-check-fill"></i>ติดตามผล ARE</div>
+          <h2>นิเทศติดตามผลการดำเนินงาน</h2>
+          <p>ลงพื้นที่ ARE ครั้งที่ 2 — ประเมินความก้าวหน้าโครงการย่อยทั้ง 27 โครงการ</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3"></button>
+    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="4"></button>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
+
+<!-- ══ STATS STRIP ════════════════════════════ -->
+<div class="stats-strip">
+  <div class="container">
+    <div class="d-flex">
+      <div class="stat-cell">
+        <div class="stat-cell-icon blue"><i class="bi bi-diagram-3-fill"></i></div>
+        <div>
+          <div class="stat-cell-num blue" data-count="27">27</div>
+          <div class="stat-cell-lbl">โครงการย่อย</div>
+        </div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell-icon road"><i class="bi bi-cone-striped"></i></div>
+        <div>
+          <div class="stat-cell-num road" data-count="19">19</div>
+          <div class="stat-cell-lbl">โครงการถนน</div>
+        </div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell-icon alc"><i class="bi bi-droplet-fill"></i></div>
+        <div>
+          <div class="stat-cell-num alc" data-count="8">8</div>
+          <div class="stat-cell-lbl">โครงการแอลกอฮอล์</div>
+        </div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell-icon blue"><i class="bi bi-geo-alt-fill"></i></div>
+        <div>
+          <div class="stat-cell-num blue" data-count="13">13</div>
+          <div class="stat-cell-lbl">อำเภอ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CALENDAR SECTION ═══════════════════════ -->
+<div class="cal-section">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-3">
+        <div class="cal-title"><i class="bi bi-calendar3"></i>ปฏิทินงาน</div>
+        <p style="font-size:.85rem;color:var(--text-muted);font-weight:300;margin:0">กิจกรรมและการลงพื้นที่ของทีมงาน Node Flagship ศรีสะเกษ</p>
+      </div>
+      <div class="col-lg-9">
+        <ul class="cal-list" id="calList"><li class="cal-item" style="opacity:.4;font-size:.85rem;padding:14px 0">กำลังโหลดปฏิทิน...</li></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DATA ACCESS SECTION ══════════════════════ -->
+<div class="data-section">
+  <div class="container">
+    <div class="sec-heading">
+      <div class="sec-tag"><i class="bi bi-lightning-fill me-1"></i>เลือกข้อมูลที่ต้องการ</div>
+      <h2>2 ประเด็นยุทธศาสตร์</h2>
+      <p>คลิกเพื่อเข้าดูข้อมูล ติดตาม และรายงานผลการดำเนินงาน</p>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- ═ ถนน ═ -->
+      <div class="col-md-6">
+        <div class="dc">
+          <div class="dc-head road">
+            <i class="bi bi-cone-striped dc-head-icon"></i>
+            <div>
+              <div class="dc-head-title">ความปลอดภัยทางถนน</div>
+              <div class="dc-head-sub">19 โครงการ &nbsp;•&nbsp; 10 อำเภอ</div>
+            </div>
+          </div>
+          <div class="dc-body">
+            <a href="pages/road-blackspot.html" class="dc-link">
+              <div class="dli road"><i class="bi bi-pin-map"></i></div>
+              <span>จุดเสี่ยงอุบัติเหตุ</span>
+              <i class="bi bi-chevron-right dlc"></i>
+            </a>
+            <a href="pages/road-accident.html" class="dc-link">
+              <div class="dli road"><i class="bi bi-exclamation-triangle"></i></div>
+              <span>สถิติอุบัติเหตุ</span>
+              <i class="bi bi-chevron-right dlc"></i>
+            </a>
+            <a href="pages/road-helmet.html" class="dc-link">
+              <div class="dli road"><i class="bi bi-shield-fill-check"></i></div>
+              <span>การสวมหมวกนิรภัย</span>
+              <i class="bi bi-chevron-right dlc"></i>
+            </a>
+            <a href="pages/road-capacity.html" class="dc-link">
+              <div class="dli road"><i class="bi bi-speedometer2"></i></div>
+              <span>ศักยภาพ ศปถ.</span>
+              <i class="bi bi-chevron-right dlc"></i>
+            </a>
+          </div>
+          <div class="dc-foot">
+            <a href="pages/road-dashboard.html" class="dc-dash road">
+              <i class="bi bi-graph-up-arrow"></i> Dashboard ความปลอดภัยทางถนน
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═ แอลกอฮอล์ ═ -->
+      <div class="col-md-6">
+        <div class="dc">
+          <div class="dc-head alc">
+            <i class="bi bi-droplet-fill dc-head-icon"></i>
+            <div>
+              <div class="dc-head-title">การลดการบริโภคแอลกอฮอล์</div>
+              <div class="dc-head-sub">8 โครงการ &nbsp;•&nbsp; 4 อำเภอ</div>
+            </div>
+          </div>
+          <div class="dc-body">
+            <a href="pages/alc-merit.html" class="dc-link">
+              <div class="dli alc"><i class="bi bi-flower1"></i></div>
+              <span>งานบุญปลอดเหล้า</span>
+              <i class="bi bi-chevron-right dlc"></i>
+            </a>
+            <a href="pages/alc-drinker.html" class="dc-link">
+              <div class="dli alc"><i class="bi bi-person-x"></i></div>
+              <span>ผู้ดื่มแอลกอฮอล์</span>
+              <i class="bi bi-chevron-right dlc"></i>
+            </a>
+            <a href="pages/alc-model.html" class="dc-link">
+              <div class="dli alc"><i class="bi bi-person-check"></i></div>
+              <span>บุคคลต้นแบบ</span>
+              <i class="bi bi-chevron-right dlc"></i>
+            </a>
+            <a href="pages/alc-tambon.html" class="dc-link">
+              <div class="dli alc"><i class="bi bi-houses"></i></div>
+              <span>ศักยภาพตำบล</span>
+              <i class="bi bi-chevron-right dlc"></i>
+            </a>
+          </div>
+          <div class="dc-foot">
+            <a href="pages/alc-dashboard.html" class="dc-dash alc">
+              <i class="bi bi-pie-chart"></i> Dashboard การลดแอลกอฮอล์
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══ PM STRIP ════════════════════════════════ -->
+<div class="container pb-5">
+  <div class="pm-strip">
+    <div class="pm-label"><i class="bi bi-briefcase-fill"></i>บริหารจัดการโครงการ</div>
+    <div class="pm-links">
+      <a href="pages/project-main.html"><i class="bi bi-building"></i>ข้อมูลหน่วยจัดการ</a>
+      <a href="pages/project-sub.html"><i class="bi bi-diagram-3"></i>โครงการย่อย 27 โครงการ</a>
+      <a href="pages/project-team.html"><i class="bi bi-people"></i>คณะทำงาน</a>
+      <a href="pages/project-docs.html"><i class="bi bi-file-earmark-text"></i>เอกสาร</a>
+      <a href="pages/project-dashboard.html"><i class="bi bi-bar-chart-line"></i>Dashboard ภาพรวม</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PARTNERS ════════════════════════════════ -->
+<div class="partners-section">
+  <div class="partners-label">หน่วยงานที่สนับสนุน</div>
+  <div class="partners-box">
+    <img src="assets/logos/logo-ddpm.png" alt="ปภ." onerror="this.style.display='none'">
+    <div class="partners-divider"></div>
+    <img src="assets/logos/logo-sskru.png" alt="มรภ.ศรีสะเกษ" onerror="this.src='https://www.sskru.ac.th/wp-content/uploads/2023/05/SSKRU-LOGO1.png'">
+    <div class="partners-divider"></div>
+    <img src="assets/logos/logo-thaihealth.png" alt="สสส." onerror="this.src='https://www.thaihealth.or.th/wp-content/uploads/2023/08/Logo-thaihealth.png'">
+    <div class="partners-divider"></div>
+    <img src="assets/logos/logo-section6.png" alt="สำนัก 6" onerror="this.style.display='none'">
+    <div class="partners-divider"></div>
+    <img src="assets/logos/logo-policy-center.png" alt="ศูนย์พัฒนานโยบาย" onerror="this.style.display='none'">
+  </div>
+</div>
+
+<!-- ══ FOOTER ═════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-text">
+      <p class="mb-1"><strong style="opacity:.9">หน่วยจัดการขับเคลื่อนประเด็นยุทธศาสตร์ (Nodeflagship) จังหวัดศรีสะเกษ</strong></p>
+      <p class="mb-0">สนับสนุนโดย สำนักสร้างสรรค์โอกาส (สำนัก 6) สสส. | ปี 2568–2569</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Counter animation on scroll
+  const counts = document.querySelectorAll('[data-count]');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target, target = +el.dataset.count;
+      let cur = 0;
+      const step = Math.max(1, Math.ceil(target / 35));
+      const t = setInterval(() => {
+        cur = Math.min(cur + step, target);
+        el.textContent = cur;
+        if (cur >= target) clearInterval(t);
+      }, 30);
+      io.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  counts.forEach(el => io.observe(el));
+
+  // ─── Load calendar from JSON (CMS-managed) ──────────
+  const calIconMap = { road:'bi-cone-striped', alc:'bi-droplet-fill', blue:'bi-calendar-check-fill' };
+  const calLabelMap = { road:'ถนน', alc:'แอลกอฮอล์', blue:'โครงการ/รายงาน' };
+  fetch('_data/calendar.json')
+    .then(r => r.json())
+    .then(data => {
+      const list = document.getElementById('calList');
+      if (!data.events || !data.events.length) { list.innerHTML = '<li class="cal-item" style="opacity:.5">ยังไม่มีกิจกรรม</li>'; return; }
+      list.innerHTML = data.events.map(ev => `
+        <li class="cal-item">
+          <div class="cal-date ${ev.type}">
+            <div class="cd-day">${ev.date}</div>
+            <div class="cd-mon">${ev.month}</div>
+          </div>
+          <div class="cal-info">
+            <span class="ci-tag ${ev.type}"><i class="bi ${calIconMap[ev.type]||'bi-calendar3'} me-1"></i>${calLabelMap[ev.type]||ev.type}</span>
+            <div class="ci-title">${ev.title}</div>
+            ${ev.detail ? `<div class="ci-sub">${ev.detail}</div>` : ''}
+          </div>
+        </li>`).join('');
+    })
+    .catch(() => {
+      // fallback: ถ้าเปิดผ่าน file:// ให้แสดงข้อความแนะนำ
+      document.getElementById('calList').innerHTML = '<li class="cal-item" style="opacity:.5;font-size:.82rem">ปฏิทินจะแสดงเมื่อ deploy บน Netlify — แก้ไขได้ที่ _data/calendar.json</li>';
+    });
+</script>
+</body>
+</html>

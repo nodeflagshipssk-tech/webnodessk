@@ -1,0 +1,101 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/photos"
+public_folder: "assets/photos"
+
+locale: "th"
+
+collections:
+  - name: "site_data"
+    label: "ข้อมูลเว็บไซต์"
+    files:
+
+      - name: "calendar"
+        label: "📅 ปฏิทินงาน"
+        file: "_data/calendar.json"
+        fields:
+          - name: events
+            label: รายการกิจกรรม
+            label_singular: กิจกรรม
+            widget: list
+            fields:
+              - label: วัน (ตัวเลข)
+                name: date
+                widget: string
+                hint: "เช่น 30"
+              - label: เดือน
+                name: month
+                widget: string
+                hint: "เช่น มี.ค. หรือ เม.ย."
+              - label: ประเด็น
+                name: type
+                widget: select
+                options:
+                  - { label: "🚗 ความปลอดภัยทางถนน", value: road }
+                  - { label: "🌿 ลดการดื่มแอลกอฮอล์", value: alc }
+                  - { label: "📋 โครงการ / รายงาน", value: blue }
+              - label: หัวข้อกิจกรรม
+                name: title
+                widget: string
+              - label: รายละเอียด (พี่เลี้ยง / สถานที่)
+                name: detail
+                widget: string
+                required: false
+
+      - name: "team_road"
+        label: "🚗 พี่เลี้ยงประเด็นถนน"
+        file: "_data/team-road.json"
+        fields:
+          - name: members
+            label: รายชื่อพี่เลี้ยง
+            label_singular: พี่เลี้ยง
+            widget: list
+            fields:
+              - { label: ชื่อ-นามสกุล, name: name, widget: string }
+              - { label: ตำแหน่ง/บทบาท, name: role, widget: string }
+              - { label: หน่วยงานสังกัด, name: org, widget: string, required: false }
+
+      - name: "team_alc"
+        label: "🌿 พี่เลี้ยงประเด็นแอลกอฮอล์"
+        file: "_data/team-alc.json"
+        fields:
+          - name: members
+            label: รายชื่อพี่เลี้ยง
+            label_singular: พี่เลี้ยง
+            widget: list
+            fields:
+              - { label: ชื่อ-นามสกุล, name: name, widget: string }
+              - { label: ตำแหน่ง/บทบาท, name: role, widget: string }
+              - { label: หน่วยงานสังกัด, name: org, widget: string, required: false }
+
+      - name: "projects"
+        label: "📋 สถานะโครงการย่อย 27 โครงการ"
+        file: "_data/projects.json"
+        fields:
+          - name: projects
+            label: รายการโครงการ
+            label_singular: โครงการ
+            widget: list
+            fields:
+              - { label: "รหัสโครงการ", name: code, widget: string }
+              - { label: "ชื่อโครงการ", name: title, widget: string }
+              - label: ประเด็น
+                name: type
+                widget: select
+                options:
+                  - { label: ความปลอดภัยทางถนน, value: road }
+                  - { label: ลดการดื่มแอลกอฮอล์, value: alc }
+              - { label: "พื้นที่ดำเนินการ", name: area, widget: string }
+              - { label: "พี่เลี้ยงหลัก", name: mentor, widget: string }
+              - label: สถานะโครงการ
+                name: status
+                widget: select
+                options:
+                  - { label: "✅ ดำเนินการ", value: "ดำเนินการ" }
+                  - { label: "🏁 เสร็จสิ้น", value: "เสร็จสิ้น" }
+                  - { label: "⚠️ ล่าช้า", value: "ล่าช้า" }
+                  - { label: "⏸ หยุดชะงัก", value: "หยุดชะงัก" }
+              - { label: "เลขที่สัญญา", name: contract, widget: string }
+              - { label: "ผู้รับทุน", name: grantee, widget: string }

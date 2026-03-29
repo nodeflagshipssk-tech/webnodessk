@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ข้อมูลจุดเสี่ยงอุบัติเหตุ — Nodeflagship ศรีสะเกษ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../assets/css/portal.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg main-navbar sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="../index.html"><i class="bi bi-geo-alt-fill me-1"></i>Nodeflagship <span class="brand-sub">ศรีสะเกษ</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Toggle">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link" href="../index.html"><i class="bi bi-house me-1"></i>หน้าแรก</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle road-nav" href="#" role="button" data-bs-toggle="dropdown"><i class="bi bi-cone-striped me-1"></i>อุบัติเหตุ</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="road-blackspot.html"><i class="bi bi-pin-map"></i>จุดเสี่ยงอุบัติเหตุ</a></li>
+            <li><a class="dropdown-item" href="road-accident.html"><i class="bi bi-exclamation-triangle"></i>สถิติอุบัติเหตุ</a></li>
+            <li><a class="dropdown-item" href="road-helmet.html"><i class="bi bi-shield-fill-check"></i>การสวมหมวกนิรภัย</a></li>
+            <li><a class="dropdown-item" href="road-capacity.html"><i class="bi bi-speedometer2"></i>ศักยภาพ ศปถ.</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="road-dashboard.html"><i class="bi bi-graph-up-arrow"></i>Dashboard ถนน</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle alc-nav" href="#" role="button" data-bs-toggle="dropdown"><i class="bi bi-droplet me-1"></i>แอลกอฮอล์</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="alc-tambon.html"><i class="bi bi-houses"></i>ศักยภาพตำบล</a></li>
+            <li><a class="dropdown-item" href="alc-drinker.html"><i class="bi bi-person-x"></i>ผู้ดื่มแอลกอฮอล์</a></li>
+            <li><a class="dropdown-item" href="alc-merit.html"><i class="bi bi-flower1"></i>งานบุญปลอดเหล้า</a></li>
+            <li><a class="dropdown-item" href="alc-model.html"><i class="bi bi-person-check"></i>บุคคลต้นแบบ</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="alc-dashboard.html"><i class="bi bi-pie-chart"></i>Dashboard แอลกอฮอล์</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><i class="bi bi-briefcase me-1"></i>โครงการ</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="project-main.html"><i class="bi bi-building"></i>โครงการหน่วยจัดการ</a></li>
+            <li><a class="dropdown-item" href="project-sub.html"><i class="bi bi-diagram-3"></i>โครงการย่อย 27 โครงการ</a></li>
+            <li><a class="dropdown-item" href="project-team.html"><i class="bi bi-people"></i>คณะทำงาน</a></li>
+            <li><a class="dropdown-item" href="project-docs.html"><i class="bi bi-file-earmark-text"></i>คู่มือและเอกสาร</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="project-dashboard.html"><i class="bi bi-bar-chart-line"></i>Dashboard ภาพรวม</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="guide.html"><i class="bi bi-book me-1"></i>คู่มือ</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html"><i class="bi bi-envelope me-1"></i>ติดต่อ</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="logo-bar">
+  <div class="container">
+    <div class="logo-wrap">
+      <img src="../assets/logos/logo-ddpm.png" alt="ปภ." onerror="this.style.display='none'">
+      <div class="logo-divider"></div>
+      <img src="../assets/logos/logo-sskru.png" alt="มรภ.ศรีสะเกษ" onerror="this.src='https://www.sskru.ac.th/wp-content/uploads/2023/05/SSKRU-LOGO1.png'">
+      <div class="logo-divider"></div>
+      <img src="../assets/logos/logo-thaihealth.png" alt="สสส." onerror="this.src='https://www.thaihealth.or.th/wp-content/uploads/2023/08/Logo-thaihealth.png'">
+      <div class="logo-divider"></div>
+      <img src="../assets/logos/logo-policy-center.png" alt="ศูนย์พัฒนานโยบาย" onerror="this.style.display='none'">
+    </div>
+  </div>
+</div>
+
+<div class="page-hero hero-road">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../index.html">หน้าแรก</a></li>
+        <li class="breadcrumb-item"><a href="#">ความปลอดภัยทางถนน</a></li>
+        <li class="breadcrumb-item active">ข้อมูลจุดเสี่ยง</li>
+      </ol>
+    </nav>
+    <h1><i class="bi bi-pin-map me-2"></i>ระบบข้อมูลจุดเสี่ยงอุบัติเหตุทางถนน</h1>
+    <p>บันทึก ติดตาม และวิเคราะห์จุดเสี่ยงอุบัติเหตุในพื้นที่ จังหวัดศรีสะเกษ</p>
+  </div>
+</div>
+
+<div class="content-wrap">
+
+  <div class="row g-3 mb-4">
+    <div class="col-6 col-md-3">
+      <div class="mini-stat">
+        <div class="num road">—</div>
+        <div class="lbl">จุดเสี่ยงในระบบ</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="mini-stat">
+        <div class="num road">22</div>
+        <div class="lbl">อำเภอที่ครอบคลุม</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="mini-stat">
+        <div class="num road">—</div>
+        <div class="lbl">บันทึกล่าสุด</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="mini-stat">
+        <div class="num road">v15.6</div>
+        <div class="lbl">เวอร์ชันระบบ</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="launch-card border-road">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <h4 class="fw-bold mb-2"><i class="bi bi-map me-2" style="color:var(--road)"></i>ระบบข้อมูลจุดเสี่ยงอุบัติเหตุทางถนน จ.ศรีสะเกษ</h4>
+        <p class="text-muted mb-3" style="font-size:.92rem;font-weight:300">
+          แอปพลิเคชันสำหรับเจ้าหน้าที่ในการบันทึกจุดเสี่ยง ดูแผนที่ความเสี่ยง วิเคราะห์ข้อมูล
+          และติดตามการแก้ไขจุดเสี่ยงในพื้นที่ พัฒนาด้วย Google Apps Script
+        </p>
+        <div class="d-flex gap-2 flex-wrap">
+          <a href="#" class="btn-launch road" onclick="alert('กรุณาระบุ URL ของ GAS App'); return false;">
+            <i class="bi bi-box-arrow-up-right"></i> เปิดระบบ
+          </a>
+          <a href="guide.html" class="btn btn-outline-secondary" style="border-radius:12px;padding:12px 20px;font-size:.92rem;font-weight:500">
+            <i class="bi bi-info-circle me-1"></i> คู่มือการใช้งาน
+          </a>
+        </div>
+      </div>
+      <div class="col-md-4 text-center mt-3 mt-md-0">
+        <div style="background:rgba(212,96,10,.08);border-radius:16px;padding:24px;display:inline-block">
+          <i class="bi bi-map-fill" style="font-size:4rem;color:var(--road);opacity:.6"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="info-card">
+        <h5><i class="bi bi-stars me-2"></i>ฟีเจอร์หลักของระบบ</h5>
+        <div class="feature-item">
+          <div class="fi-icon road"><i class="bi bi-map"></i></div>
+          <div class="fi-text">
+            <strong>แผนที่จุดเสี่ยง (Leaflet)</strong>
+            แสดงพิกัดจุดเสี่ยงบนแผนที่แบบ interactive พร้อม marker และ popup รายละเอียด
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon road"><i class="bi bi-pencil-square"></i></div>
+          <div class="fi-text">
+            <strong>บันทึกข้อมูลจุดเสี่ยง</strong>
+            แบบฟอร์มบันทึกข้อมูลจุดเสี่ยงพร้อม geolocation ระบุตำแหน่ง
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon road"><i class="bi bi-bar-chart"></i></div>
+          <div class="fi-text">
+            <strong>Dashboard วิเคราะห์ข้อมูล</strong>
+            กราฟ Chart.js แสดงสถิติจุดเสี่ยงแยกตามประเภท อำเภอ และช่วงเวลา
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon road"><i class="bi bi-shield-check"></i></div>
+          <div class="fi-text">
+            <strong>ระบบสิทธิ์การเข้าถึง</strong>
+            แยกสิทธิ์ผู้ดูแลระบบ เจ้าหน้าที่พื้นที่ และผู้ชมข้อมูล
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon road"><i class="bi bi-download"></i></div>
+          <div class="fi-text">
+            <strong>ส่งออกข้อมูล</strong>
+            Export รายงานเป็น Excel / PDF สำหรับการนำเสนอ
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="info-card">
+        <h5><i class="bi bi-layers me-2"></i>ข้อมูลที่บันทึกในระบบ</h5>
+        <div class="feature-item">
+          <div class="fi-icon road"><i class="bi bi-geo-alt"></i></div>
+          <div class="fi-text">
+            <strong>ตำแหน่งจุดเสี่ยง</strong>
+            พิกัด GPS, ถนน, อำเภอ, ตำบล, รหัส อปท.
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon road"><i class="bi bi-exclamation-diamond"></i></div>
+          <div class="fi-text">
+            <strong>ลักษณะความเสี่ยง</strong>
+            ประเภทจุดเสี่ยง ระดับความรุนแรง สาเหตุหลัก
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon road"><i class="bi bi-clipboard-check"></i></div>
+          <div class="fi-text">
+            <strong>การแก้ไขและติดตาม</strong>
+            สถานะการแก้ไข แนวทางดำเนินการ ผู้รับผิดชอบ
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon road"><i class="bi bi-camera"></i></div>
+          <div class="fi-text">
+            <strong>รูปภาพประกอบ</strong>
+            ภาพถ่ายจุดเสี่ยงก่อน-หลังการแก้ไข
+          </div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h5><i class="bi bi-tools me-2"></i>เทคโนโลยีที่ใช้</h5>
+        <div class="d-flex flex-wrap gap-2">
+          <span class="badge-tech road">Google Apps Script</span>
+          <span class="badge-tech blue">Bootstrap 5</span>
+          <span class="badge-tech blue">Leaflet.js</span>
+          <span class="badge-tech blue">Chart.js</span>
+          <span class="badge-tech blue">Google Sheets</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <a href="../index.html" class="btn btn-outline-secondary" style="border-radius:12px;font-weight:500">
+      <i class="bi bi-arrow-left me-2"></i>กลับหน้าหลัก
+    </a>
+  </div>
+
+</div>
+
+<div class="partners-section">
+  <div class="partners-label">หน่วยงานที่สนับสนุน</div>
+  <div class="partners-box">
+    <img src="../assets/logos/logo-ddpm.png" alt="ปภ." onerror="this.style.display='none'">
+    <div class="partners-divider"></div>
+    <img src="../assets/logos/logo-sskru.png" alt="มรภ.ศรีสะเกษ" onerror="this.src='https://www.sskru.ac.th/wp-content/uploads/2023/05/SSKRU-LOGO1.png'">
+    <div class="partners-divider"></div>
+    <img src="../assets/logos/logo-thaihealth.png" alt="สสส." onerror="this.src='https://www.thaihealth.or.th/wp-content/uploads/2023/08/Logo-thaihealth.png'">
+    <div class="partners-divider"></div>
+    <img src="../assets/logos/logo-section6.png" alt="สำนัก 6" onerror="this.style.display='none'">
+    <div class="partners-divider"></div>
+    <img src="../assets/logos/logo-policy-center.png" alt="ศูนย์พัฒนานโยบาย" onerror="this.style.display='none'">
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-text">
+      <p class="mb-1"><strong style="opacity:.9">หน่วยจัดการขับเคลื่อนประเด็นยุทธศาสตร์ (Nodeflagship) จังหวัดศรีสะเกษ</strong></p>
+      <p class="mb-0">สนับสนุนโดย สำนักสร้างสรรค์โอกาส (สำนัก 6) สำนักงานกองทุนสนับสนุนการสร้างเสริมสุขภาพ (สสส.) | ปี 2568–2569</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function(){
+  var p=location.pathname.split('/').pop()||'index.html';
+  document.querySelectorAll('.main-navbar .dropdown-item').forEach(function(a){
+    if((a.getAttribute('href')||'')===p){
+      a.classList.add('active');
+      var dt=a.closest('.dropdown')&&a.closest('.dropdown').querySelector('.nav-link.dropdown-toggle');
+      if(dt)dt.classList.add('active');
+    }
+  });
+  document.querySelectorAll('.main-navbar .nav-link:not(.dropdown-toggle)').forEach(function(a){
+    if((a.getAttribute('href')||'').split('/').pop()===p)a.classList.add('active');
+  });
+})();
+</script>
+</body>
+</html>
