@@ -85,10 +85,28 @@
       .nav-icon-item.dropdown .dropdown-menu { box-shadow: none; background: #f8fafc; border-radius: 10px; }
     }
 
-    /* ─── HERO CAROUSEL ────────────────────────── */
-    .hero-carousel { background: white; box-shadow: 0 4px 24px rgba(0,0,0,.08); }
-    .cs-img {
-      width: 100%; height: 420px; object-fit: cover; display: block;
+    /* ─── PHOTO GRID ────────────────────────── */
+    .photo-section { background: white; box-shadow: 0 4px 24px rgba(0,0,0,.08); padding: 0; }
+    .photo-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 200px 200px;
+      gap: 4px;
+    }
+    .photo-grid .pg-main { grid-row: 1 / 3; }
+    .photo-grid .pg-item img,
+    .photo-grid .pg-main img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .pg-item, .pg-main { overflow: hidden; position: relative; background: #e0e8f0; }
+    .pg-placeholder {
+      width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+      flex-direction:column; color:#94a3b8; font-size:.78rem; font-weight:300; gap:6px;
+    }
+    .pg-placeholder i { font-size:1.8rem; opacity:.4; }
+    @media (max-width: 767px) {
+      .photo-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 160px 160px; }
+      .photo-grid .pg-main { grid-row: auto; }
     }
     .cs-placeholder {
       width: 100%; height: 420px; display: flex;
@@ -370,85 +388,30 @@
   </div>
 </nav>
 
-<!-- ══ HERO CAROUSEL ══════════════════════════ -->
-<div id="heroCarousel" class="carousel slide carousel-fade hero-carousel" data-bs-ride="carousel" data-bs-interval="5000">
-  <div class="cs-upload-tip"><i class="bi bi-image me-1"></i>วางรูปใน assets/photos/activity-1.jpg ถึง activity-5.jpg</div>
-  <div class="carousel-inner">
-
-    <div class="carousel-item active">
-      <img src="assets/photos/activity-1.jpg" class="cs-img" alt=""
-        onerror="this.outerHTML='<div class=\'cs-placeholder\' style=\'background:linear-gradient(135deg,#2d8bbf 0%,#154C6A 100%)\'><div class=\'cs-ph-inner\'><i class=\'bi bi-image\'></i><p>วางรูปกิจกรรม<br>assets/photos/activity-1.jpg</p></div></div>'">
-      <div class="cs-caption">
-        <div class="container">
-          <div class="cs-badge" style="background:var(--primary)"><i class="bi bi-geo-alt-fill"></i>จ.ศรีสะเกษ ปี 2568–2569</div>
-          <h2>หน่วยจัดการขับเคลื่อนประเด็นยุทธศาสตร์ (Node Flagship) ศรีสะเกษ</h2>
-          <p>ศูนย์กลางข้อมูลและติดตามผลการดำเนินงาน 27 โครงการ ภายใต้การสนับสนุนของ สสส.</p>
-        </div>
-      </div>
+<!-- ══ PHOTO GRID ══════════════════════════ -->
+<div class="photo-section">
+  <div class="photo-grid">
+    <div class="pg-main">
+      <img src="assets/photos/activity-1.jpg" alt="กิจกรรม 1"
+        onerror="this.parentElement.innerHTML='<div class=\'pg-placeholder\'><i class=\'bi bi-image\'></i><span>activity-1.jpg</span></div>'">
     </div>
-
-    <div class="carousel-item">
-      <img src="assets/photos/activity-2.jpg" class="cs-img" alt=""
-        onerror="this.outerHTML='<div class=\'cs-placeholder\' style=\'background:linear-gradient(135deg,#F07D2E 0%,#8B2E00 100%)\'></div>'">
-      <div class="cs-caption">
-        <div class="container">
-          <div class="cs-badge" style="background:var(--road)"><i class="bi bi-cone-striped"></i>ความปลอดภัยทางถนน</div>
-          <h2>ขับเคลื่อนกลไกความปลอดภัยทางถนน</h2>
-          <p>19 โครงการย่อย ใน 10 อำเภอ — เสริมศักยภาพ ศปถ. ลดจุดเสี่ยง ลดอุบัติเหตุ</p>
-        </div>
-      </div>
+    <div class="pg-item">
+      <img src="assets/photos/activity-2.jpg" alt="กิจกรรม 2"
+        onerror="this.parentElement.innerHTML='<div class=\'pg-placeholder\'><i class=\'bi bi-image\'></i><span>activity-2.jpg</span></div>'">
     </div>
-
-    <div class="carousel-item">
-      <img src="assets/photos/activity-3.jpg" class="cs-img" alt=""
-        onerror="this.outerHTML='<div class=\'cs-placeholder\' style=\'background:linear-gradient(135deg,#45b388 0%,#134030 100%)\'></div>'">
-      <div class="cs-caption">
-        <div class="container">
-          <div class="cs-badge" style="background:var(--alcohol)"><i class="bi bi-flower1"></i>ลดการบริโภคเครื่องดื่มแอลกอฮอล์ในชุมชน</div>
-          <h2>งานบุญปลอดเหล้า พัฒนาบุคคลต้นแบบ</h2>
-          <p>8 โครงการย่อย ใน 4 อำเภอ — สร้างกลไก พชอ. ลดการบริโภคในชุมชน</p>
-        </div>
-      </div>
+    <div class="pg-item">
+      <img src="assets/photos/activity-3.jpg" alt="กิจกรรม 3"
+        onerror="this.parentElement.innerHTML='<div class=\'pg-placeholder\'><i class=\'bi bi-image\'></i><span>activity-3.jpg</span></div>'">
     </div>
-
-    <div class="carousel-item">
-      <img src="assets/photos/activity-4.jpg" class="cs-img" alt=""
-        onerror="this.outerHTML='<div class=\'cs-placeholder\' style=\'background:linear-gradient(135deg,#1a6090 0%,#0a2236 100%)\'></div>'">
-      <div class="cs-caption">
-        <div class="container">
-          <div class="cs-badge" style="background:var(--primary)"><i class="bi bi-people-fill"></i>คณะทำงาน</div>
-          <h2>ทีมพี่เลี้ยงและภาคีเครือข่าย</h2>
-          <p>มหาวิทยาลัยราชภัฏศรีสะเกษ • สสจ. • ปภ. • สคล. • สอจร.</p>
-        </div>
-      </div>
+    <div class="pg-item">
+      <img src="assets/photos/activity-4.jpg" alt="กิจกรรม 4"
+        onerror="this.parentElement.innerHTML='<div class=\'pg-placeholder\'><i class=\'bi bi-image\'></i><span>activity-4.jpg</span></div>'">
     </div>
-
-    <div class="carousel-item">
-      <img src="assets/photos/activity-5.jpg" class="cs-img" alt=""
-        onerror="this.outerHTML='<div class=\'cs-placeholder\' style=\'background:linear-gradient(135deg,#2d8bbf 0%,#45b388 100%)\'></div>'">
-      <div class="cs-caption">
-        <div class="container">
-          <div class="cs-badge" style="background:var(--primary)"><i class="bi bi-clipboard-check-fill"></i>ติดตามผล ARE</div>
-          <h2>นิเทศติดตามผลการดำเนินงาน</h2>
-          <p>ลงพื้นที่ ARE ครั้งที่ 2 — ประเมินความก้าวหน้าโครงการย่อยทั้ง 27 โครงการ</p>
-        </div>
-      </div>
+    <div class="pg-item">
+      <img src="assets/photos/activity-5.jpg" alt="กิจกรรม 5"
+        onerror="this.parentElement.innerHTML='<div class=\'pg-placeholder\'><i class=\'bi bi-image\'></i><span>activity-5.jpg</span></div>'">
     </div>
-
   </div>
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
-    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
-    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
-    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3"></button>
-    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="4"></button>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </button>
 </div>
 
 <!-- ══ STATS STRIP ════════════════════════════ -->
