@@ -242,6 +242,9 @@
     .cal-cell.selected .cal-badge { background: rgba(255,255,255,.3); color: white; }
     /* Event list */
     .cal-ev-empty { color: var(--text-muted); font-size: .85rem; font-weight: 300; padding: 12px 0; }
+    .cal-ev-more { text-align: center; padding: 8px 0 2px; }
+    .cal-ev-more a { font-size: .78rem; color: var(--primary); text-decoration: none; font-weight: 500; }
+    .cal-ev-more a:hover { text-decoration: underline; }
     .cal-ev-item { background: white; border-radius: 12px; padding: 12px 14px; margin-bottom: 8px; box-shadow: 0 2px 10px rgba(0,0,0,.06); border-left: 4px solid; cursor: pointer; transition: transform .12s; }
     .cal-ev-item:hover { transform: translateX(3px); }
     .cal-ev-item.road { border-left-color: var(--road); }
@@ -265,9 +268,8 @@
     .cal-filter-hint { font-size: .74rem; color: var(--text-muted); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
     .cal-filter-hint a { color: var(--primary); cursor: pointer; text-decoration: underline; font-size: .74rem; }
 
-    /* ─── DATA ACCESS SECTION ──────────────────── */
-    .data-section { padding: 44px 0 32px; }
-    .sec-heading { margin-bottom: 24px; }
+    /* ─── SECTION COMMON ───────────────────────── */
+    .sec-heading { margin-bottom: 28px; }
     .sec-tag {
       display: inline-flex; align-items: center; gap: 6px;
       background: rgba(21,76,106,.08); color: var(--primary);
@@ -276,39 +278,57 @@
     }
     .sec-heading h2 { font-size: 1.6rem; font-weight: 800; margin: 0 0 4px; }
     .sec-heading p { color: var(--text-muted); font-size: .9rem; font-weight: 300; margin: 0; }
-    /* Data cards */
-    .dc {
-      background: white; border-radius: 22px; overflow: hidden;
-      box-shadow: 0 3px 18px rgba(0,0,0,.07); height: 100%;
-      transition: transform .22s, box-shadow .22s;
+
+    /* ─── HIGHLIGHTS SECTION ────────────────────── */
+    .highlights-section { padding: 52px 0 40px; background: #fafbfc; }
+    .hl-card {
+      background: white; border-radius: 16px; padding: 20px 22px;
+      box-shadow: 0 2px 14px rgba(0,0,0,.07); border-top: 4px solid;
+      height: 100%; display: flex; flex-direction: column; gap: 8px;
+      transition: transform .18s, box-shadow .18s;
     }
-    .dc:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(0,0,0,.12); }
-    .dc-head { padding: 22px 22px 18px; color: white; display: flex; align-items: center; gap: 16px; }
-    .dc-head.road { background: linear-gradient(135deg, var(--road-light), var(--road)); }
-    .dc-head.alc  { background: linear-gradient(135deg, var(--alcohol-light), var(--alcohol)); }
-    .dc-head-icon { font-size: 2.2rem; opacity: .9; }
-    .dc-head-title { font-size: 1.05rem; font-weight: 700; margin: 0 0 3px; }
-    .dc-head-sub   { font-size: .8rem; font-weight: 300; opacity: .88; margin: 0; }
-    .dc-body { padding: 14px 16px 8px; }
-    .dc-link {
-      display: flex; align-items: center; gap: 10px; padding: 10px 12px;
-      border-radius: 11px; text-decoration: none; color: var(--text-dark);
-      font-size: .88rem; font-weight: 500; transition: background .16s; margin-bottom: 3px;
+    .hl-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(0,0,0,.11); }
+    .hl-card.road { border-color: var(--road); }
+    .hl-card.alc  { border-color: var(--alcohol); }
+    .hl-card.blue { border-color: var(--primary); }
+    .hl-card-meta { font-size: .73rem; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+    .hl-card-type { display: inline-flex; align-items: center; gap: 4px; font-size: .7rem; font-weight: 700; padding: 2px 10px; border-radius: 20px; }
+    .hl-card-type.road { background: rgba(212,96,10,.1); color: var(--road); }
+    .hl-card-type.alc  { background: rgba(46,125,94,.1);  color: var(--alcohol); }
+    .hl-card-type.blue { background: rgba(21,76,106,.1);  color: var(--primary); }
+    .hl-card-title { font-size: .97rem; font-weight: 700; color: var(--text-dark); line-height: 1.4; }
+    .hl-card-summary { font-size: .82rem; color: #555; font-weight: 300; line-height: 1.7; flex: 1; }
+    .hl-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+    .hl-tag { font-size: .68rem; padding: 2px 9px; border-radius: 20px; }
+    .hl-tag.road { background: rgba(212,96,10,.08); color: var(--road); }
+    .hl-tag.alc  { background: rgba(46,125,94,.08);  color: var(--alcohol); }
+    .hl-tag.blue { background: rgba(21,76,106,.08);  color: var(--primary); }
+
+    /* ─── NEWS SECTION ──────────────────────────── */
+    .news-section { padding: 48px 0 56px; background: white; }
+    .news-card {
+      display: flex; gap: 14px; background: #f8f9fb; border-radius: 14px;
+      padding: 14px 16px; border: 1px solid #edf0f3;
+      align-items: flex-start; transition: box-shadow .16s, transform .16s;
+      height: 100%; cursor: default;
     }
-    .dc-link:hover { background: var(--light-bg); }
-    .dc-link .dli { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: .88rem; flex-shrink: 0; }
-    .dc-link .dli.road { background: rgba(212,96,10,.1); color: var(--road); }
-    .dc-link .dli.alc  { background: rgba(46,125,94,.1);  color: var(--alcohol); }
-    .dc-link .dlc { margin-left: auto; color: #cbd5e1; font-size: .75rem; }
-    .dc-foot { padding: 10px 16px 16px; }
-    .dc-dash {
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      padding: 11px; border-radius: 13px; font-size: .9rem; font-weight: 700;
-      text-decoration: none; color: white; transition: filter .2s, transform .15s;
+    .news-card.has-url { cursor: pointer; }
+    .news-card.has-url:hover { box-shadow: 0 6px 20px rgba(0,0,0,.1); transform: translateY(-3px); }
+    .news-thumb { width: 86px; height: 86px; border-radius: 10px; object-fit: cover; flex-shrink: 0; }
+    .news-thumb-ph {
+      width: 86px; height: 86px; border-radius: 10px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 1.8rem;
     }
-    .dc-dash:hover { filter: brightness(.9); transform: translateY(-2px); color: white; }
-    .dc-dash.road { background: linear-gradient(135deg, var(--road-light), var(--road)); }
-    .dc-dash.alc  { background: linear-gradient(135deg, var(--alcohol-light), var(--alcohol)); }
+    .news-thumb-ph.road { background: rgba(212,96,10,.1); color: var(--road); }
+    .news-thumb-ph.alc  { background: rgba(46,125,94,.1);  color: var(--alcohol); }
+    .news-thumb-ph.blue { background: rgba(21,76,106,.1);  color: var(--primary); }
+    .news-body { flex: 1; min-width: 0; }
+    .news-source-tag { display: inline-flex; align-items: center; gap: 4px; font-size: .68rem; font-weight: 700; padding: 2px 9px; border-radius: 20px; margin-bottom: 6px; }
+    .news-source-tag.road { background: rgba(212,96,10,.1); color: var(--road); }
+    .news-source-tag.alc  { background: rgba(46,125,94,.1);  color: var(--alcohol); }
+    .news-source-tag.blue { background: rgba(21,76,106,.1);  color: var(--primary); }
+    .news-title { font-size: .88rem; font-weight: 600; color: var(--text-dark); line-height: 1.5; margin-bottom: 6px; }
+    .news-meta { font-size: .73rem; color: var(--text-muted); }
 
     /* ─── PARTNERS / FOOTER ────────────────────── */
     .partners-section { background: #edf2ea; border-top: 1px solid #d4e2cf; padding: 28px 16px; }
@@ -527,97 +547,30 @@
   </div>
 </div>
 
-<!-- ══ DATA ACCESS SECTION ══════════════════════ -->
-<div class="data-section">
+<!-- ══ HIGHLIGHTS SECTION ════════════════════════ -->
+<div class="highlights-section">
   <div class="container">
     <div class="sec-heading">
-      <div class="sec-tag"><i class="bi bi-lightning-fill me-1"></i>เลือกข้อมูลที่ต้องการ</div>
-      <h2>2 ประเด็นยุทธศาสตร์</h2>
-      <p>คลิกเพื่อเข้าดูข้อมูล ติดตาม และรายงานผลการดำเนินงาน</p>
+      <div class="sec-tag"><i class="bi bi-stars me-1"></i>จากการลงพื้นที่</div>
+      <h2>กิจกรรมเด่น</h2>
+      <p>ข้อเรียนรู้และนวัตกรรมจากการดำเนินงานในพื้นที่จริง</p>
     </div>
+    <div class="row g-3" id="highlightsList">
+      <div class="col-12 text-center py-4 text-muted" style="font-size:.85rem">กำลังโหลด...</div>
+    </div>
+  </div>
+</div>
 
-    <div class="row g-4">
-
-      <!-- ═ ถนน ═ -->
-      <div class="col-md-6">
-        <div class="dc">
-          <div class="dc-head road">
-            <i class="bi bi-cone-striped dc-head-icon"></i>
-            <div>
-              <div class="dc-head-title">ความปลอดภัยทางถนน</div>
-              <div class="dc-head-sub">19 โครงการ &nbsp;•&nbsp; 10 อำเภอ</div>
-            </div>
-          </div>
-          <div class="dc-body">
-            <a href="pages/road-blackspot.html" class="dc-link">
-              <div class="dli road"><i class="bi bi-pin-map"></i></div>
-              <span>จุดเสี่ยงอุบัติเหตุ</span>
-              <i class="bi bi-chevron-right dlc"></i>
-            </a>
-            <a href="pages/road-accident.html" class="dc-link">
-              <div class="dli road"><i class="bi bi-exclamation-triangle"></i></div>
-              <span>สถิติอุบัติเหตุ</span>
-              <i class="bi bi-chevron-right dlc"></i>
-            </a>
-            <a href="pages/road-helmet.html" class="dc-link">
-              <div class="dli road"><i class="bi bi-shield-fill-check"></i></div>
-              <span>การสวมหมวกนิรภัย</span>
-              <i class="bi bi-chevron-right dlc"></i>
-            </a>
-            <a href="pages/road-capacity.html" class="dc-link">
-              <div class="dli road"><i class="bi bi-speedometer2"></i></div>
-              <span>ศักยภาพ ศปถ.</span>
-              <i class="bi bi-chevron-right dlc"></i>
-            </a>
-          </div>
-          <div class="dc-foot">
-            <a href="pages/road-dashboard.html" class="dc-dash road">
-              <i class="bi bi-graph-up-arrow"></i> Dashboard ความปลอดภัยทางถนน
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- ═ แอลกอฮอล์ ═ -->
-      <div class="col-md-6">
-        <div class="dc">
-          <div class="dc-head alc">
-            <i class="bi bi-droplet-fill dc-head-icon"></i>
-            <div>
-              <div class="dc-head-title">การลดการบริโภคแอลกอฮอล์</div>
-              <div class="dc-head-sub">8 โครงการ &nbsp;•&nbsp; 4 อำเภอ</div>
-            </div>
-          </div>
-          <div class="dc-body">
-            <a href="pages/alc-merit.html" class="dc-link">
-              <div class="dli alc"><i class="bi bi-flower1"></i></div>
-              <span>งานบุญปลอดเหล้า</span>
-              <i class="bi bi-chevron-right dlc"></i>
-            </a>
-            <a href="pages/alc-drinker.html" class="dc-link">
-              <div class="dli alc"><i class="bi bi-person-x"></i></div>
-              <span>ผู้ดื่มแอลกอฮอล์</span>
-              <i class="bi bi-chevron-right dlc"></i>
-            </a>
-            <a href="pages/alc-model.html" class="dc-link">
-              <div class="dli alc"><i class="bi bi-person-check"></i></div>
-              <span>บุคคลต้นแบบ</span>
-              <i class="bi bi-chevron-right dlc"></i>
-            </a>
-            <a href="pages/alc-tambon.html" class="dc-link">
-              <div class="dli alc"><i class="bi bi-houses"></i></div>
-              <span>ศักยภาพตำบล</span>
-              <i class="bi bi-chevron-right dlc"></i>
-            </a>
-          </div>
-          <div class="dc-foot">
-            <a href="pages/alc-dashboard.html" class="dc-dash alc">
-              <i class="bi bi-pie-chart"></i> Dashboard การลดแอลกอฮอล์
-            </a>
-          </div>
-        </div>
-      </div>
-
+<!-- ══ NEWS SECTION ══════════════════════════════ -->
+<div class="news-section">
+  <div class="container">
+    <div class="sec-heading">
+      <div class="sec-tag"><i class="bi bi-megaphone-fill me-1"></i>ข่าวสาร</div>
+      <h2>ข่าวประชาสัมพันธ์</h2>
+      <p>กิจกรรมและประกาศจากหน่วยงานภาคียุทธศาสตร์</p>
+    </div>
+    <div class="row g-3" id="newsList">
+      <div class="col-12 text-center py-4 text-muted" style="font-size:.85rem">กำลังโหลด...</div>
     </div>
   </div>
 </div>
@@ -725,7 +678,10 @@
     const el=document.getElementById('calEventList');
     if(!evs.length){el.innerHTML=`<div class="cal-ev-empty"><i class="bi bi-calendar3 me-2"></i>${calSel?'ไม่มีกิจกรรมในวันที่เลือก':'ไม่มีกิจกรรมในช่วงนี้'}</div>`;return;}
     const expand=s=>s.replace(/ต\./g,'ตำบล').replace(/อ\./g,'อำเภอ');
-    el.innerHTML=evs.map(ev=>{
+    const MAX=5;
+    const showEvs=evs.slice(0,MAX);
+    const extra=evs.length-MAX;
+    const makeCard=ev=>{
       const rawDetail=ev.detail||'';
       const hasmentor=/^พี่เลี้ยง:\s*/.test(rawDetail);
       const stripTitles=s=>s.replace(/(?:ผศ\.ดร\.|รศ\.ดร\.|ศ\.ดร\.|ผศ\.|รศ\.|ศ\.|ดร\.|น\.ส\.|นางสาว|นาย|นาง)\s*/g,'').trim();
@@ -745,7 +701,8 @@
           </div>
         </div>
       </div>`;
-    }).join('');
+    };
+    el.innerHTML=showEvs.map(makeCard).join('')+(extra>0?`<div class="cal-ev-more"><a href="pages/project-docs.html"><i class="bi bi-chevron-down me-1"></i>ดูรายละเอียดกิจกรรมทั้งหมด (${evs.length} กิจกรรม)</a></div>`:'');
   }
 
   window.calSelect=function(month,day){
@@ -867,6 +824,58 @@
       }
     });
   }
+
+  /* ── HIGHLIGHTS ── */
+  const hlIconMap={road:'bi-cone-striped',alc:'bi-droplet-fill',blue:'bi-calendar-check-fill'};
+  const hlLabelMap={road:'ความปลอดภัยทางถนน',alc:'ลดการดื่มแอลกอฮอล์',blue:'หน่วยจัดการ'};
+  function renderHighlights(items){
+    const el=document.getElementById('highlightsList');
+    if(!items||!items.length){el.innerHTML='<div class="col-12 text-center py-4 text-muted" style="font-size:.85rem">ยังไม่มีกิจกรรมเด่น</div>';return;}
+    el.innerHTML=items.slice(0,3).map(h=>`
+      <div class="col-md-4">
+        <div class="hl-card ${h.type}">
+          <div class="hl-card-meta">
+            <span class="hl-card-type ${h.type}"><i class="bi ${hlIconMap[h.type]||'bi-star'} me-1"></i>${hlLabelMap[h.type]||''}</span>
+          </div>
+          <div class="hl-card-title">${h.title}</div>
+          <div class="hl-card-summary">${h.summary}</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px;flex-wrap:wrap;gap:6px">
+            <div class="hl-tags">${(h.tags||[]).map(t=>`<span class="hl-tag ${h.type}">${t}</span>`).join('')}</div>
+            <div style="font-size:.72rem;color:var(--text-muted);white-space:nowrap"><i class="bi bi-geo-alt me-1"></i>${h.area} &nbsp;•&nbsp; ${h.date}</div>
+          </div>
+        </div>
+      </div>`).join('');
+  }
+  const hlFallback=[
+    {type:'road',title:'ชุมชนร่วมปรับจุดเสี่ยงหน้าโรงเรียน',area:'ตำบลน้ำอ้อม อำเภอกันทรลักษ์',date:'มี.ค. 2569',summary:'ชุมชนและผู้ปกครองร่วมกันติดตั้งป้ายเตือน ลดความเร็ว และทาสีทางม้าลายใหม่ ส่งผลให้ลดอุบัติเหตุบริเวณโรงเรียนได้อย่างชัดเจน',tags:['จุดเสี่ยง','ชุมชนมีส่วนร่วม']},
+    {type:'alc',title:'งานบุญปลอดเหล้าได้รับการตอบรับดีเกินคาด',area:'ตำบลหนองบัว อำเภอกันทรารมย์',date:'มี.ค. 2569',summary:'จัดงานบุญประเพณีโดยไม่มีเครื่องดื่มแอลกอฮอล์ มีผู้เข้าร่วมกว่า 300 คน เกิดบรรทัดฐานใหม่ในชุมชน',tags:['งานบุญปลอดเหล้า','บรรทัดฐานสังคม']},
+    {type:'road',title:'อปท.ออกข้อบัญญัติควบคุมจุดเสี่ยง',area:'ตำบลหนองไฮ อำเภอเมืองศรีสะเกษ',date:'เม.ย. 2569',summary:'อบต.ออกข้อบัญญัติท้องถิ่นห้ามจอดรถบริเวณโค้งอันตราย เป็นกลไกถาวรที่ชุมชนร่วมผลักดัน',tags:['กลไกท้องถิ่น','ข้อบัญญัติ อบต.']}
+  ];
+  fetch('_data/highlights.json').then(r=>r.json()).then(d=>renderHighlights(d.highlights)).catch(()=>renderHighlights(hlFallback));
+
+  /* ── NEWS ── */
+  const newsIconMap={road:'bi-cone-striped',alc:'bi-droplet-fill',blue:'bi-megaphone-fill'};
+  function renderNews(items){
+    const el=document.getElementById('newsList');
+    if(!items||!items.length){el.innerHTML='<div class="col-12 text-center py-4 text-muted" style="font-size:.85rem">ยังไม่มีข่าวประชาสัมพันธ์</div>';return;}
+    el.innerHTML=items.slice(0,4).map(n=>`
+      <div class="col-md-6">
+        <div class="news-card${n.url?' has-url':''}" ${n.url?`onclick="window.open('${n.url}','_blank')"`:''}>
+          ${n.image?`<img src="${n.image}" class="news-thumb" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="news-thumb-ph ${n.type}" style="display:none"><i class="bi ${newsIconMap[n.type]||'bi-newspaper'}"></i></div>`:`<div class="news-thumb-ph ${n.type}"><i class="bi ${newsIconMap[n.type]||'bi-newspaper'}"></i></div>`}
+          <div class="news-body">
+            <div class="news-source-tag ${n.type}"><i class="bi bi-building me-1"></i>${n.source}</div>
+            <div class="news-title">${n.title}</div>
+            <div class="news-meta"><i class="bi bi-calendar3 me-1"></i>${n.date}${n.url?' &nbsp;<i class="bi bi-box-arrow-up-right" style="font-size:.65rem"></i>':''}</div>
+          </div>
+        </div>
+      </div>`).join('');
+  }
+  const newsFallback=[
+    {title:'ขับขี่ปลอดภัย ลดความเร็ว ลดอุบัติเหตุ ช่วงเทศกาลสงกรานต์ 2569',source:'ศปถ.จังหวัดศรีสะเกษ',date:'1 มี.ค. 2569',type:'road',image:'assets/news/songkran-2569.jpg',url:''},
+    {title:'ประกาศเขตควบคุมการบริโภคเครื่องดื่มแอลกอฮอล์ในพื้นที่สาธารณะ',source:'พชอ.กันทรลักษ์',date:'มี.ค. 2569',type:'alc',image:'',url:''},
+    {title:'มรภ.ศรีสะเกษ จัดประชุมติดตามผลการดำเนินงานโครงการย่อย ครั้งที่ 1',source:'หน่วยจัดการ Nodeflagship ศรีสะเกษ',date:'ก.พ. 2569',type:'blue',image:'',url:''}
+  ];
+  fetch('_data/news.json').then(r=>r.json()).then(d=>renderNews(d.news)).catch(()=>renderNews(newsFallback));
 </script>
 </body>
 </html>

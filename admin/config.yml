@@ -100,6 +100,58 @@ collections:
               - { label: "เลขที่สัญญา", name: contract, widget: string }
               - { label: "ผู้รับทุน", name: grantee, widget: string }
 
+      - name: "highlights"
+        label: "⭐ กิจกรรมเด่น (ข้อเรียนรู้จากพื้นที่)"
+        file: "_data/highlights.json"
+        fields:
+          - name: highlights
+            label: รายการกิจกรรมเด่น
+            label_singular: กิจกรรม
+            widget: list
+            fields:
+              - label: ประเด็น
+                name: type
+                widget: select
+                options:
+                  - { label: "🚗 ความปลอดภัยทางถนน", value: road }
+                  - { label: "🌿 ลดการดื่มแอลกอฮอล์", value: alc }
+                  - { label: "📋 หน่วยจัดการ", value: blue }
+              - { label: หัวข้อ, name: title, widget: string }
+              - { label: พื้นที่, name: area, widget: string, hint: "เช่น ตำบลน้ำอ้อม อำเภอกันทรลักษ์" }
+              - { label: เดือน/ปี, name: date, widget: string, hint: "เช่น มี.ค. 2569" }
+              - { label: สรุปข้อเรียนรู้, name: summary, widget: text }
+              - label: แท็ก
+                name: tags
+                widget: list
+                field: { label: แท็ก, name: tag, widget: string }
+                required: false
+
+      - name: "news"
+        label: "📢 ข่าวประชาสัมพันธ์"
+        file: "_data/news.json"
+        fields:
+          - name: news
+            label: รายการข่าว
+            label_singular: ข่าว
+            widget: list
+            fields:
+              - { label: หัวข้อข่าว, name: title, widget: string }
+              - { label: แหล่งที่มา / หน่วยงาน, name: source, widget: string }
+              - { label: วันที่, name: date, widget: string, hint: "เช่น 1 มี.ค. 2569" }
+              - label: ประเด็น
+                name: type
+                widget: select
+                options:
+                  - { label: "🚗 ความปลอดภัยทางถนน", value: road }
+                  - { label: "🌿 ลดการดื่มแอลกอฮอล์", value: alc }
+                  - { label: "📋 หน่วยจัดการ", value: blue }
+              - label: รูปภาพ
+                name: image
+                widget: image
+                required: false
+                hint: "อัปโหลดรูปภาพหรือโปสเตอร์ประชาสัมพันธ์"
+              - { label: "ลิงก์ (ถ้ามี)", name: url, widget: string, required: false }
+
       - name: "docs"
         label: "📁 เอกสารและสื่อ"
         file: "_data/docs.json"
