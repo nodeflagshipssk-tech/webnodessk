@@ -282,12 +282,43 @@
     /* ─── HIGHLIGHTS SECTION ────────────────────── */
     .highlights-section { padding: 52px 0 40px; background: #fafbfc; }
     .hl-card {
-      background: white; border-radius: 16px; padding: 20px 22px;
+      background: white; border-radius: 16px; overflow: hidden;
       box-shadow: 0 2px 14px rgba(0,0,0,.07); border-top: 4px solid;
-      height: 100%; display: flex; flex-direction: column; gap: 8px;
+      height: 100%; display: flex; flex-direction: column;
       transition: transform .18s, box-shadow .18s;
     }
     .hl-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(0,0,0,.11); }
+    .hl-card-img { width: 100%; height: 170px; object-fit: cover; display: block; }
+    .hl-card-img-ph {
+      width: 100%; height: 170px; display: flex; align-items: center; justify-content: center;
+      font-size: 2.4rem; opacity: .15;
+    }
+    .hl-card-img-ph.road { background: rgba(212,96,10,.06); color: var(--road); }
+    .hl-card-img-ph.alc  { background: rgba(46,125,94,.06);  color: var(--alcohol); }
+    .hl-card-img-ph.blue { background: rgba(21,76,106,.06);  color: var(--primary); }
+    .hl-card-body { padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .hl-thumb-wrap { position: relative; overflow: hidden; }
+    .hl-play-btn {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 52px; height: 52px; border-radius: 50%;
+      background: rgba(0,0,0,.62); color: white; border: 3px solid rgba(255,255,255,.85);
+      display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+      transition: background .2s, transform .2s;
+      padding-left: 4px;
+    }
+    .hl-thumb-wrap:hover .hl-play-btn { background: rgba(0,0,0,.82); transform: translate(-50%,-50%) scale(1.1); }
+    /* Video modal */
+    .yt-modal-backdrop {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,.78);
+      z-index: 9999; align-items: center; justify-content: center;
+    }
+    .yt-modal-backdrop.open { display: flex; }
+    .yt-modal-box { position: relative; width: 90%; max-width: 800px; aspect-ratio: 16/9; }
+    .yt-modal-box iframe { width: 100%; height: 100%; border: none; border-radius: 10px; }
+    .yt-modal-close {
+      position: absolute; top: -38px; right: 0; background: none; border: none;
+      color: white; font-size: 1.6rem; cursor: pointer; line-height: 1;
+    }
     .hl-card.road { border-color: var(--road); }
     .hl-card.alc  { border-color: var(--alcohol); }
     .hl-card.blue { border-color: var(--primary); }
@@ -575,6 +606,14 @@
   </div>
 </div>
 
+<!-- ══ VIDEO MODAL ════════════════════════════ -->
+<div class="yt-modal-backdrop" id="ytModal" onclick="closeYtModal(event)">
+  <div class="yt-modal-box">
+    <button class="yt-modal-close" onclick="closeYtModal(null)"><i class="bi bi-x-lg"></i></button>
+    <iframe id="ytFrame" src="" allowfullscreen allow="autoplay"></iframe>
+  </div>
+</div>
+
 <!-- ══ PARTNERS ════════════════════════════════ -->
 <div class="partners-section">
   <div class="partners-label">หน่วยงานที่สนับสนุน</div>
@@ -825,26 +864,57 @@
     });
   }
 
+  /* ── VIDEO MODAL ── */
+  window.openYtModal=function(id){
+    document.getElementById('ytFrame').src=`https://www.youtube.com/embed/${id}?autoplay=1`;
+    document.getElementById('ytModal').classList.add('open');
+    document.body.style.overflow='hidden';
+  };
+  window.closeYtModal=function(e){
+    if(e&&e.target!==document.getElementById('ytModal'))return;
+    document.getElementById('ytModal').classList.remove('open');
+    document.getElementById('ytFrame').src='';
+    document.body.style.overflow='';
+  };
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeYtModal(null);});
+
   /* ── HIGHLIGHTS ── */
   const hlIconMap={road:'bi-cone-striped',alc:'bi-droplet-fill',blue:'bi-calendar-check-fill'};
   const hlLabelMap={road:'ความปลอดภัยทางถนน',alc:'ลดการดื่มแอลกอฮอล์',blue:'หน่วยจัดการ'};
   function renderHighlights(items){
     const el=document.getElementById('highlightsList');
     if(!items||!items.length){el.innerHTML='<div class="col-12 text-center py-4 text-muted" style="font-size:.85rem">ยังไม่มีกิจกรรมเด่น</div>';return;}
-    el.innerHTML=items.slice(0,3).map(h=>`
+    el.innerHTML=items.slice(0,3).map(h=>{
+      const ytId=h.video||'';
+      const thumbSrc=h.image||(ytId?`https://img.youtube.com/vi/${ytId}/hqdefault.jpg`:'');
+      const accentColor=h.type==='alc'?'alcohol':h.type==='road'?'road':'primary';
+      const thumbHtml=thumbSrc
+        ?`<div class="hl-thumb-wrap" ${ytId?`onclick="openYtModal('${ytId}')" style="cursor:pointer"`:''}>
+            <img src="${thumbSrc}" class="hl-card-img" alt="${h.title}">
+            ${ytId?`<div class="hl-play-btn"><i class="bi bi-play-fill"></i></div>`:''}
+          </div>`
+        :`<div class="hl-card-img-ph ${h.type}"><i class="bi ${hlIconMap[h.type]}"></i></div>`;
+      const cardClick=!ytId&&h.url?`onclick="window.open('${h.url}','_blank')" style="cursor:pointer"`:'';
+      return `
       <div class="col-md-4">
-        <div class="hl-card ${h.type}">
-          <div class="hl-card-meta">
-            <span class="hl-card-type ${h.type}"><i class="bi ${hlIconMap[h.type]||'bi-star'} me-1"></i>${hlLabelMap[h.type]||''}</span>
-          </div>
-          <div class="hl-card-title">${h.title}</div>
-          <div class="hl-card-summary">${h.summary}</div>
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px;flex-wrap:wrap;gap:6px">
-            <div class="hl-tags">${(h.tags||[]).map(t=>`<span class="hl-tag ${h.type}">${t}</span>`).join('')}</div>
-            <div style="font-size:.72rem;color:var(--text-muted);white-space:nowrap"><i class="bi bi-geo-alt me-1"></i>${h.area} &nbsp;•&nbsp; ${h.date}</div>
+        <div class="hl-card ${h.type}" ${cardClick}>
+          ${thumbHtml}
+          <div class="hl-card-body">
+            <div><span class="hl-card-type ${h.type}"><i class="bi ${hlIconMap[h.type]||'bi-star'} me-1"></i>${hlLabelMap[h.type]||''}</span></div>
+            <div class="hl-card-title">${h.title}</div>
+            <div class="hl-card-summary">${h.summary}</div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px;flex-wrap:wrap;gap:6px">
+              <div class="hl-tags">${(h.tags||[]).map(t=>`<span class="hl-tag ${h.type}">${t}</span>`).join('')}</div>
+              <div style="font-size:.72rem;color:var(--text-muted);white-space:nowrap"><i class="bi bi-geo-alt me-1"></i>${h.area} &nbsp;•&nbsp; ${h.date}</div>
+            </div>
+            <div style="margin-top:8px;display:flex;gap:10px;flex-wrap:wrap">
+              ${ytId?`<span style="font-size:.76rem;font-weight:600;color:var(--${accentColor});cursor:pointer" onclick="openYtModal('${ytId}')"><i class="bi bi-play-circle me-1"></i>ชมวิดีโอ</span>`:''}
+              ${h.url?`<a href="${h.url}" target="_blank" style="font-size:.76rem;font-weight:600;color:var(--${accentColor});text-decoration:none"><i class="bi bi-box-arrow-up-right me-1"></i>อ่านต่อ</a>`:''}
+            </div>
           </div>
         </div>
-      </div>`).join('');
+      </div>`;
+    }).join('');
   }
   const hlFallback=[
     {type:'road',title:'ชุมชนร่วมปรับจุดเสี่ยงหน้าโรงเรียน',area:'ตำบลน้ำอ้อม อำเภอกันทรลักษ์',date:'มี.ค. 2569',summary:'ชุมชนและผู้ปกครองร่วมกันติดตั้งป้ายเตือน ลดความเร็ว และทาสีทางม้าลายใหม่ ส่งผลให้ลดอุบัติเหตุบริเวณโรงเรียนได้อย่างชัดเจน',tags:['จุดเสี่ยง','ชุมชนมีส่วนร่วม']},
