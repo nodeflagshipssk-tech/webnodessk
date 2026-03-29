@@ -45,7 +45,7 @@ collections:
                 required: false
 
       - name: "team_road"
-        label: "🚗 พี่เลี้ยงประเด็นถนน"
+        label: "🚗 พี่เลี้ยงประเด็นการจัดการความปลอดภัยทางถนน"
         file: "_data/team-road.json"
         fields:
           - name: members
@@ -58,7 +58,7 @@ collections:
               - { label: หน่วยงานสังกัด, name: org, widget: string, required: false }
 
       - name: "team_alc"
-        label: "🌿 พี่เลี้ยงประเด็นแอลกอฮอล์"
+        label: "🌿 พี่เลี้ยงประเด็นการลดการบริโภคเครื่องดื่มแอลกอฮอล์"
         file: "_data/team-alc.json"
         fields:
           - name: members
