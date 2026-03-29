@@ -60,9 +60,8 @@
 <body>
 <nav class="navbar navbar-expand-lg main-navbar sticky-top">
   <div class="container">
-    <a class="nav-brand-wrap" href="../index.html">
-      <img src="../assets/logos/logo-nf.png" alt="Nodeflagship" class="nav-brand-logo"
-        onerror="this.style.display='none'">NF</div>'">
+        <a class="nav-brand-wrap" href="../index.html">
+      <img src="../assets/logos/logo-nf.png" alt="Nodeflagship" class="nav-brand-logo" onerror="this.style.display='none'">
       <div class="nav-brand-text">
         <span class="nav-brand-name">Nodeflagship</span>
         <span class="nav-brand-sub">จังหวัดศรีสะเกษ &nbsp;•&nbsp; ปี 2568–2569</span>
@@ -71,48 +70,77 @@
     <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Toggle">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="mainNav">
-      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
-        <li class="nav-item"><a class="nav-link" href="../index.html"><i class="bi bi-house me-1"></i>หน้าหลัก</a></li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle road-nav" href="#" role="button" data-bs-toggle="dropdown"><i class="bi bi-cone-striped me-1"></i>อุบัติเหตุ</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="road-blackspot.html"><i class="bi bi-pin-map"></i>จุดเสี่ยงอุบัติเหตุ</a></li>
-            <li><a class="dropdown-item" href="road-accident.html"><i class="bi bi-exclamation-triangle"></i>สถิติอุบัติเหตุ</a></li>
-            <li><a class="dropdown-item" href="road-helmet.html"><i class="bi bi-shield-fill-check"></i>การสวมหมวกนิรภัย</a></li>
-            <li><a class="dropdown-item" href="road-capacity.html"><i class="bi bi-speedometer2"></i>ศักยภาพ ศปถ.</a></li>
+        <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-icon-item">
+          <a class="nav-icon-link" href="../index.html">
+            <i class="bi bi-house-fill nil-icon"></i>
+            <span class="nil-text">หน้าหลัก</span>
+          </a>
+        </li>
+        <li class="nav-icon-item dropdown">
+          <a class="nav-icon-link road-nav" href="#" role="button" data-bs-toggle="dropdown">
+            <i class="bi bi-cone-striped nil-icon"></i>
+            <span class="nil-text">อุบัติเหตุ</span>
+          </a>
+          <ul class="dropdown-menu road-menu">
+            <li><a class="dropdown-item" href="road-blackspot.html"><i class="bi bi-pin-map"></i> จุดเสี่ยงอุบัติเหตุ</a></li>
+            <li><a class="dropdown-item" href="road-accident.html"><i class="bi bi-exclamation-triangle"></i> สถิติอุบัติเหตุ</a></li>
+            <li><a class="dropdown-item" href="road-helmet.html"><i class="bi bi-shield-fill-check"></i> การสวมหมวกนิรภัย</a></li>
+            <li><a class="dropdown-item" href="road-capacity.html"><i class="bi bi-speedometer2"></i> ศักยภาพ ศปถ.</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="road-dashboard.html"><i class="bi bi-graph-up-arrow"></i>Dashboard ถนน</a></li>
+            <li><a class="dropdown-item" href="road-dashboard.html"><i class="bi bi-graph-up-arrow" style="color:var(--road)"></i> Dashboard ถนน</a></li>
           </ul>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle alc-nav" href="#" role="button" data-bs-toggle="dropdown"><i class="bi bi-droplet me-1"></i>แอลกอฮอล์</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="alc-tambon.html"><i class="bi bi-houses"></i>ศักยภาพตำบล</a></li>
-            <li><a class="dropdown-item" href="alc-drinker.html"><i class="bi bi-person-x"></i>ผู้ดื่มแอลกอฮอล์</a></li>
-            <li><a class="dropdown-item" href="alc-merit.html"><i class="bi bi-flower1"></i>งานบุญปลอดเหล้า</a></li>
-            <li><a class="dropdown-item" href="alc-model.html"><i class="bi bi-person-check"></i>บุคคลต้นแบบ</a></li>
+        <li class="nav-icon-item dropdown">
+          <a class="nav-icon-link alc-nav" href="#" role="button" data-bs-toggle="dropdown">
+            <i class="bi bi-droplet-fill nil-icon"></i>
+            <span class="nil-text">แอลกอฮอล์</span>
+          </a>
+          <ul class="dropdown-menu alc-menu">
+            <li><a class="dropdown-item" href="alc-tambon.html"><i class="bi bi-houses"></i> ศักยภาพตำบล</a></li>
+            <li><a class="dropdown-item" href="alc-drinker.html"><i class="bi bi-person-x"></i> ผู้ดื่มแอลกอฮอล์</a></li>
+            <li><a class="dropdown-item" href="alc-merit.html"><i class="bi bi-flower1"></i> งานบุญปลอดเหล้า</a></li>
+            <li><a class="dropdown-item" href="alc-model.html"><i class="bi bi-person-check"></i> บุคคลต้นแบบ</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="alc-dashboard.html"><i class="bi bi-pie-chart"></i>Dashboard แอลกอฮอล์</a></li>
+            <li><a class="dropdown-item" href="alc-dashboard.html"><i class="bi bi-pie-chart" style="color:var(--alcohol)"></i> Dashboard แอลกอฮอล์</a></li>
           </ul>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><i class="bi bi-bar-chart-line me-1"></i>Dashboard</a>
+        <li class="nav-icon-item dropdown">
+          <a class="nav-icon-link" href="#" role="button" data-bs-toggle="dropdown">
+            <i class="bi bi-bar-chart-line-fill nil-icon"></i>
+            <span class="nil-text">Dashboard</span>
+          </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="road-dashboard.html"><i class="bi bi-graph-up-arrow"></i>Dashboard ถนน</a></li>
-            <li><a class="dropdown-item" href="alc-dashboard.html"><i class="bi bi-pie-chart"></i>Dashboard แอลกอฮอล์</a></li>
-            <li><a class="dropdown-item" href="project-dashboard.html"><i class="bi bi-bar-chart-line"></i>Dashboard ภาพรวม</a></li>
+            <li><a class="dropdown-item" href="road-dashboard.html"><i class="bi bi-graph-up-arrow" style="color:var(--road)"></i> Dashboard ถนน</a></li>
+            <li><a class="dropdown-item" href="alc-dashboard.html"><i class="bi bi-pie-chart" style="color:var(--alcohol)"></i> Dashboard แอลกอฮอล์</a></li>
+            <li><a class="dropdown-item" href="project-dashboard.html"><i class="bi bi-bar-chart-line" style="color:var(--primary)"></i> Dashboard ภาพรวม</a></li>
           </ul>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><i class="bi bi-briefcase me-1"></i>โครงการ</a>
+        <li class="nav-icon-item dropdown">
+          <a class="nav-icon-link" href="#" role="button" data-bs-toggle="dropdown">
+            <i class="bi bi-briefcase-fill nil-icon"></i>
+            <span class="nil-text">โครงการ</span>
+          </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="project-main.html"><i class="bi bi-building"></i>โครงการหน่วยจัดการ</a></li>
-            <li><a class="dropdown-item" href="project-sub.html"><i class="bi bi-diagram-3"></i>โครงการย่อย 27 โครงการ</a></li>
-            <li><a class="dropdown-item" href="project-team.html"><i class="bi bi-people"></i>คณะทำงาน</a></li>
+            <li><a class="dropdown-item" href="project-main.html"><i class="bi bi-building"></i> โครงการหน่วยจัดการ</a></li>
+            <li><a class="dropdown-item" href="project-sub.html"><i class="bi bi-diagram-3"></i> โครงการย่อย 27 โครงการ</a></li>
+            <li><a class="dropdown-item" href="project-team.html"><i class="bi bi-people"></i> คณะทำงาน</a></li>
+            <li><a class="dropdown-item" href="project-docs.html"><i class="bi bi-file-earmark-text"></i> คู่มือและเอกสาร</a></li>
           </ul>
         </li>
-        <li class="nav-item"><a class="nav-link" href="contact.html"><i class="bi bi-envelope me-1"></i>ติดต่อ</a></li>
+        <li class="nav-icon-item">
+          <a class="nav-icon-link" href="project-docs.html">
+            <i class="bi bi-folder2-open nil-icon"></i>
+            <span class="nil-text">เอกสาร</span>
+          </a>
+        </li>
+        <li class="nav-icon-item">
+          <a class="nav-icon-link" href="contact.html">
+            <i class="bi bi-envelope-fill nil-icon"></i>
+            <span class="nil-text">ติดต่อ</span>
+          </a>
+        </li>
       </ul>
     </div>
   </div>

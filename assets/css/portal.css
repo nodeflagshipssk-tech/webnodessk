@@ -31,19 +31,44 @@ body { font-family: 'Kanit', sans-serif; background: var(--light-bg); color: var
   padding: 8px 0; text-decoration: none;
 }
 .nav-brand-logo {
-  width: 46px; height: 46px;
+  width: 54px; height: 54px;
   object-fit: contain; flex-shrink: 0;
 }
 .nav-brand-icon {
-  width: 46px; height: 46px; border-radius: 14px; flex-shrink: 0;
+  width: 54px; height: 54px; border-radius: 16px; flex-shrink: 0;
   background: linear-gradient(135deg, #F07D2E 0%, #154C6A 55%, #2E7D5E 100%);
   display: flex; align-items: center; justify-content: center;
-  color: white; font-size: .9rem; font-weight: 900;
-  box-shadow: 0 4px 12px rgba(21,76,106,.25);
+  color: white; font-size: .95rem; font-weight: 900; letter-spacing: -.5px;
+  box-shadow: 0 4px 14px rgba(21,76,106,.25);
 }
 .nav-brand-text { line-height: 1.3; }
-.nav-brand-name { font-size: 1.05rem; font-weight: 300; color: var(--primary); display: block; letter-spacing: .01em; }
-.nav-brand-sub  { font-size: .72rem; color: var(--text-muted); font-weight: 300; display: block; }
+.nav-brand-name { font-size: 1.15rem; font-weight: 300; color: var(--primary); display: block; letter-spacing: .02em; }
+.nav-brand-sub  { font-size: .78rem; color: var(--text-muted); font-weight: 300; display: block; }
+/* ─── ICON NAV LINKS (matching index homepage style) ─── */
+.nav-icon-item { list-style: none; }
+.nav-icon-link {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 10px 12px; border-radius: 12px; text-decoration: none;
+  color: var(--text-dark); transition: all .18s; gap: 3px;
+  min-width: 72px; margin: 6px 1px;
+}
+.nav-icon-link .nil-icon { font-size: 1.6rem; line-height: 1; }
+.nav-icon-link .nil-text  { font-size: .82rem; font-weight: 300; white-space: nowrap; }
+.nav-icon-link:hover  { background: var(--light-bg); color: var(--primary); }
+.nav-icon-link.active { background: rgba(21,76,106,.08); color: var(--primary); }
+.nav-icon-link.road-nav:hover, .nav-icon-link.road-nav.active { background: rgba(212,96,10,.1);  color: var(--road); }
+.nav-icon-link.alc-nav:hover,  .nav-icon-link.alc-nav.active  { background: rgba(46,125,94,.1);  color: var(--alcohol); }
+.nav-icon-item.dropdown .dropdown-menu {
+  border: none; box-shadow: 0 10px 40px rgba(0,0,0,.14);
+  border-radius: 16px; padding: 8px; margin-top: 4px; min-width: 220px;
+}
+@media (max-width: 991px) {
+  .nav-icon-link { flex-direction: row; min-width: unset; padding: 8px 12px; gap: 8px; margin: 2px 0; }
+  .nav-icon-link .nil-icon { font-size: 1.1rem; }
+  .nav-icon-link .nil-text  { font-size: .88rem; }
+  .nav-icon-item.dropdown .dropdown-menu { box-shadow: none; background: #f8fafc; border-radius: 10px; }
+}
+
 /* Legacy brand (old pages) */
 .main-navbar .navbar-brand {
   font-weight: 800; color: var(--primary); font-size: .95rem;

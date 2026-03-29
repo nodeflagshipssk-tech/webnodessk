@@ -117,6 +117,8 @@
       width: 100%; height: 100%; object-fit: cover; display: block;
     }
     .gs-main, .gs-item { overflow: hidden; background: #c8d8e4; position: relative; }
+    .gallery-slide { transition: opacity .5s ease; }
+    .gallery-slide.fading { opacity: 0; }
     .gs-placeholder {
       width:100%; height:100%; display:flex; align-items:center; justify-content:center;
       flex-direction:column; gap:6px; color:#94a3b8; font-size:.75rem; font-weight:300;
@@ -717,11 +719,25 @@
   }
 
   window.galleryGo = function(idx) {
-    document.querySelectorAll('.gallery-slide').forEach(s => s.style.display = 'none');
-    document.querySelectorAll('.gallery-dot').forEach(d => d.classList.remove('active'));
-    document.querySelector(`.gallery-slide[data-page="${idx}"]`).style.display = 'grid';
-    document.querySelectorAll('.gallery-dot')[idx].classList.add('active');
-    current = idx;
+    const cur = document.querySelector('.gallery-slide[style*="grid"]');
+    if (cur) {
+      cur.classList.add('fading');
+      setTimeout(() => {
+        document.querySelectorAll('.gallery-slide').forEach(s => { s.style.display = 'none'; s.classList.remove('fading'); });
+        document.querySelectorAll('.gallery-dot').forEach(d => d.classList.remove('active'));
+        const next = document.querySelector(`.gallery-slide[data-page="${idx}"]`);
+        if (next) { next.style.display = 'grid'; }
+        document.querySelectorAll('.gallery-dot')[idx].classList.add('active');
+        current = idx;
+      }, 400);
+    } else {
+      document.querySelectorAll('.gallery-slide').forEach(s => s.style.display = 'none');
+      document.querySelectorAll('.gallery-dot').forEach(d => d.classList.remove('active'));
+      const next = document.querySelector(`.gallery-slide[data-page="${idx}"]`);
+      if (next) next.style.display = 'grid';
+      document.querySelectorAll('.gallery-dot')[idx].classList.add('active');
+      current = idx;
+    }
   };
 
   window.galleryMove = function(dir) {
@@ -730,8 +746,8 @@
   };
 
   buildSlides();
-  // Auto-play ทุก 4 วินาที
-  setInterval(() => galleryMove(1), 4000);
+  // Auto-play ทุก 3 วินาที พร้อม fade
+  setInterval(() => window.galleryMove(1), 3000);
 })();
 </script>
 <script>
