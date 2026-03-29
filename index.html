@@ -703,7 +703,7 @@
 
     for (let p = 0; p < pages; p++) {
       const batch = photos.slice(p * PER_PAGE, p * PER_PAGE + PER_PAGE);
-      const display = p === 0 ? 'block' : 'none';
+      const display = p === 0 ? 'grid' : 'none';
       const cells = Array.from({length: PER_PAGE}, (_, i) =>
         batch[i]
           ? `<div class="gs-item">${imgHtml(batch[i], p*PER_PAGE+i)}</div>`
@@ -725,7 +725,7 @@
   window.galleryGo = function(idx) {
     document.querySelectorAll('.gallery-slide').forEach(s => s.style.display = 'none');
     document.querySelectorAll('.gallery-dot').forEach(d => d.classList.remove('active'));
-    document.querySelector(`.gallery-slide[data-page="${idx}"]`).style.display = 'block';
+    document.querySelector(`.gallery-slide[data-page="${idx}"]`).style.display = 'grid';
     document.querySelectorAll('.gallery-dot')[idx].classList.add('active');
     current = idx;
   };
