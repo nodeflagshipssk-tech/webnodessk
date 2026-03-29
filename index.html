@@ -281,22 +281,6 @@
     .dc-dash.road { background: linear-gradient(135deg, var(--road-light), var(--road)); }
     .dc-dash.alc  { background: linear-gradient(135deg, var(--alcohol-light), var(--alcohol)); }
 
-    /* ─── PM STRIP ─────────────────────────────── */
-    .pm-strip {
-      background: white; border-radius: 18px; padding: 16px 22px;
-      box-shadow: 0 2px 12px rgba(0,0,0,.06);
-      display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
-      border-left: 5px solid var(--primary);
-    }
-    .pm-label { font-weight: 700; font-size: .9rem; color: var(--primary); white-space: nowrap; display: flex; align-items: center; gap: 6px; }
-    .pm-links { display: flex; gap: 7px; flex-wrap: wrap; }
-    .pm-links a {
-      padding: 7px 13px; border-radius: 10px; background: rgba(21,76,106,.07);
-      color: var(--primary); text-decoration: none; font-size: .84rem; font-weight: 500;
-      transition: background .18s; display: flex; align-items: center; gap: 5px;
-    }
-    .pm-links a:hover { background: var(--primary); color: white; }
-
     /* ─── PARTNERS / FOOTER ────────────────────── */
     .partners-section { background: #edf2ea; border-top: 1px solid #d4e2cf; padding: 28px 16px; }
     .partners-label { text-align: center; font-size: .75rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; }
@@ -316,7 +300,6 @@
       .partners-box { padding: 14px 16px; gap: 14px; }
       .partners-box img { height: 36px; }
       .partners-divider { display: none; }
-      .pm-strip { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
@@ -579,20 +562,6 @@
         </div>
       </div>
 
-    </div>
-  </div>
-</div>
-
-<!-- ══ PM STRIP ════════════════════════════════ -->
-<div class="container pb-5">
-  <div class="pm-strip">
-    <div class="pm-label"><i class="bi bi-briefcase-fill"></i>บริหารจัดการโครงการ</div>
-    <div class="pm-links">
-      <a href="pages/project-main.html"><i class="bi bi-building"></i>ข้อมูลหน่วยจัดการ</a>
-      <a href="pages/project-sub.html"><i class="bi bi-diagram-3"></i>โครงการย่อย 27 โครงการ</a>
-      <a href="pages/project-team.html"><i class="bi bi-people"></i>คณะทำงาน</a>
-      <a href="pages/project-docs.html"><i class="bi bi-file-earmark-text"></i>เอกสาร</a>
-      <a href="pages/project-dashboard.html"><i class="bi bi-bar-chart-line"></i>Dashboard ภาพรวม</a>
     </div>
   </div>
 </div>
