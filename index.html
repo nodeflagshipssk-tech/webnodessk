@@ -85,28 +85,64 @@
       .nav-icon-item.dropdown .dropdown-menu { box-shadow: none; background: #f8fafc; border-radius: 10px; }
     }
 
-    /* ─── PHOTO GRID ────────────────────────── */
-    .photo-section { background: white; box-shadow: 0 4px 24px rgba(0,0,0,.08); padding: 0; }
-    .photo-grid {
+    /* ─── SITE WIDTH WRAPPER ─────────────────── */
+    .site-wrap {
+      max-width: 1200px;
+      width: 88%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @media (max-width: 767px) { .site-wrap { width: 94%; } }
+
+    /* ─── PHOTO GALLERY CAROUSEL ─────────────── */
+    .photo-section {
+      background: var(--light-bg);
+      padding: 20px 0 0;
+    }
+    .gallery-carousel { position: relative; }
+    .gallery-slide {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr;
-      grid-template-rows: 200px 200px;
-      gap: 4px;
+      grid-template-rows: 190px 190px;
+      gap: 5px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 28px rgba(0,0,0,.12);
     }
-    .photo-grid .pg-main { grid-row: 1 / 3; }
-    .photo-grid .pg-item img,
-    .photo-grid .pg-main img {
+    .gallery-slide .gs-main { grid-row: 1 / 3; }
+    .gs-main img, .gs-item img {
       width: 100%; height: 100%; object-fit: cover; display: block;
     }
-    .pg-item, .pg-main { overflow: hidden; position: relative; background: #e0e8f0; }
-    .pg-placeholder {
+    .gs-main, .gs-item { overflow: hidden; background: #c8d8e4; position: relative; }
+    .gs-placeholder {
       width:100%; height:100%; display:flex; align-items:center; justify-content:center;
-      flex-direction:column; color:#94a3b8; font-size:.78rem; font-weight:300; gap:6px;
+      flex-direction:column; gap:6px; color:#94a3b8; font-size:.75rem; font-weight:300;
     }
-    .pg-placeholder i { font-size:1.8rem; opacity:.4; }
+    .gs-placeholder i { font-size:1.6rem; opacity:.35; }
+    /* Carousel nav dots */
+    .gallery-dots {
+      display:flex; justify-content:center; gap:8px; padding: 12px 0 4px;
+    }
+    .gallery-dot {
+      width:8px; height:8px; border-radius:50%; background:#c8d5e0;
+      border:none; cursor:pointer; transition:all .2s; padding:0;
+    }
+    .gallery-dot.active { background:var(--primary); width:24px; border-radius:4px; }
+    /* Carousel arrows */
+    .gallery-prev, .gallery-next {
+      position:absolute; top:50%; transform:translateY(-50%); z-index:5;
+      background:rgba(255,255,255,.85); border:none; border-radius:50%;
+      width:36px; height:36px; display:flex; align-items:center; justify-content:center;
+      font-size:1rem; color:var(--primary); box-shadow:0 2px 8px rgba(0,0,0,.15);
+      cursor:pointer; transition:background .15s;
+    }
+    .gallery-prev { left:-16px; }
+    .gallery-next { right:-16px; }
+    .gallery-prev:hover, .gallery-next:hover { background:white; }
     @media (max-width: 767px) {
-      .photo-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 160px 160px; }
-      .photo-grid .pg-main { grid-row: auto; }
+      .gallery-slide { grid-template-columns:1fr 1fr; grid-template-rows:140px 140px; }
+      .gallery-slide .gs-main { grid-row: auto; }
+      .gallery-prev { left:-8px; } .gallery-next { right:-8px; }
     }
     .cs-placeholder {
       width: 100%; height: 420px; display: flex;
@@ -388,35 +424,22 @@
   </div>
 </nav>
 
-<!-- ══ PHOTO GRID ══════════════════════════ -->
+<!-- ══ PHOTO GALLERY ══════════════════════════ -->
 <div class="photo-section">
-  <div class="photo-grid">
-    <div class="pg-main">
-      <img src="assets/photos/activity-1.jpg" alt="กิจกรรม 1"
-        onerror="this.parentElement.innerHTML='<div class=\'pg-placeholder\'><i class=\'bi bi-image\'></i><span>activity-1.jpg</span></div>'">
-    </div>
-    <div class="pg-item">
-      <img src="assets/photos/activity-2.jpg" alt="กิจกรรม 2"
-        onerror="this.parentElement.innerHTML='<div class=\'pg-placeholder\'><i class=\'bi bi-image\'></i><span>activity-2.jpg</span></div>'">
-    </div>
-    <div class="pg-item">
-      <img src="assets/photos/activity-3.jpg" alt="กิจกรรม 3"
-        onerror="this.parentElement.innerHTML='<div class=\'pg-placeholder\'><i class=\'bi bi-image\'></i><span>activity-3.jpg</span></div>'">
-    </div>
-    <div class="pg-item">
-      <img src="assets/photos/activity-4.jpg" alt="กิจกรรม 4"
-        onerror="this.parentElement.innerHTML='<div class=\'pg-placeholder\'><i class=\'bi bi-image\'></i><span>activity-4.jpg</span></div>'">
-    </div>
-    <div class="pg-item">
-      <img src="assets/photos/activity-5.jpg" alt="กิจกรรม 5"
-        onerror="this.parentElement.innerHTML='<div class=\'pg-placeholder\'><i class=\'bi bi-image\'></i><span>activity-5.jpg</span></div>'">
+  <div class="site-wrap">
+    <div class="gallery-carousel" id="galleryCarousel">
+      <!-- Slides สร้างจาก JS -->
+      <button class="gallery-prev" onclick="galleryMove(-1)"><i class="bi bi-chevron-left"></i></button>
+      <button class="gallery-next" onclick="galleryMove(1)"><i class="bi bi-chevron-right"></i></button>
+      <div id="gallerySlides"></div>
+      <div class="gallery-dots" id="galleryDots"></div>
     </div>
   </div>
 </div>
 
 <!-- ══ STATS STRIP ════════════════════════════ -->
 <div class="stats-strip">
-  <div class="container">
+  <div class="site-wrap">
     <div class="d-flex">
       <div class="stat-cell">
         <div class="stat-cell-icon blue"><i class="bi bi-diagram-3-fill"></i></div>
@@ -645,6 +668,71 @@
       // fallback: ถ้าเปิดผ่าน file:// ให้แสดงข้อความแนะนำ
       document.getElementById('calList').innerHTML = '<li class="cal-item" style="opacity:.5;font-size:.82rem">ปฏิทินจะแสดงเมื่อ deploy บน Netlify — แก้ไขได้ที่ _data/calendar.json</li>';
     });
+</script>
+<script>
+// ── PHOTO GALLERY CAROUSEL ──────────────────────────
+(function(){
+  // รายชื่อไฟล์รูป (เพิ่มได้เรื่อยๆ)
+  const photos = [
+    'assets/photos/activity-1.jpg',
+    'assets/photos/activity-2.jpg',
+    'assets/photos/activity-3.jpg',
+    'assets/photos/activity-4.jpg',
+    'assets/photos/activity-5.jpg',
+    'assets/photos/activity-6.jpg',
+    'assets/photos/activity-7.jpg',
+    'assets/photos/activity-8.jpg',
+  ];
+  const PER_PAGE = 4; // รูปต่อหน้า
+  let current = 0;
+
+  function imgHtml(src, idx) {
+    return `<img src="${src}" alt="กิจกรรม ${idx+1}"
+      onerror="this.parentElement.innerHTML='<div class=\\'gs-placeholder\\'><i class=\\'bi bi-image\\'></i></div>'">`;
+  }
+
+  function buildSlides() {
+    const slidesEl = document.getElementById('gallerySlides');
+    const dotsEl   = document.getElementById('galleryDots');
+    const pages = Math.ceil(photos.length / PER_PAGE);
+    let slidesHtml = '', dotsHtml = '';
+
+    for (let p = 0; p < pages; p++) {
+      const batch = photos.slice(p * PER_PAGE, p * PER_PAGE + PER_PAGE);
+      const display = p === 0 ? 'block' : 'none';
+      slidesHtml += `<div class="gallery-slide" data-page="${p}" style="display:${display}">
+        <div class="gs-main">${imgHtml(batch[0], p*PER_PAGE)}</div>
+        <div class="gs-item">${batch[1] ? imgHtml(batch[1], p*PER_PAGE+1) : '<div class="gs-placeholder"><i class="bi bi-image"></i></div>'}</div>
+        <div class="gs-item">${batch[2] ? imgHtml(batch[2], p*PER_PAGE+2) : '<div class="gs-placeholder"><i class="bi bi-image"></i></div>'}</div>
+        <div class="gs-item">${batch[3] ? imgHtml(batch[3], p*PER_PAGE+3) : '<div class="gs-placeholder"><i class="bi bi-image"></i></div>'}</div>
+      </div>`;
+      dotsHtml += `<button class="gallery-dot${p===0?' active':''}" onclick="galleryGo(${p})"></button>`;
+    }
+    slidesEl.innerHTML = slidesHtml;
+    dotsEl.innerHTML   = dotsHtml;
+    // ซ่อนลูกศรถ้ามีแค่หน้าเดียว
+    if (pages <= 1) {
+      document.querySelector('.gallery-prev').style.display = 'none';
+      document.querySelector('.gallery-next').style.display = 'none';
+    }
+    window._galleryPages = pages;
+  }
+
+  window.galleryGo = function(idx) {
+    document.querySelectorAll('.gallery-slide').forEach(s => s.style.display = 'none');
+    document.querySelectorAll('.gallery-dot').forEach(d => d.classList.remove('active'));
+    document.querySelector(`.gallery-slide[data-page="${idx}"]`).style.display = 'block';
+    document.querySelectorAll('.gallery-dot')[idx].classList.add('active');
+    current = idx;
+  };
+
+  window.galleryMove = function(dir) {
+    const pages = window._galleryPages || 1;
+    galleryGo((current + dir + pages) % pages);
+  };
+
+  buildSlides();
+})();
 </script>
 <script>
   // Netlify Identity — รับ invite token แล้ว redirect ไป /admin
