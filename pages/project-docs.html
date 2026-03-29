@@ -1,25 +1,60 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="th">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>คู่มือและเอกสาร — Nodeflagship ศรีสะเกษ</title>
+  <title>เอกสารและสื่อ — Nodeflagship ศรีสะเกษ</title>
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="../assets/css/portal.css">
   <style>
-    .doc-card {
-      background:white; border-radius:14px; padding:16px 20px;
-      box-shadow:0 2px 10px rgba(0,0,0,.06); margin-bottom:10px;
-      display:flex; align-items:center; gap:14px;
-      text-decoration:none; color:var(--text-dark);
-      transition:transform .15s, box-shadow .15s;
+    /* ── Filter Pills ── */
+    .filter-wrap { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px; }
+    .filter-btn {
+      border: 2px solid #dee2e6; background: white; border-radius: 20px;
+      padding: 6px 16px; font-size: .82rem; font-weight: 500;
+      cursor: pointer; transition: all .18s; color: var(--text-dark);
     }
-    .doc-card:hover { transform:translateX(4px); box-shadow:0 6px 20px rgba(0,0,0,.1); }
-    .doc-icon { width:44px; height:44px; border-radius:12px; flex-shrink:0;
-      display:flex; align-items:center; justify-content:center; font-size:1.2rem; }
-    .doc-card h6 { font-size:.9rem; font-weight:600; margin:0 0 2px; }
-    .doc-card small { font-size:.78rem; color:var(--text-muted); font-weight:300; }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--primary); border-color: var(--primary); color: white;
+    }
+
+    /* ── Doc Card ── */
+    .doc-card {
+      background: white; border-radius: 14px; padding: 16px 18px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.06); margin-bottom: 10px;
+      display: flex; align-items: center; gap: 14px;
+      text-decoration: none; color: var(--text-dark);
+      transition: transform .15s, box-shadow .15s; border: 1px solid #f0f4f8;
+    }
+    .doc-card:hover { transform: translateX(4px); box-shadow: 0 6px 20px rgba(0,0,0,.1); color: var(--primary); }
+    .doc-icon {
+      width: 46px; height: 46px; border-radius: 12px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 1.25rem;
+    }
+    .doc-card h6 { font-size: .92rem; font-weight: 600; margin: 0 0 3px; }
+    .doc-card small { font-size: .78rem; color: var(--text-muted); font-weight: 300; }
+    .doc-badge {
+      font-size: .7rem; font-weight: 600; padding: 2px 10px; border-radius: 10px;
+      background: #f0f4f8; color: #64748b; white-space: nowrap; flex-shrink: 0;
+    }
+
+    /* ── YouTube Section ── */
+    .yt-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+    .yt-card {
+      background: white; border-radius: 16px; overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,.08); border: 1px solid #f0f4f8;
+    }
+    .yt-embed { width: 100%; aspect-ratio: 16/9; border: none; display: block; }
+    .yt-title {
+      padding: 12px 16px; font-size: .88rem; font-weight: 600;
+      border-top: 1px solid #f0f4f8; color: var(--text-dark);
+    }
+    .yt-desc { padding: 0 16px 14px; font-size: .78rem; color: var(--text-muted); font-weight: 300; }
+
+    /* ── Empty State ── */
+    .empty-state { text-align: center; padding: 40px 20px; color: var(--text-muted); }
+    .empty-state i { font-size: 2.5rem; opacity: .3; display: block; margin-bottom: 12px; }
   </style>
 </head>
 <body>
@@ -60,7 +95,7 @@
             <li><a class="dropdown-item" href="project-main.html"><i class="bi bi-building"></i>โครงการหน่วยจัดการ</a></li>
             <li><a class="dropdown-item" href="project-sub.html"><i class="bi bi-diagram-3"></i>โครงการย่อย 27 โครงการ</a></li>
             <li><a class="dropdown-item" href="project-team.html"><i class="bi bi-people"></i>คณะทำงาน</a></li>
-            <li><a class="dropdown-item" href="project-docs.html"><i class="bi bi-file-earmark-text"></i>คู่มือและเอกสาร</a></li>
+            <li><a class="dropdown-item" href="project-docs.html" class="active"><i class="bi bi-file-earmark-text"></i>เอกสารและสื่อ</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="project-dashboard.html"><i class="bi bi-bar-chart-line"></i>Dashboard ภาพรวม</a></li>
           </ul>
@@ -71,6 +106,7 @@
     </div>
   </div>
 </nav>
+
 <div class="logo-bar"><div class="container"><div class="logo-wrap">
   <img src="../assets/logos/logo-ddpm.png" alt="ปภ." onerror="this.style.display='none'">
   <div class="logo-divider"></div>
@@ -85,88 +121,33 @@
   <nav aria-label="breadcrumb"><ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="../index.html">หน้าแรก</a></li>
     <li class="breadcrumb-item"><a href="project-main.html">บริหารจัดการโครงการ</a></li>
-    <li class="breadcrumb-item active">คู่มือและเอกสาร</li>
+    <li class="breadcrumb-item active">เอกสารและสื่อ</li>
   </ol></nav>
-  <h1><i class="bi bi-file-earmark-text me-2"></i>คู่มือและเอกสารโครงการ</h1>
-  <p>รวบรวมเอกสาร คู่มือ แบบฟอร์ม และสื่อประกอบการดำเนินโครงการ</p>
+  <h1><i class="bi bi-folder2-open me-2"></i>เอกสารและสื่อโครงการ</h1>
+  <p>รวบรวมเอกสาร คู่มือ แบบฟอร์ม รายงาน และวิดีโอประกอบการดำเนินโครงการ</p>
 </div></div>
 
 <div class="content-wrap">
-  <div class="row g-4">
-    <div class="col-md-6">
-      <div class="info-card">
-        <h5><i class="bi bi-book me-2"></i>คู่มือการดำเนินโครงการ</h5>
-        <a href="guide.html" class="doc-card">
-          <div class="doc-icon" style="background:rgba(21,76,106,.1);color:var(--primary)"><i class="bi bi-book-fill"></i></div>
-          <div><h6>คู่มือการดำเนินโครงการย่อย</h6><small>แนวทางการบริหารจัดการและรายงานผล</small></div>
-          <i class="bi bi-chevron-right ms-auto text-muted"></i>
-        </a>
-        <a href="#" class="doc-card">
-          <div class="doc-icon" style="background:rgba(212,96,10,.1);color:var(--road)"><i class="bi bi-journal-medical"></i></div>
-          <div><h6>คู่มือระบบข้อมูลจุดเสี่ยง</h6><small>วิธีใช้งานแอปบันทึกจุดเสี่ยงอุบัติเหตุ</small></div>
-          <i class="bi bi-chevron-right ms-auto text-muted"></i>
-        </a>
-        <a href="#" class="doc-card">
-          <div class="doc-icon" style="background:rgba(46,125,94,.1);color:var(--alcohol)"><i class="bi bi-journal-check"></i></div>
-          <div><h6>คู่มือระบบงานบุญปลอดเหล้า</h6><small>วิธีใช้งานแอปบันทึกงานบุญ</small></div>
-          <i class="bi bi-chevron-right ms-auto text-muted"></i>
-        </a>
-      </div>
-    </div>
 
-    <div class="col-md-6">
-      <div class="info-card">
-        <h5><i class="bi bi-file-earmark-pdf me-2"></i>เอกสารโครงการ</h5>
-        <a href="#" class="doc-card">
-          <div class="doc-icon" style="background:rgba(220,53,69,.1);color:#dc3545"><i class="bi bi-file-earmark-pdf-fill"></i></div>
-          <div><h6>ข้อเสนอโครงการ</h6><small>PDF • โครงการ Node Flagship ศรีสะเกษ</small></div>
-          <i class="bi bi-chevron-right ms-auto text-muted"></i>
-        </a>
-        <a href="#" class="doc-card">
-          <div class="doc-icon" style="background:rgba(25,135,84,.1);color:#198754"><i class="bi bi-file-earmark-spreadsheet-fill"></i></div>
-          <div><h6>แผนการดำเนินงาน</h6><small>Excel • ตารางงานรายเดือน 12 เดือน</small></div>
-          <i class="bi bi-chevron-right ms-auto text-muted"></i>
-        </a>
-        <a href="report.html" class="doc-card">
-          <div class="doc-icon" style="background:rgba(21,76,106,.1);color:var(--primary)"><i class="bi bi-file-earmark-bar-graph-fill"></i></div>
-          <div><h6>รายงานความก้าวหน้า</h6><small>Status Report รายไตรมาส</small></div>
-          <i class="bi bi-chevron-right ms-auto text-muted"></i>
-        </a>
-      </div>
-    </div>
+  <!-- Filter -->
+  <div class="filter-wrap" id="filterWrap">
+    <button class="filter-btn active" data-cat="ทั้งหมด">ทั้งหมด</button>
+  </div>
 
-    <div class="col-md-6">
-      <div class="info-card">
-        <h5><i class="bi bi-ui-checks me-2"></i>แบบฟอร์ม</h5>
-        <a href="#" class="doc-card">
-          <div class="doc-icon" style="background:rgba(21,76,106,.1);color:var(--primary)"><i class="bi bi-ui-checks-grid"></i></div>
-          <div><h6>แบบรายงานผลรายเดือน</h6><small>แบบฟอร์มรายงานสำหรับโครงการย่อย</small></div>
-          <i class="bi bi-chevron-right ms-auto text-muted"></i>
-        </a>
-        <a href="#" class="doc-card">
-          <div class="doc-icon" style="background:rgba(21,76,106,.1);color:var(--primary)"><i class="bi bi-receipt"></i></div>
-          <div><h6>แบบรายงานการเงิน</h6><small>แบบฟอร์มสรุปค่าใช้จ่าย</small></div>
-          <i class="bi bi-chevron-right ms-auto text-muted"></i>
-        </a>
-      </div>
-    </div>
-
-    <div class="col-md-6">
-      <div class="info-card">
-        <h5><i class="bi bi-megaphone me-2"></i>สื่อประชาสัมพันธ์</h5>
-        <div class="coming-soon-box">
-          <i class="bi bi-images cs-icon"></i>
-          <p>สื่อ Infographic โปสเตอร์ และวิดีโอประชาสัมพันธ์<br><small>อยู่ระหว่างการจัดเตรียม</small></p>
-        </div>
-      </div>
+  <!-- เอกสาร -->
+  <div class="info-card mb-4">
+    <h5 class="mb-3"><i class="bi bi-file-earmark-text me-2"></i>เอกสารและลิงก์</h5>
+    <div id="docList">
+      <div class="empty-state"><i class="bi bi-hourglass-split"></i>กำลังโหลด...</div>
     </div>
   </div>
 
-  <div class="mt-4 d-flex gap-2">
-    <a href="project-main.html" class="btn btn-outline-secondary" style="border-radius:12px;font-weight:500">
-      <i class="bi bi-arrow-left me-2"></i>บริหารจัดการโครงการ
-    </a>
+  <!-- YouTube -->
+  <div class="info-card" id="ytSection" style="display:none">
+    <h5 class="mb-3"><i class="bi bi-youtube me-2" style="color:#ff0000"></i>วิดีโอ YouTube</h5>
+    <div class="yt-grid" id="ytList"></div>
   </div>
+
 </div>
 
 <div class="partners-section">
@@ -192,19 +173,111 @@
     </div>
   </div>
 </footer>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-(function(){
-  var p=location.pathname.split('/').pop()||'index.html';
-  document.querySelectorAll('.main-navbar .dropdown-item').forEach(function(a){
-    if((a.getAttribute('href')||'')===p){
-      a.classList.add('active');
-      var dt=a.closest('.dropdown')&&a.closest('.dropdown').querySelector('.nav-link.dropdown-toggle');
-      if(dt)dt.classList.add('active');
-    }
+// ── Icon mapping ──
+function getIcon(type, cat) {
+  if (type === 'youtube') return { icon: 'bi-youtube', bg: 'rgba(255,0,0,.1)', color: '#ff0000' };
+  if (cat === 'คู่มือ')        return { icon: 'bi-book-fill', bg: 'rgba(21,76,106,.1)', color: 'var(--primary)' };
+  if (cat === 'แบบฟอร์ม')     return { icon: 'bi-ui-checks-grid', bg: 'rgba(21,76,106,.1)', color: 'var(--primary)' };
+  if (cat === 'รายงาน')        return { icon: 'bi-file-earmark-bar-graph-fill', bg: 'rgba(21,76,106,.1)', color: 'var(--primary)' };
+  if (cat === 'เอกสารโครงการ') return { icon: 'bi-file-earmark-pdf-fill', bg: 'rgba(220,53,69,.1)', color: '#dc3545' };
+  return { icon: 'bi-file-earmark-fill', bg: 'rgba(21,76,106,.1)', color: 'var(--primary)' };
+}
+
+function buildDocCard(d) {
+  const href = d.file || d.url || '#';
+  const ic = getIcon(d.type, d.category);
+  const target = (d.type === 'link' || d.type === 'file') && href !== '#' ? ' target="_blank" rel="noopener"' : '';
+  return `
+    <a href="${href}" class="doc-card"${target} data-cat="${d.category}">
+      <div class="doc-icon" style="background:${ic.bg};color:${ic.color}">
+        <i class="bi ${ic.icon}"></i>
+      </div>
+      <div class="flex-grow-1">
+        <h6>${d.title}</h6>
+        ${d.description ? `<small>${d.description}</small>` : ''}
+      </div>
+      <span class="doc-badge">${d.category}</span>
+      <i class="bi bi-chevron-right text-muted ms-1"></i>
+    </a>`;
+}
+
+function buildYtCard(d) {
+  return `
+    <div class="yt-card" data-cat="youtube">
+      <iframe class="yt-embed" src="${d.url}"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen loading="lazy"></iframe>
+      <div class="yt-title">${d.title}</div>
+      ${d.description ? `<div class="yt-desc">${d.description}</div>` : ''}
+    </div>`;
+}
+
+let allDocs = [];
+let activeCat = 'ทั้งหมด';
+
+function renderAll() {
+  const docs = allDocs.filter(d => d.type !== 'youtube');
+  const yts  = allDocs.filter(d => d.type === 'youtube');
+
+  const filteredDocs = activeCat === 'ทั้งหมด' ? docs : docs.filter(d => d.category === activeCat);
+  const filteredYts  = activeCat === 'ทั้งหมด' || activeCat === 'youtube' ? yts : [];
+
+  const docList = document.getElementById('docList');
+  docList.innerHTML = filteredDocs.length
+    ? filteredDocs.map(buildDocCard).join('')
+    : '<div class="empty-state"><i class="bi bi-folder-x"></i>ไม่มีเอกสารในหมวดนี้</div>';
+
+  const ytSection = document.getElementById('ytSection');
+  const ytList    = document.getElementById('ytList');
+  if (filteredYts.length) {
+    ytSection.style.display = '';
+    ytList.innerHTML = filteredYts.map(buildYtCard).join('');
+  } else {
+    ytSection.style.display = 'none';
+  }
+}
+
+function buildFilters(docs) {
+  const cats = ['ทั้งหมด', ...new Set(docs.map(d => d.category))];
+  const wrap = document.getElementById('filterWrap');
+  wrap.innerHTML = cats.map(c =>
+    `<button class="filter-btn${c === 'ทั้งหมด' ? ' active' : ''}" data-cat="${c}">${c}</button>`
+  ).join('');
+  wrap.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      wrap.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeCat = btn.dataset.cat;
+      renderAll();
+    });
   });
-  document.querySelectorAll('.main-navbar .nav-link:not(.dropdown-toggle)').forEach(function(a){
-    if((a.getAttribute('href')||'').split('/').pop()===p)a.classList.add('active');
+}
+
+// โหลดข้อมูล
+fetch('../_data/docs.json')
+  .then(r => r.json())
+  .then(data => {
+    allDocs = data.docs || [];
+    buildFilters(allDocs);
+    renderAll();
+  })
+  .catch(() => {
+    document.getElementById('docList').innerHTML =
+      '<div class="empty-state"><i class="bi bi-exclamation-circle"></i>ไม่สามารถโหลดข้อมูลได้ — กรุณาลองใหม่อีกครั้ง</div>';
+  });
+
+// Active nav
+(function(){
+  var p = location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.main-navbar .dropdown-item').forEach(function(a){
+    if ((a.getAttribute('href') || '') === p) {
+      a.classList.add('active');
+      var dt = a.closest('.dropdown') && a.closest('.dropdown').querySelector('.nav-link.dropdown-toggle');
+      if (dt) dt.classList.add('active');
+    }
   });
 })();
 </script>

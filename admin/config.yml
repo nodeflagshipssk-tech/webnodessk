@@ -99,3 +99,41 @@ collections:
                   - { label: "⏸ หยุดชะงัก", value: "หยุดชะงัก" }
               - { label: "เลขที่สัญญา", name: contract, widget: string }
               - { label: "ผู้รับทุน", name: grantee, widget: string }
+
+      - name: "docs"
+        label: "📁 เอกสารและสื่อ"
+        file: "_data/docs.json"
+        fields:
+          - name: docs
+            label: รายการเอกสาร
+            label_singular: เอกสาร
+            widget: list
+            fields:
+              - { label: ชื่อเอกสาร / หัวข้อ, name: title, widget: string }
+              - label: หมวดหมู่
+                name: category
+                widget: select
+                options:
+                  - { label: "📘 คู่มือ", value: "คู่มือ" }
+                  - { label: "📄 เอกสารโครงการ", value: "เอกสารโครงการ" }
+                  - { label: "📝 แบบฟอร์ม", value: "แบบฟอร์ม" }
+                  - { label: "📊 รายงาน", value: "รายงาน" }
+                  - { label: "🎬 วิดีโอ YouTube", value: "youtube" }
+              - label: ประเภทไฟล์
+                name: type
+                widget: select
+                options:
+                  - { label: "🔗 Link (Google Drive / เว็บไซต์)", value: "link" }
+                  - { label: "📎 อัปโหลดไฟล์ตรง", value: "file" }
+                  - { label: "▶️ YouTube", value: "youtube" }
+              - label: URL / ลิงก์
+                name: url
+                widget: string
+                required: false
+                hint: "สำหรับ Link หรือ YouTube ให้วาง URL ที่นี่ | YouTube ให้วาง embed URL เช่น https://www.youtube.com/embed/xxxxxxx"
+              - label: อัปโหลดไฟล์
+                name: file
+                widget: file
+                required: false
+                hint: "สำหรับประเภท 'อัปโหลดไฟล์ตรง' เท่านั้น"
+              - { label: คำอธิบาย, name: description, widget: string, required: false }

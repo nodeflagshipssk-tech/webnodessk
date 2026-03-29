@@ -1,0 +1,25 @@
+{
+  "docs": [
+    {
+      "title": "คู่มือการดำเนินโครงการย่อย",
+      "category": "คู่มือ",
+      "type": "link",
+      "url": "guide.html",
+      "description": "แนวทางการบริหารจัดการและรายงานผล"
+    },
+    {
+      "title": "แบบรายงานผลรายเดือน",
+      "category": "แบบฟอร์ม",
+      "type": "link",
+      "url": "",
+      "description": "แบบฟอร์มรายงานสำหรับโครงการย่อย"
+    },
+    {
+      "title": "รายงานความก้าวหน้าโครงการ",
+      "category": "รายงาน",
+      "type": "link",
+      "url": "report.html",
+      "description": "Status Report รายไตรมาส"
+    }
+  ]
+}
