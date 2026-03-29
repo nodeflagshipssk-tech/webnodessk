@@ -25,13 +25,20 @@
 <body>
 <nav class="navbar navbar-expand-lg main-navbar sticky-top">
   <div class="container">
-    <a class="navbar-brand" href="../index.html"><i class="bi bi-geo-alt-fill me-1"></i>Nodeflagship <span class="brand-sub">ศรีสะเกษ</span></a>
+    <a class="nav-brand-wrap" href="../index.html">
+      <img src="../assets/logos/logo-nf.png" alt="Nodeflagship" class="nav-brand-logo"
+        onerror="this.outerHTML='<div class=\"nav-brand-icon\">NF</div>'">
+      <div class="nav-brand-text">
+        <span class="nav-brand-name">Nodeflagship</span>
+        <span class="nav-brand-sub">จังหวัดศรีสะเกษ &nbsp;•&nbsp; ปี 2568–2569</span>
+      </div>
+    </a>
     <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Toggle">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="mainNav">
       <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
-        <li class="nav-item"><a class="nav-link" href="../index.html"><i class="bi bi-house me-1"></i>หน้าแรก</a></li>
+        <li class="nav-item"><a class="nav-link" href="../index.html"><i class="bi bi-house me-1"></i>หน้าหลัก</a></li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle road-nav" href="#" role="button" data-bs-toggle="dropdown"><i class="bi bi-cone-striped me-1"></i>อุบัติเหตุ</a>
           <ul class="dropdown-menu">
@@ -55,18 +62,27 @@
           </ul>
         </li>
         <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><i class="bi bi-bar-chart-line me-1"></i>Dashboard</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="road-dashboard.html"><i class="bi bi-graph-up-arrow"></i>Dashboard ถนน</a></li>
+            <li><a class="dropdown-item" href="alc-dashboard.html"><i class="bi bi-pie-chart"></i>Dashboard แอลกอฮอล์</a></li>
+            <li><a class="dropdown-item" href="project-dashboard.html"><i class="bi bi-bar-chart-line"></i>Dashboard ภาพรวม</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><i class="bi bi-briefcase me-1"></i>โครงการ</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="project-main.html"><i class="bi bi-building"></i>โครงการหน่วยจัดการ</a></li>
             <li><a class="dropdown-item" href="project-sub.html"><i class="bi bi-diagram-3"></i>โครงการย่อย 27 โครงการ</a></li>
             <li><a class="dropdown-item" href="project-team.html"><i class="bi bi-people"></i>คณะทำงาน</a></li>
-            <li><a class="dropdown-item" href="project-docs.html"><i class="bi bi-file-earmark-text"></i>คู่มือและเอกสาร</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="project-dashboard.html"><i class="bi bi-bar-chart-line"></i>Dashboard ภาพรวม</a></li>
           </ul>
         </li>
-        <li class="nav-item"><a class="nav-link" href="guide.html"><i class="bi bi-book me-1"></i>คู่มือ</a></li>
         <li class="nav-item"><a class="nav-link" href="contact.html"><i class="bi bi-envelope me-1"></i>ติดต่อ</a></li>
+        <li class="nav-item ms-lg-2">
+          <a class="nav-doc-pill" href="project-docs.html">
+            <i class="bi bi-file-earmark-arrow-down"></i> เอกสาร
+          </a>
+        </li>
       </ul>
     </div>
   </div>
