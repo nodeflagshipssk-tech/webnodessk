@@ -726,7 +726,11 @@
     if(!evs.length){el.innerHTML=`<div class="cal-ev-empty"><i class="bi bi-calendar3 me-2"></i>${calSel?'ไม่มีกิจกรรมในวันที่เลือก':'ไม่มีกิจกรรมในช่วงนี้'}</div>`;return;}
     const expand=s=>s.replace(/ต\./g,'ตำบล').replace(/อ\./g,'อำเภอ');
     el.innerHTML=evs.map(ev=>{
-      const detail=(ev.detail||'').replace(/^พี่เลี้ยง:\s*/,'');
+      const rawDetail=ev.detail||'';
+      const hasmentor=/^พี่เลี้ยง:\s*/.test(rawDetail);
+      const stripTitles=s=>s.replace(/(?:ผศ\.ดร\.|รศ\.ดร\.|ศ\.ดร\.|ผศ\.|รศ\.|ศ\.|ดร\.|น\.ส\.|นางสาว|นาย|นาง)\s*/g,'').trim();
+      const detail=hasmentor?stripTitles(rawDetail.replace(/^พี่เลี้ยง:\s*/,'')):rawDetail;
+      const detailLabel=hasmentor?'พี่เลี้ยง':null;
       return `
       <div class="cal-ev-item ${ev.type}${calSel&&thaiAbbrMap[ev.month]===calSel.month&&parseInt(ev.date)===calSel.day?' active':''}">
         <div class="cal-ev-row">
@@ -737,7 +741,7 @@
           <div class="cal-ev-content">
             <span class="cal-ev-tag ${ev.type}"><i class="bi ${calIconMap[ev.type]} me-1"></i>${calLabelMap[ev.type]}</span>
             <div class="cal-ev-title">${expand(ev.title)}</div>
-            ${detail?`<div class="cal-ev-detail"><i class="bi bi-person me-1"></i>${detail}</div>`:''}
+            ${detail?`<div class="cal-ev-detail"><i class="bi bi-person me-1"></i>${detailLabel?`<span style="font-weight:500">${detailLabel}</span> `:''} ${detail}</div>`:''}
           </div>
         </div>
       </div>`;
