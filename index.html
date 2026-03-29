@@ -103,14 +103,16 @@
     .gallery-carousel { position: relative; }
     .gallery-slide {
       display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      grid-template-rows: 190px 190px;
-      gap: 5px;
-      border-radius: 16px;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-rows: 160px;
+      gap: 6px;
+      border-radius: 14px;
       overflow: hidden;
-      box-shadow: 0 6px 28px rgba(0,0,0,.12);
+      box-shadow: 0 4px 18px rgba(0,0,0,.10);
+      max-width: 900px;
+      margin: 0 auto;
     }
-    .gallery-slide .gs-main { grid-row: 1 / 3; }
+    .gallery-slide .gs-main { grid-row: auto; }
     .gs-main img, .gs-item img {
       width: 100%; height: 100%; object-fit: cover; display: block;
     }
@@ -702,12 +704,12 @@
     for (let p = 0; p < pages; p++) {
       const batch = photos.slice(p * PER_PAGE, p * PER_PAGE + PER_PAGE);
       const display = p === 0 ? 'block' : 'none';
-      slidesHtml += `<div class="gallery-slide" data-page="${p}" style="display:${display}">
-        <div class="gs-main">${imgHtml(batch[0], p*PER_PAGE)}</div>
-        <div class="gs-item">${batch[1] ? imgHtml(batch[1], p*PER_PAGE+1) : '<div class="gs-placeholder"><i class="bi bi-image"></i></div>'}</div>
-        <div class="gs-item">${batch[2] ? imgHtml(batch[2], p*PER_PAGE+2) : '<div class="gs-placeholder"><i class="bi bi-image"></i></div>'}</div>
-        <div class="gs-item">${batch[3] ? imgHtml(batch[3], p*PER_PAGE+3) : '<div class="gs-placeholder"><i class="bi bi-image"></i></div>'}</div>
-      </div>`;
+      const cells = Array.from({length: PER_PAGE}, (_, i) =>
+        batch[i]
+          ? `<div class="gs-item">${imgHtml(batch[i], p*PER_PAGE+i)}</div>`
+          : `<div class="gs-item"><div class="gs-placeholder"><i class="bi bi-image"></i></div></div>`
+      ).join('');
+      slidesHtml += `<div class="gallery-slide" data-page="${p}" style="display:${display}">${cells}</div>`;
       dotsHtml += `<button class="gallery-dot${p===0?' active':''}" onclick="galleryGo(${p})"></button>`;
     }
     slidesEl.innerHTML = slidesHtml;
