@@ -53,7 +53,7 @@ body { font-family: 'Kanit', sans-serif; background: var(--light-bg); color: var
   min-width: 72px; margin: 6px 1px;
 }
 .nav-icon-link .nil-icon { font-size: 1.6rem; line-height: 1; }
-.nav-icon-link .nil-text  { font-size: .82rem; font-weight: 300; white-space: nowrap; }
+.nav-icon-link .nil-text  { font-size: .72rem; font-weight: 300; white-space: nowrap; }
 .nav-icon-link:hover  { background: var(--light-bg); color: var(--primary); }
 .nav-icon-link.active { background: rgba(21,76,106,.08); color: var(--primary); }
 .nav-icon-link.road-nav:hover, .nav-icon-link.road-nav.active { background: rgba(212,96,10,.1);  color: var(--road); }

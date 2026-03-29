@@ -60,7 +60,7 @@
       min-width: 72px; margin: 6px 1px;
     }
     .nav-icon-link .nil-icon { font-size: 1.6rem; line-height: 1; }
-    .nav-icon-link .nil-text { font-size: .82rem; font-weight: 300; white-space: nowrap; }
+    .nav-icon-link .nil-text { font-size: .72rem; font-weight: 300; white-space: nowrap; }
     .nav-icon-link:hover  { background: var(--light-bg); color: var(--primary); }
     .nav-icon-link.active { background: rgba(21,76,106,.08); color: var(--primary); }
     .nav-icon-link.road-nav:hover, .nav-icon-link.road-nav.active { background: rgba(212,96,10,.1); color: var(--road); }
@@ -201,7 +201,7 @@
     .stat-cell-icon.blue { background: rgba(21,76,106,.1); color: var(--primary); }
     .stat-cell-icon.road { background: rgba(212,96,10,.1); color: var(--road); }
     .stat-cell-icon.alc  { background: rgba(46,125,94,.1);  color: var(--alcohol); }
-    .stat-cell-num { font-size: 2rem; font-weight: 800; line-height: 1.1; }
+    .stat-cell-num { font-size: 2.6rem; font-weight: 800; line-height: 1.1; }
     .stat-cell-num.blue { color: var(--primary); }
     .stat-cell-num.road { color: var(--road); }
     .stat-cell-num.alc  { color: var(--alcohol); }
@@ -214,27 +214,56 @@
     /* ─── CALENDAR SECTION ─────────────────────── */
     .cal-section { background: var(--warm-accent); border-top: 1px solid #f2e0cc; border-bottom: 1px solid #f2e0cc; padding: 28px 0; }
     .cal-title { font-size: 1rem; font-weight: 800; color: var(--primary); margin-bottom: 14px; display: flex; align-items: center; gap: 7px; }
-    .cal-list { list-style: none; padding: 0; margin: 0; }
-    .cal-item {
-      display: flex; align-items: flex-start; gap: 14px;
-      padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,.06);
-    }
-    .cal-item:last-child { border-bottom: none; }
-    .cal-date {
-      min-width: 54px; text-align: center; border-radius: 12px; padding: 6px 4px;
-      background: white; box-shadow: 0 2px 8px rgba(0,0,0,.07); flex-shrink: 0;
-    }
-    .cal-date .cd-day { font-size: 1.3rem; font-weight: 800; line-height: 1; }
-    .cal-date .cd-mon { font-size: .68rem; font-weight: 500; color: var(--text-muted); text-transform: uppercase; }
-    .cal-date.road .cd-day { color: var(--road); }
-    .cal-date.alc  .cd-day { color: var(--alcohol); }
-    .cal-date.blue .cd-day { color: var(--primary); }
-    .cal-info .ci-tag { font-size: .72rem; font-weight: 700; padding: 2px 10px; border-radius: 20px; display: inline-block; margin-bottom: 3px; }
-    .cal-info .ci-tag.road { background: rgba(212,96,10,.1); color: var(--road); }
-    .cal-info .ci-tag.alc  { background: rgba(46,125,94,.1);  color: var(--alcohol); }
-    .cal-info .ci-tag.blue { background: rgba(21,76,106,.1);  color: var(--primary); }
-    .cal-info .ci-title { font-size: .88rem; font-weight: 600; color: var(--text-dark); margin: 0; }
-    .cal-info .ci-sub   { font-size: .78rem; color: var(--text-muted); }
+    /* Nav bar above calendars */
+    .cal-nav-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .cal-nav-btn { background: none; border: 1px solid #dde6ef; border-radius: 8px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--primary); font-size: .8rem; transition: all .15s; flex-shrink: 0; }
+    .cal-nav-btn:hover { background: var(--primary); color: white; border-color: var(--primary); }
+    .cal-range-label { font-size: .82rem; font-weight: 600; color: var(--primary); }
+    /* Mini calendar */
+    .cal-mini-wrap { background: white; border-radius: 14px; padding: 10px 8px; box-shadow: 0 2px 10px rgba(0,0,0,.06); width: 100%; min-width: 220px; }
+    .cal-mini-header { font-size: .8rem; font-weight: 700; color: var(--primary); text-align: center; margin-bottom: 6px; }
+    .cal-day-headers { display: grid; grid-template-columns: repeat(7,1fr); text-align: center; margin-bottom: 2px; }
+    .cal-day-headers span { font-size: .62rem; font-weight: 600; color: var(--text-muted); padding: 2px 0; }
+    .cal-day-headers span:first-child { color: #d94444; }
+    .cal-day-headers span:last-child  { color: #3a6bc4; }
+    /* Date cells — compact */
+    .cal-dates { display: grid; grid-template-columns: repeat(7,1fr); gap: 1px; }
+    .cal-cell { height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 6px; font-size: .76rem; position: relative; }
+    .cal-cell.has-event { cursor: pointer; font-weight: 700; border-radius: 6px; }
+    .cal-cell.has-event.road { background: rgba(212,96,10,.13); color: var(--road); }
+    .cal-cell.has-event.alc  { background: rgba(46,125,94,.13);  color: var(--alcohol); }
+    .cal-cell.has-event.blue { background: rgba(21,76,106,.13);  color: var(--primary); }
+    .cal-cell.has-event.sub  { background: rgba(109,40,217,.13); color: #6D28D9; }
+    .cal-cell.has-event.multi{ background: linear-gradient(135deg,rgba(212,96,10,.15),rgba(46,125,94,.15)); color: var(--text-dark); }
+    .cal-cell.has-event:hover { filter: brightness(.92); }
+    .cal-cell.today { outline: 2px solid var(--primary); outline-offset: -2px; }
+    .cal-cell.selected { background: var(--primary) !important; color: white !important; outline: none; }
+    .cal-badge { position: absolute; top: 1px; right: 2px; font-size: .5rem; font-weight: 800; background: white; color: var(--primary); border-radius: 4px; padding: 0 2px; line-height: 1.4; }
+    .cal-cell.selected .cal-badge { background: rgba(255,255,255,.3); color: white; }
+    /* Event list */
+    .cal-ev-empty { color: var(--text-muted); font-size: .85rem; font-weight: 300; padding: 12px 0; }
+    .cal-ev-item { background: white; border-radius: 12px; padding: 12px 14px; margin-bottom: 8px; box-shadow: 0 2px 10px rgba(0,0,0,.06); border-left: 4px solid; cursor: pointer; transition: transform .12s; }
+    .cal-ev-item:hover { transform: translateX(3px); }
+    .cal-ev-item.road { border-left-color: var(--road); }
+    .cal-ev-item.alc  { border-left-color: var(--alcohol); }
+    .cal-ev-item.blue { border-left-color: var(--primary); }
+    .cal-ev-item.sub  { border-left-color: #6D28D9; }
+    .cal-ev-item.active { box-shadow: 0 4px 18px rgba(0,0,0,.13); }
+    /* 2-column layout: date | content */
+    .cal-ev-row { display: flex; gap: 12px; align-items: flex-start; }
+    .cal-ev-date-col { flex-shrink: 0; text-align: center; min-width: 36px; padding-right: 12px; border-right: 1px solid rgba(0,0,0,.08); }
+    .cal-ev-day { font-size: 1.6rem; font-weight: 800; line-height: 1; color: var(--text-dark); }
+    .cal-ev-month-yr { font-size: .63rem; color: var(--text-muted); font-weight: 400; line-height: 1.4; }
+    .cal-ev-content { flex: 1; min-width: 0; }
+    .cal-ev-tag { display: inline-flex; align-items: center; gap: 4px; font-size: .67rem; font-weight: 700; padding: 2px 8px; border-radius: 20px; color: white; margin-bottom: 4px; }
+    .cal-ev-tag.road { background: var(--road); }
+    .cal-ev-tag.alc  { background: var(--alcohol); }
+    .cal-ev-tag.blue { background: var(--primary); }
+    .cal-ev-tag.sub  { background: #6D28D9; }
+    .cal-ev-title  { font-size: .84rem; font-weight: 600; color: var(--text-dark); margin-bottom: 2px; line-height: 1.4; }
+    .cal-ev-detail { font-size: .75rem; color: var(--text-muted); font-weight: 300; }
+    .cal-filter-hint { font-size: .74rem; color: var(--text-muted); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    .cal-filter-hint a { color: var(--primary); cursor: pointer; text-decoration: underline; font-size: .74rem; }
 
     /* ─── DATA ACCESS SECTION ──────────────────── */
     .data-section { padding: 44px 0 32px; }
@@ -323,8 +352,8 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse justify-content-end" id="mainNav">
-      <ul class="navbar-nav align-items-lg-center">
+    <div class="collapse navbar-collapse ms-lg-5" id="mainNav">
+      <ul class="navbar-nav align-items-lg-center justify-content-lg-between w-100">
 
         <li class="nav-icon-item">
           <a class="nav-icon-link active" href="index.html">
@@ -336,7 +365,7 @@
         <li class="nav-icon-item dropdown">
           <a class="nav-icon-link road-nav" href="#" role="button" data-bs-toggle="dropdown">
             <i class="bi bi-cone-striped nil-icon"></i>
-            <span class="nil-text">อุบัติเหตุ</span>
+            <span class="nil-text">ความปลอดภัยทางถนน</span>
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="pages/road-blackspot.html"><i class="bi bi-pin-map"></i>จุดเสี่ยงอุบัติเหตุ</a></li>
@@ -351,7 +380,7 @@
         <li class="nav-icon-item dropdown">
           <a class="nav-icon-link alc-nav" href="#" role="button" data-bs-toggle="dropdown">
             <i class="bi bi-droplet-fill nil-icon"></i>
-            <span class="nil-text">แอลกอฮอล์</span>
+            <span class="nil-text">ลดการดื่มแอลกอฮอล์</span>
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="pages/alc-tambon.html"><i class="bi bi-houses"></i>ศักยภาพตำบล</a></li>
@@ -366,7 +395,7 @@
         <li class="nav-icon-item dropdown">
           <a class="nav-icon-link" href="#" role="button" data-bs-toggle="dropdown">
             <i class="bi bi-bar-chart-line-fill nil-icon"></i>
-            <span class="nil-text">Dashboard</span>
+            <span class="nil-text">รายงานข้อมูล</span>
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="pages/road-dashboard.html"><i class="bi bi-graph-up-arrow" style="color:var(--road)"></i>Dashboard ถนน</a></li>
@@ -435,14 +464,14 @@
         <div class="stat-cell-icon road"><i class="bi bi-cone-striped"></i></div>
         <div>
           <div class="stat-cell-num road" data-count="19">19</div>
-          <div class="stat-cell-lbl">โครงการถนน</div>
+          <div class="stat-cell-lbl">โครงการความปลอดภัยทางถนน</div>
         </div>
       </div>
       <div class="stat-cell">
         <div class="stat-cell-icon alc"><i class="bi bi-droplet-fill"></i></div>
         <div>
           <div class="stat-cell-num alc" data-count="8">8</div>
-          <div class="stat-cell-lbl">โครงการแอลกอฮอล์</div>
+          <div class="stat-cell-lbl">โครงการลดการดื่มแอลกอฮอล์</div>
         </div>
       </div>
       <div class="stat-cell">
@@ -459,13 +488,33 @@
 <!-- ══ CALENDAR SECTION ═══════════════════════ -->
 <div class="cal-section">
   <div class="container">
-    <div class="row g-4">
-      <div class="col-lg-3">
+    <div class="row g-3 align-items-start">
+      <!-- ซ้าย: 2 mini calendars -->
+      <div class="col-auto">
         <div class="cal-title"><i class="bi bi-calendar3"></i>ปฏิทินงาน</div>
-        <p style="font-size:.85rem;color:var(--text-muted);font-weight:300;margin:0">กิจกรรมและการลงพื้นที่ของทีมงาน Node Flagship ศรีสะเกษ</p>
+        <div style="width:max-content">
+          <div class="cal-nav-bar" style="width:100%">
+            <button class="cal-nav-btn" id="calPrev"><i class="bi bi-chevron-left"></i></button>
+            <span class="cal-range-label" id="calRangeLabel">—</span>
+            <button class="cal-nav-btn" id="calNext"><i class="bi bi-chevron-right"></i></button>
+          </div>
+          <div class="d-flex flex-column gap-2">
+            <div id="calGrid1"></div>
+            <div id="calGrid2"></div>
+          </div>
+          <div style="font-size:.67rem;color:var(--text-muted);margin-top:10px;display:grid;grid-template-columns:max-content max-content;gap:5px 20px;white-space:nowrap">
+            <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:2px;background:rgba(212,96,10,.3);display:inline-block;flex-shrink:0"></span>ความปลอดภัยทางถนน</span>
+            <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:2px;background:rgba(46,125,94,.3);display:inline-block;flex-shrink:0"></span>ลดการดื่มแอลกอฮอล์</span>
+            <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:2px;background:rgba(21,76,106,.3);display:inline-block;flex-shrink:0"></span>หน่วยจัดการ</span>
+            <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:2px;background:rgba(109,40,217,.3);display:inline-block;flex-shrink:0"></span>โครงการย่อย</span>
+          </div>
+        </div>
       </div>
-      <div class="col-lg-9">
-        <ul class="cal-list" id="calList"><li class="cal-item" style="opacity:.4;font-size:.85rem;padding:14px 0">กำลังโหลดปฏิทิน...</li></ul>
+      <!-- ขวา: รายละเอียดกิจกรรม -->
+      <div class="col ps-lg-5">
+        <div class="cal-title" style="visibility:hidden"><i class="bi bi-calendar3"></i>.</div>
+        <div id="calFilterHint"></div>
+        <div id="calEventList"><div class="cal-ev-empty">กำลังโหลด...</div></div>
       </div>
     </div>
   </div>
@@ -612,31 +661,108 @@
   }, { threshold: 0.5 });
   counts.forEach(el => io.observe(el));
 
-  // ─── Load calendar from JSON (CMS-managed) ──────────
-  const calIconMap = { road:'bi-cone-striped', alc:'bi-droplet-fill', blue:'bi-calendar-check-fill' };
-  const calLabelMap = { road:'ความปลอดภัยทางถนน', alc:'ลดการดื่มแอลกอฮอล์', blue:'โครงการ/รายงาน' };
+  // ─── Dual-Month Calendar ─────────────────────────────
+  const thaiMonthsFull=['','มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
+  const thaiAbbrMap={'ม.ค.':1,'ก.พ.':2,'มี.ค.':3,'เม.ย.':4,'พ.ค.':5,'มิ.ย.':6,'ก.ค.':7,'ส.ค.':8,'ก.ย.':9,'ต.ค.':10,'พ.ย.':11,'ธ.ค.':12};
+  const calIconMap ={road:'bi-cone-striped',alc:'bi-droplet-fill',blue:'bi-calendar-check-fill',sub:'bi-diagram-3'};
+  const calLabelMap={road:'ความปลอดภัยทางถนน',alc:'ลดการดื่มแอลกอฮอล์',blue:'หน่วยจัดการ',sub:'โครงการย่อย'};
+  let calAllEvents=[], calYear=2026, calMonth1=3, calMonth2=4, calSel=null; // calSel={month,day}
+
+  function nextMonth(m,y){ return m===12?{m:1,y:y+1}:{m:m+1,y}; }
+  function prevMonth(m,y){ return m===1?{m:12,y:y-1}:{m:m-1,y}; }
+
+  function buildMiniCal(containerId, month, year){
+    const evs=calAllEvents.filter(ev=>thaiAbbrMap[ev.month]===month);
+    const dayMap={};
+    evs.forEach(ev=>{const d=parseInt(ev.date);if(!dayMap[d])dayMap[d]=[];dayMap[d].push(ev);});
+    const firstDay=new Date(year,month-1,1).getDay();
+    const days=new Date(year,month,0).getDate();
+    const today=new Date(), isCur=today.getFullYear()===year&&today.getMonth()+1===month;
+    let cells='<div class="cal-cell"></div>'.repeat(firstDay);
+    for(let d=1;d<=days;d++){
+      const ev=dayMap[d]||[], has=ev.length>0;
+      const types=[...new Set(ev.map(e=>e.type))];
+      const cls=types.length>1?'multi':types[0]||'';
+      const isToday=isCur&&today.getDate()===d;
+      const isSel=calSel&&calSel.month===month&&calSel.day===d;
+      const badge=ev.length>1?`<span class="cal-badge">${ev.length}</span>`:'';
+      const cellCls=['cal-cell',has?`has-event ${cls}`:'',isToday?'today':'',isSel?'selected':''].filter(Boolean).join(' ');
+      cells+=`<div class="${cellCls}"${has?` onclick="calSelect(${month},${d})"`:''} >${d}${badge}</div>`;
+    }
+    document.getElementById(containerId).innerHTML=`
+      <div class="cal-mini-wrap">
+        <div class="cal-mini-header">${thaiMonthsFull[month]}</div>
+        <div class="cal-day-headers"><span>อา</span><span>จ</span><span>อ</span><span>พ</span><span>พฤ</span><span>ศ</span><span>ส</span></div>
+        <div class="cal-dates">${cells}</div>
+      </div>`;
+  }
+
+  function renderAll(){
+    const m2=nextMonth(calMonth1,calYear);
+    calMonth2=m2.m;
+    document.getElementById('calRangeLabel').textContent=`${thaiMonthsFull[calMonth1]} – ${thaiMonthsFull[calMonth2]} ${calYear+543}`;
+    buildMiniCal('calGrid1',calMonth1,calYear);
+    buildMiniCal('calGrid2',calMonth2,calYear);
+    renderEvList();
+  }
+
+  function renderEvList(){
+    const m2=nextMonth(calMonth1,calYear).m;
+    let evs=calAllEvents.filter(ev=>{const m=thaiAbbrMap[ev.month];return m===calMonth1||m===m2;});
+    evs.sort((a,b)=>{const am=thaiAbbrMap[a.month],bm=thaiAbbrMap[b.month];return am!==bm?am-bm:parseInt(a.date)-parseInt(b.date);});
+    const hint=document.getElementById('calFilterHint');
+    if(calSel){
+      evs=evs.filter(ev=>thaiAbbrMap[ev.month]===calSel.month&&parseInt(ev.date)===calSel.day);
+      hint.innerHTML=`<div class="cal-filter-hint"><i class="bi bi-funnel-fill me-1"></i>กรองวันที่ ${calSel.day} ${Object.keys(thaiAbbrMap).find(k=>thaiAbbrMap[k]===calSel.month)} <a onclick="calSelect(null)">ล้างตัวกรอง</a></div>`;
+    } else { hint.innerHTML=''; }
+    const el=document.getElementById('calEventList');
+    if(!evs.length){el.innerHTML=`<div class="cal-ev-empty"><i class="bi bi-calendar3 me-2"></i>${calSel?'ไม่มีกิจกรรมในวันที่เลือก':'ไม่มีกิจกรรมในช่วงนี้'}</div>`;return;}
+    const expand=s=>s.replace(/ต\./g,'ตำบล').replace(/อ\./g,'อำเภอ');
+    el.innerHTML=evs.map(ev=>{
+      const detail=(ev.detail||'').replace(/^พี่เลี้ยง:\s*/,'');
+      return `
+      <div class="cal-ev-item ${ev.type}${calSel&&thaiAbbrMap[ev.month]===calSel.month&&parseInt(ev.date)===calSel.day?' active':''}">
+        <div class="cal-ev-row">
+          <div class="cal-ev-date-col">
+            <div class="cal-ev-day">${ev.date}</div>
+            <div class="cal-ev-month-yr">${thaiMonthsFull[thaiAbbrMap[ev.month]]}<br>${calYear+543}</div>
+          </div>
+          <div class="cal-ev-content">
+            <span class="cal-ev-tag ${ev.type}"><i class="bi ${calIconMap[ev.type]} me-1"></i>${calLabelMap[ev.type]}</span>
+            <div class="cal-ev-title">${expand(ev.title)}</div>
+            ${detail?`<div class="cal-ev-detail"><i class="bi bi-person me-1"></i>${detail}</div>`:''}
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  window.calSelect=function(month,day){
+    if(month===null){calSel=null;}
+    else{calSel=(calSel&&calSel.month===month&&calSel.day===day)?null:{month,day};}
+    renderAll();
+  };
+  document.getElementById('calPrev').onclick=()=>{const p=prevMonth(calMonth1,calYear);calMonth1=p.m;calYear=p.y;calSel=null;renderAll();};
+  document.getElementById('calNext').onclick=()=>{const n=nextMonth(calMonth1,calYear);calMonth1=n.m;calYear=n.y;calSel=null;renderAll();};
+
+  const fallbackEvs=[
+    {date:'30',month:'มี.ค.',type:'road',title:'ลงพื้นที่ ARE2 — ต.น้ำอ้อม / ต.กุดเสลา อ.กันทรลักษ์',detail:'พี่เลี้ยง: ดร.ชญานิน กฤติยะโชติ, น.ส.จุฬารัตน์ วงศ์ใหญ่'},
+    {date:'31',month:'มี.ค.',type:'alc', title:'ลงพื้นที่ ARE2 — อ.กันทรลักษ์ / ต.หนองบัว อ.กันทรารมย์',detail:'พี่เลี้ยง: ดร.ชญานิน กฤติยะโชติ, น.ส.จุฬารัตน์ วงศ์ใหญ่'},
+    {date:'2', month:'เม.ย.',type:'road',title:'ลงพื้นที่ ARE2 — ต.หนองไฮ อ.เมืองศรีสะเกษ',detail:'พี่เลี้ยง: น.ส.พัชรินทร์ ธุษาวัน, ผศ.ดร.อนุพันธ์ สุวรรณพันธ์'},
+    {date:'15',month:'เม.ย.',type:'blue',title:'ส่งรายงานความก้าวหน้างวดที่ 2',detail:'ทุกโครงการย่อย 27 โครงการ'},
+    {date:'30',month:'เม.ย.',type:'blue',title:'ประชุมติดตามผลหน่วยจัดการ ครั้งที่ 2',detail:'มรภ.ศรีสะเกษ — ทีมพี่เลี้ยงทุกประเด็น'}
+  ];
+
   fetch('_data/calendar.json')
-    .then(r => r.json())
-    .then(data => {
-      const list = document.getElementById('calList');
-      if (!data.events || !data.events.length) { list.innerHTML = '<li class="cal-item" style="opacity:.5">ยังไม่มีกิจกรรม</li>'; return; }
-      list.innerHTML = data.events.map(ev => `
-        <li class="cal-item">
-          <div class="cal-date ${ev.type}">
-            <div class="cd-day">${ev.date}</div>
-            <div class="cd-mon">${ev.month}</div>
-          </div>
-          <div class="cal-info">
-            <span class="ci-tag ${ev.type}"><i class="bi ${calIconMap[ev.type]||'bi-calendar3'} me-1"></i>${calLabelMap[ev.type]||ev.type}</span>
-            <div class="ci-title">${ev.title}</div>
-            ${ev.detail ? `<div class="ci-sub">${ev.detail}</div>` : ''}
-          </div>
-        </li>`).join('');
+    .then(r=>r.json())
+    .then(data=>{
+      calAllEvents=data.events||[];
+      const now=new Date();
+      const next=calAllEvents.find(ev=>new Date(calYear,thaiAbbrMap[ev.month]-1,parseInt(ev.date))>=now);
+      if(next) calMonth1=thaiAbbrMap[next.month];
+      renderAll();
     })
-    .catch(() => {
-      // fallback: ถ้าเปิดผ่าน file:// ให้แสดงข้อความแนะนำ
-      document.getElementById('calList').innerHTML = '<li class="cal-item" style="opacity:.5;font-size:.82rem">ปฏิทินจะแสดงเมื่อ deploy บน Netlify — แก้ไขได้ที่ _data/calendar.json</li>';
-    });
+    .catch(()=>{calAllEvents=fallbackEvs;calMonth1=3;renderAll();});
 </script>
 <script>
 // ── PHOTO GALLERY CAROUSEL ──────────────────────────
