@@ -307,6 +307,16 @@
       padding-left: 4px;
     }
     .hl-thumb-wrap:hover .hl-play-btn { background: rgba(0,0,0,.82); transform: translate(-50%,-50%) scale(1.1); }
+    /* Image lightbox */
+    .img-modal-backdrop {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,.85);
+      z-index: 9999; align-items: center; justify-content: center;
+    }
+    .img-modal-backdrop.open { display: flex; }
+    .img-modal-box { position: relative; max-width: 92vw; max-height: 92vh; }
+    .img-modal-box img { max-width: 92vw; max-height: 92vh; border-radius: 10px; object-fit: contain; display: block; }
+    .img-modal-close { position: absolute; top: -38px; right: 0; background: none; border: none; color: white; font-size: 1.6rem; cursor: pointer; line-height: 1; }
+
     /* Video modal */
     .yt-modal-backdrop {
       display: none; position: fixed; inset: 0; background: rgba(0,0,0,.78);
@@ -606,6 +616,14 @@
   </div>
 </div>
 
+<!-- ══ IMAGE LIGHTBOX ═════════════════════════ -->
+<div class="img-modal-backdrop" id="imgModal" onclick="closeImgModal(event)">
+  <div class="img-modal-box">
+    <button class="img-modal-close" onclick="closeImgModal(null)"><i class="bi bi-x-lg"></i></button>
+    <img id="imgModalSrc" src="" alt="">
+  </div>
+</div>
+
 <!-- ══ VIDEO MODAL ════════════════════════════ -->
 <div class="yt-modal-backdrop" id="ytModal" onclick="closeYtModal(event)">
   <div class="yt-modal-box">
@@ -864,6 +882,19 @@
     });
   }
 
+  /* ── IMAGE LIGHTBOX ── */
+  window.openImgModal=function(src){
+    document.getElementById('imgModalSrc').src=src;
+    document.getElementById('imgModal').classList.add('open');
+    document.body.style.overflow='hidden';
+  };
+  window.closeImgModal=function(e){
+    if(e&&e.target!==document.getElementById('imgModal'))return;
+    document.getElementById('imgModal').classList.remove('open');
+    document.getElementById('imgModalSrc').src='';
+    document.body.style.overflow='';
+  };
+
   /* ── VIDEO MODAL ── */
   window.openYtModal=function(id){
     document.getElementById('ytFrame').src=`https://www.youtube.com/embed/${id}?autoplay=1`;
@@ -928,29 +959,34 @@
   function renderNews(items){
     const el=document.getElementById('newsList');
     if(!items||!items.length){el.innerHTML='<div class="col-12 text-center py-4 text-muted" style="font-size:.85rem">ยังไม่มีข่าวประชาสัมพันธ์</div>';return;}
-    el.innerHTML=items.slice(0,4).map(n=>{
+    const cards=items.slice(0,4).map(n=>{
       const ytId=n.video||'';
-      const thumbSrc=n.image||(ytId?`https://img.youtube.com/vi/${ytId}/hqdefault.jpg`:'');
-      const hasAction=ytId||n.url;
-      const cardClick=ytId?`onclick="openYtModal('${ytId}')" style="cursor:pointer"`:n.url?`onclick="window.open('${n.url}','_blank')" style="cursor:pointer"`:'';
-      const thumbHtml=thumbSrc
-        ?`<div class="news-thumb-wrap"${ytId?' onclick="openYtModal(\''+ytId+'\')" style="cursor:pointer"':''} style="position:relative;flex-shrink:0">
-            <img src="${thumbSrc}" class="news-thumb" alt="" onerror="this.outerHTML='<div class=\\"news-thumb-ph ${n.type}\\"><i class=\\"bi ${newsIconMap[n.type]||\'bi-newspaper\'}\\"></i></div>'">
-            ${ytId?'<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,.6);color:white;display:flex;align-items:center;justify-content:center;font-size:.9rem;padding-left:3px"><i class=\'bi bi-play-fill\'></i></div>':''}
-          </div>`
-        :`<div class="news-thumb-ph ${n.type}"><i class="bi ${newsIconMap[n.type]||'bi-newspaper'}"></i></div>`;
-      return `
-      <div class="col-md-6">
-        <div class="news-card${hasAction?' has-url':''}" ${cardClick}>
-          ${thumbHtml}
-          <div class="news-body">
-            <div class="news-source-tag ${n.type}"><i class="bi bi-building me-1"></i>${n.source}</div>
-            <div class="news-title">${n.title}</div>
-            <div class="news-meta"><i class="bi bi-calendar3 me-1"></i>${n.date}${ytId?' &nbsp;<i class="bi bi-play-circle" style="font-size:.75rem"></i>':n.url?' &nbsp;<i class="bi bi-box-arrow-up-right" style="font-size:.65rem"></i>':''}</div>
-          </div>
-        </div>
-      </div>`;
-    }).join('');
+      const thumbSrc=n.image||(ytId?'https://img.youtube.com/vi/'+ytId+'/hqdefault.jpg':'');
+      const icon=newsIconMap[n.type]||'bi-newspaper';
+      const hasAction=!!(ytId||n.url);
+      let clickAttr='';
+      if(ytId) clickAttr='onclick="openYtModal(\''+ytId+'\')" style="cursor:pointer"';
+      else if(n.url) clickAttr='onclick="window.open(\''+n.url+'\',\'_blank\')" style="cursor:pointer"';
+      else if(thumbSrc) clickAttr='onclick="openImgModal(\''+thumbSrc+'\')" style="cursor:pointer"';
+      const div=document.createElement('div');
+      div.className='col-md-6';
+      div.innerHTML=
+        '<div class="news-card'+(hasAction?' has-url':'')+'" '+clickAttr+'>'+
+          (thumbSrc
+            ? '<div style="position:relative;flex-shrink:0">'+
+                '<img src="'+thumbSrc+'" class="news-thumb" alt="">'+
+                (ytId?'<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,.6);color:white;display:flex;align-items:center;justify-content:center;font-size:.9rem;padding-left:3px"><i class="bi bi-play-fill"></i></div>':'')+
+              '</div>'
+            : '<div class="news-thumb-ph '+n.type+'"><i class="bi '+icon+'"></i></div>')+
+          '<div class="news-body">'+
+            '<div class="news-source-tag '+n.type+'"><i class="bi bi-building me-1"></i>'+n.source+'</div>'+
+            '<div class="news-title">'+n.title+'</div>'+
+            '<div class="news-meta"><i class="bi bi-calendar3 me-1"></i>'+n.date+(ytId?' &nbsp;<i class="bi bi-play-circle" style="font-size:.75rem"></i>':n.url?' &nbsp;<i class="bi bi-box-arrow-up-right" style="font-size:.65rem"></i>':'')+'</div>'+
+          '</div>'+
+        '</div>';
+      return div.outerHTML;
+    });
+    el.innerHTML=cards.join('');
   }
   const newsFallback=[
     {title:'ขับขี่ปลอดภัย ลดความเร็ว ลดอุบัติเหตุ ช่วงเทศกาลสงกรานต์ 2569',source:'ศปถ.จังหวัดศรีสะเกษ',date:'1 มี.ค. 2569',type:'road',image:'assets/news/songkran-2569.jpg',video:'',url:''},
