@@ -1,0 +1,25 @@
+{
+  "name": "Nodeflagship ศรีสะเกษ",
+  "short_name": "Node SSK",
+  "description": "หน่วยจัดการขับเคลื่อนประเด็นยุทธศาสตร์ จังหวัดศรีสะเกษ",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#154C6A",
+  "theme_color": "#154C6A",
+  "lang": "th",
+  "icons": [
+    {
+      "src": "/assets/logos/logo-node-ssk.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/logos/logo-node-ssk.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
