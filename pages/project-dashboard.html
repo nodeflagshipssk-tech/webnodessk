@@ -10,116 +10,131 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg main-navbar sticky-top">
-  <div class="container">
-        <a class="nav-brand-wrap" href="../index.html">
-      <img src="../assets/logos/logo-nf.png" alt="Nodeflagship" class="nav-brand-logo" onerror="this.style.display='none'">
-      <div class="nav-brand-text">
-        <span class="nav-brand-name">Nodeflagship</span>
-        <span class="nav-brand-sub">จังหวัดศรีสะเกษ &nbsp;•&nbsp; ปี 2568–2569</span>
-      </div>
-    </a>
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Toggle">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-        <div class="collapse navbar-collapse" id="mainNav">
-      <ul class="navbar-nav ms-auto align-items-lg-center">
-        <li class="nav-icon-item">
-          <a class="nav-icon-link" href="../index.html">
-            <i class="bi bi-house-fill nil-icon"></i>
-            <span class="nil-text">หน้าหลัก</span>
-          </a>
-        </li>
-        <li class="nav-icon-item dropdown">
-          <a class="nav-icon-link road-nav" href="#" role="button" data-bs-toggle="dropdown">
-            <i class="bi bi-cone-striped nil-icon"></i>
-            <span class="nil-text">ความปลอดภัยทางถนน</span>
-          </a>
-          <ul class="dropdown-menu road-menu">
-            <li><a class="dropdown-item" href="road-blackspot.html"><i class="bi bi-pin-map"></i> จุดเสี่ยงอุบัติเหตุ</a></li>
-            <li><a class="dropdown-item" href="road-accident.html"><i class="bi bi-exclamation-triangle"></i> สถิติอุบัติเหตุ</a></li>
-            <li><a class="dropdown-item" href="road-helmet.html"><i class="bi bi-shield-fill-check"></i> การสวมหมวกนิรภัย</a></li>
-            <li><a class="dropdown-item" href="road-capacity.html"><i class="bi bi-speedometer2"></i> ศักยภาพ ศปถ.</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="road-dashboard.html"><i class="bi bi-graph-up-arrow" style="color:var(--road)"></i> Dashboard ถนน</a></li>
-          </ul>
-        </li>
-        <li class="nav-icon-item dropdown">
-          <a class="nav-icon-link alc-nav" href="#" role="button" data-bs-toggle="dropdown">
-            <i class="bi bi-droplet-fill nil-icon"></i>
-            <span class="nil-text">ลดการดื่มแอลกอฮอล์</span>
-          </a>
-          <ul class="dropdown-menu alc-menu">
-            <li><a class="dropdown-item" href="alc-tambon.html"><i class="bi bi-houses"></i> ศักยภาพตำบล</a></li>
-            <li><a class="dropdown-item" href="alc-drinker.html"><i class="bi bi-person-x"></i> ผู้ดื่มแอลกอฮอล์</a></li>
-            <li><a class="dropdown-item" href="alc-merit.html"><i class="bi bi-flower1"></i> งานบุญปลอดเหล้า</a></li>
-            <li><a class="dropdown-item" href="alc-model.html"><i class="bi bi-person-check"></i> บุคคลต้นแบบ</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="alc-dashboard.html"><i class="bi bi-pie-chart" style="color:var(--alcohol)"></i> Dashboard แอลกอฮอล์</a></li>
-          </ul>
-        </li>
-        <li class="nav-icon-item dropdown">
-          <a class="nav-icon-link" href="#" role="button" data-bs-toggle="dropdown">
-            <i class="bi bi-bar-chart-line-fill nil-icon"></i>
-            <span class="nil-text">รายงานข้อมูล</span>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="road-dashboard.html"><i class="bi bi-graph-up-arrow" style="color:var(--road)"></i> Dashboard ถนน</a></li>
-            <li><a class="dropdown-item" href="alc-dashboard.html"><i class="bi bi-pie-chart" style="color:var(--alcohol)"></i> Dashboard แอลกอฮอล์</a></li>
-            <li><a class="dropdown-item" href="project-dashboard.html"><i class="bi bi-bar-chart-line" style="color:var(--primary)"></i> Dashboard ภาพรวม</a></li>
-          </ul>
-        </li>
-        <li class="nav-icon-item dropdown">
-          <a class="nav-icon-link" href="#" role="button" data-bs-toggle="dropdown">
-            <i class="bi bi-briefcase-fill nil-icon"></i>
-            <span class="nil-text">โครงการ</span>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="project-main.html"><i class="bi bi-building"></i> โครงการหน่วยจัดการ</a></li>
-            <li><a class="dropdown-item" href="project-sub.html"><i class="bi bi-diagram-3"></i> โครงการย่อย 27 โครงการ</a></li>
-            <li><a class="dropdown-item" href="project-team.html"><i class="bi bi-people"></i> คณะทำงาน</a></li>
-            <li><a class="dropdown-item" href="project-docs.html"><i class="bi bi-file-earmark-text"></i> คู่มือและเอกสาร</a></li>
-          </ul>
-        </li>
-        <li class="nav-icon-item">
-          <a class="nav-icon-link" href="project-docs.html">
-            <i class="bi bi-folder2-open nil-icon"></i>
-            <span class="nil-text">เอกสาร</span>
-          </a>
-        </li>
-        <li class="nav-icon-item">
-          <a class="nav-icon-link" href="contact.html">
-            <i class="bi bi-envelope-fill nil-icon"></i>
-            <span class="nil-text">ติดต่อ</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
 <div class="page-hero hero-blue"><div class="container">
   <nav aria-label="breadcrumb"><ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="../index.html">หน้าแรก</a></li>
-    <li class="breadcrumb-item"><a href="project-main.html">บริหารจัดการโครงการ</a></li>
-    <li class="breadcrumb-item active">Dashboard ภาพรวม</li>
+    <li class="breadcrumb-item"><a href="#">รายงานข้อมูล</a></li>
+    <li class="breadcrumb-item active">ข้อมูลตัวชี้วัดหน่วยจัดการ</li>
   </ol></nav>
   <h1><i class="bi bi-bar-chart-line me-2"></i>Dashboard ภาพรวม Node Flagship</h1>
   <p>สรุปผลการดำเนินงานทั้ง 27 โครงการย่อย ทั้ง 2 ประเด็นยุทธศาสตร์</p>
 </div></div>
 
 <div class="content-wrap">
-  <!-- Overall KPI -->
-  <div class="row g-3 mb-4">
-    <div class="col-6 col-md-3"><div class="mini-stat" style="border-top:3px solid var(--primary)"><div class="num blue">27</div><div class="lbl">โครงการย่อย</div></div></div>
-    <div class="col-6 col-md-3"><div class="mini-stat" style="border-top:3px solid #198754"><div class="num" style="color:#198754">—</div><div class="lbl">ดำเนินการแล้ว</div></div></div>
-    <div class="col-6 col-md-3"><div class="mini-stat" style="border-top:3px solid var(--road)"><div class="num road">—%</div><div class="lbl">งบประมาณใช้ไป</div></div></div>
-    <div class="col-6 col-md-3"><div class="mini-stat" style="border-top:3px solid var(--alcohol)"><div class="num alc">22</div><div class="lbl">อำเภอ</div></div></div>
+  <!-- ตัวชี้วัดเป้าหมายหน่วยจัดการ -->
+  <div class="row g-4 mb-4">
+    <div class="col-md-6">
+      <div class="info-card h-100">
+        <h5><i class="bi bi-cone-striped me-2" style="color:var(--road)"></i>ตัวชี้วัด — ความปลอดภัยทางถนน</h5>
+        <div class="mb-3">
+          <div class="d-flex justify-content-between mb-1">
+            <span style="font-size:.95rem;font-weight:500">อัตราผู้เสียชีวิต ≤ 15 คน/แสนประชากร</span>
+            <span class="badge-tech road">เป้าหมาย</span>
+          </div>
+          <div class="progress" style="height:10px;border-radius:8px">
+            <div class="progress-bar" style="width:0%;background:var(--road);border-radius:8px"></div>
+          </div>
+          <small style="color:var(--text-muted)">รอข้อมูล — อัปเดตรายไตรมาส</small>
+        </div>
+        <div class="mb-3">
+          <div class="d-flex justify-content-between mb-1">
+            <span style="font-size:.95rem;font-weight:500">อัตราผู้บาดเจ็บลดลง ≥ 5%</span>
+            <span class="badge-tech road">เป้าหมาย</span>
+          </div>
+          <div class="progress" style="height:10px;border-radius:8px">
+            <div class="progress-bar" style="width:0%;background:var(--road);border-radius:8px"></div>
+          </div>
+          <small style="color:var(--text-muted)">รอข้อมูล — อัปเดตรายไตรมาส</small>
+        </div>
+        <div>
+          <div class="d-flex justify-content-between mb-1">
+            <span style="font-size:.95rem;font-weight:500">เกิดกลไก ศปถ.อปท. + Node ขับเคลื่อน</span>
+            <span class="badge-tech road">เชิงคุณภาพ</span>
+          </div>
+          <div class="progress" style="height:10px;border-radius:8px">
+            <div class="progress-bar" style="width:0%;background:var(--road);border-radius:8px"></div>
+          </div>
+          <small style="color:var(--text-muted)">รอข้อมูล — ประเมินปลายปี</small>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="info-card h-100">
+        <h5><i class="bi bi-droplet me-2" style="color:var(--alcohol)"></i>ตัวชี้วัด — ลดการดื่มแอลกอฮอล์</h5>
+        <div class="mb-3">
+          <div class="d-flex justify-content-between mb-1">
+            <span style="font-size:.95rem;font-weight:500">ผู้ดื่มระดับเสี่ยงลดลง ≥ 20%</span>
+            <span class="badge-tech alc">เป้าหมาย</span>
+          </div>
+          <div class="progress" style="height:10px;border-radius:8px">
+            <div class="progress-bar" style="width:0%;background:var(--alcohol);border-radius:8px"></div>
+          </div>
+          <small style="color:var(--text-muted)">รอข้อมูล — อัปเดตรายไตรมาส</small>
+        </div>
+        <div class="mb-3">
+          <div class="d-flex justify-content-between mb-1">
+            <span style="font-size:.95rem;font-weight:500">บุคคลต้นแบบเลิกดื่ม ≥ 6 เดือน</span>
+            <span class="badge-tech alc">เป้าหมาย</span>
+          </div>
+          <div class="progress" style="height:10px;border-radius:8px">
+            <div class="progress-bar" style="width:0%;background:var(--alcohol);border-radius:8px"></div>
+          </div>
+          <small style="color:var(--text-muted)">รอข้อมูล — อัปเดตรายไตรมาส</small>
+        </div>
+        <div>
+          <div class="d-flex justify-content-between mb-1">
+            <span style="font-size:.95rem;font-weight:500">เกิดกลไก พชอ./พชต. + Node ขับเคลื่อน</span>
+            <span class="badge-tech alc">เชิงคุณภาพ</span>
+          </div>
+          <div class="progress" style="height:10px;border-radius:8px">
+            <div class="progress-bar" style="width:0%;background:var(--alcohol);border-radius:8px"></div>
+          </div>
+          <small style="color:var(--text-muted)">รอข้อมูล — ประเมินปลายปี</small>
+        </div>
+      </div>
+    </div>
   </div>
 
+  <!-- บันไดผลลัพธ์ -->
+  <div class="info-card mb-4">
+    <h5><i class="bi bi-ladder me-2" style="color:var(--primary)"></i>บันไดผลลัพธ์ (Outcome Ladder)</h5>
+    <div class="row g-3 mt-1">
+      <div class="col-6 col-md-3">
+        <div style="background:rgba(21,76,106,.06);border-radius:14px;padding:16px;text-align:center;border-top:4px solid var(--primary)">
+          <div style="font-size:1.8rem;font-weight:800;color:var(--primary)">1</div>
+          <div style="font-weight:700;font-size:1rem;margin-bottom:6px">กิจกรรม</div>
+          <div style="font-size:.9rem;color:var(--text-muted);font-weight:300">การดำเนินงานตามแผน ครบตามไทม์ไลน์</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div style="background:rgba(212,96,10,.06);border-radius:14px;padding:16px;text-align:center;border-top:4px solid var(--road)">
+          <div style="font-size:1.8rem;font-weight:800;color:var(--road)">2</div>
+          <div style="font-weight:700;font-size:1rem;margin-bottom:6px">ผลผลิต</div>
+          <div style="font-size:.9rem;color:var(--text-muted);font-weight:300">จำนวนผู้เข้าร่วม พื้นที่ดำเนินการ สื่อ/เครื่องมือ</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div style="background:rgba(46,125,94,.06);border-radius:14px;padding:16px;text-align:center;border-top:4px solid var(--alcohol)">
+          <div style="font-size:1.8rem;font-weight:800;color:var(--alcohol)">3</div>
+          <div style="font-weight:700;font-size:1rem;margin-bottom:6px">ผลลัพธ์</div>
+          <div style="font-size:.9rem;color:var(--text-muted);font-weight:300">พฤติกรรมเปลี่ยน กลไกเกิด ตัวชี้วัดบรรลุ</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div style="background:rgba(25,135,84,.06);border-radius:14px;padding:16px;text-align:center;border-top:4px solid #198754">
+          <div style="font-size:1.8rem;font-weight:800;color:#198754">4</div>
+          <div style="font-weight:700;font-size:1rem;margin-bottom:6px">ผลกระทบ</div>
+          <div style="font-size:.9rem;color:var(--text-muted);font-weight:300">อุบัติเหตุลด ผู้ดื่มเสี่ยงลด ยั่งยืนในพื้นที่</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts -->
   <div class="row g-4 mb-4">
     <div class="col-md-6">
       <div class="info-card">
-        <h5><i class="bi bi-bar-chart me-2"></i>ความก้าวหน้ารายประเด็น (ตัวอย่าง)</h5>
+        <h5><i class="bi bi-bar-chart me-2"></i>ความก้าวหน้ารายประเด็น</h5>
         <canvas id="chartProgress" height="200"></canvas>
       </div>
     </div>
@@ -136,27 +151,24 @@
     <div class="col-md-6">
       <a href="road-dashboard.html" style="text-decoration:none">
         <div class="launch-card border-road" style="cursor:pointer">
-          <h5 class="fw-bold mb-2"><i class="bi bi-cone-striped me-2" style="color:var(--road)"></i>Dashboard ความปลอดภัยทางถนน</h5>
-          <p class="text-muted mb-0" style="font-size:.88rem;font-weight:300">จุดเสี่ยง อุบัติเหตุ หมวกนิรภัย ศักยภาพ ศปถ.</p>
+          <h5 class="fw-bold mb-2"><i class="bi bi-cone-striped me-2" style="color:var(--road)"></i>ข้อมูลความปลอดภัยทางถนน</h5>
+          <p class="text-muted mb-0" style="font-weight:300">จุดเสี่ยง · อุบัติเหตุ · ศักยภาพ ศปถ. · ด่านชุมชน</p>
         </div>
       </a>
     </div>
     <div class="col-md-6">
       <a href="alc-dashboard.html" style="text-decoration:none">
         <div class="launch-card border-alc" style="cursor:pointer">
-          <h5 class="fw-bold mb-2"><i class="bi bi-droplet me-2" style="color:var(--alcohol)"></i>Dashboard การลดการบริโภคแอลกอฮอล์</h5>
-          <p class="text-muted mb-0" style="font-size:.88rem;font-weight:300">ศักยภาพตำบล ผู้ดื่ม งานบุญ บุคคลต้นแบบ</p>
+          <h5 class="fw-bold mb-2"><i class="bi bi-droplet me-2" style="color:var(--alcohol)"></i>ข้อมูลลดการดื่มแอลกอฮอล์</h5>
+          <p class="text-muted mb-0" style="font-weight:300">ศักยภาพตำบล · คัดกรอง · งานบุญ · บุคคลต้นแบบ</p>
         </div>
       </a>
     </div>
   </div>
 
   <div class="mt-2 d-flex gap-2">
-    <a href="project-main.html" class="btn btn-outline-secondary" style="border-radius:12px;font-weight:500">
-      <i class="bi bi-arrow-left me-2"></i>บริหารจัดการโครงการ
-    </a>
     <a href="../index.html" class="btn btn-outline-secondary" style="border-radius:12px;font-weight:500">
-      <i class="bi bi-house me-2"></i>หน้าหลัก
+      <i class="bi bi-house me-2"></i>กลับหน้าหลัก
     </a>
   </div>
 </div>
@@ -164,15 +176,15 @@
 <div class="partners-section">
   <div class="partners-label">หน่วยงานที่สนับสนุน</div>
   <div class="partners-box">
-    <img src="../assets/logos/logo-ddpm.png" alt="ปภ." onerror="this.style.display='none'">
+    <div class="partners-logo-wrap"><img src="../assets/logos/logo-ddpm.png" alt="ปภ." onerror="this.style.display='none'"></div>
     <div class="partners-divider"></div>
-    <img src="../assets/logos/logo-sskru.png" alt="มรภ.ศรีสะเกษ" onerror="this.src='https://www.sskru.ac.th/wp-content/uploads/2023/05/SSKRU-LOGO1.png'">
+    <div class="partners-logo-wrap"><img src="../assets/logos/logo-sskru.png" alt="มรภ.ศรีสะเกษ" onerror="this.src='https://www.sskru.ac.th/wp-content/uploads/2023/05/SSKRU-LOGO1.png'"></div>
     <div class="partners-divider"></div>
-    <img src="../assets/logos/logo-thaihealth.png" alt="สสส." onerror="this.src='https://www.thaihealth.or.th/wp-content/uploads/2023/08/Logo-thaihealth.png'">
+    <div class="partners-logo-wrap"><img src="../assets/logos/logo-thaihealth.png" alt="สสส." onerror="this.src='https://www.thaihealth.or.th/wp-content/uploads/2023/08/Logo-thaihealth.png'"></div>
     <div class="partners-divider"></div>
-    <img src="../assets/logos/logo-section6.png" alt="สำนัก 6" onerror="this.style.display='none'">
+    <div class="partners-logo-wrap"><img src="../assets/logos/logo-section6.png" alt="สำนัก 6" onerror="this.style.display='none'"></div>
     <div class="partners-divider"></div>
-    <img src="../assets/logos/logo-policy-center.png" alt="ศูนย์พัฒนานโยบาย" onerror="this.style.display='none'">
+    <div class="partners-logo-wrap"><img src="../assets/logos/logo-policy-center.png" alt="ศูนย์พัฒนานโยบาย" onerror="this.style.display='none'"></div>
   </div>
 </div>
 

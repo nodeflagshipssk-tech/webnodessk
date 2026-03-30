@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ด่านชุมชนปากหวาน — Nodeflagship ศรีสะเกษ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../assets/css/portal.css">
+</head>
+<body>
+<div class="page-hero hero-road">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../index.html">หน้าแรก</a></li>
+        <li class="breadcrumb-item"><a href="#">ความปลอดภัยทางถนน</a></li>
+        <li class="breadcrumb-item active">ระบบบันทึกด่านชุมชนปากหวาน</li>
+      </ol>
+    </nav>
+    <h1><i class="bi bi-sign-stop me-2"></i>ระบบบันทึกข้อมูลด่านชุมชนปากหวาน</h1>
+    <p>บันทึกและติดตามข้อมูลการดำเนินงานด่านชุมชนปากหวาน เพื่อลดอุบัติเหตุทางถนนในพื้นที่</p>
+  </div>
+</div>
+
+<div class="content-wrap">
+
+  <div class="launch-card border-road">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <h4 class="fw-bold mb-2"><i class="bi bi-sign-stop me-2" style="color:var(--road)"></i>ระบบบันทึกข้อมูลด่านชุมชนปากหวาน</h4>
+        <p class="text-muted mb-3" style="font-weight:300">
+          แอปพลิเคชันสำหรับบันทึกข้อมูลการปฏิบัติงานด่านชุมชนปากหวาน
+          ครอบคลุม 10 จังหวัดภาคอีสาน พร้อม Dashboard วิเคราะห์และแผนที่ Leaflet
+          พัฒนาด้วย Google Apps Script
+        </p>
+        <div class="d-flex gap-2 flex-wrap">
+          <a href="https://script.google.com/macros/s/AKfycbyz3bhoB4dwxYGr4jz_QWyjLbSpk5CaVSVhKBsPa5Fegaf2n3HsM1wFbHSNGxSxSazg/exec" target="_blank" class="btn-launch road">
+            <i class="bi bi-box-arrow-up-right"></i> เปิดระบบ
+          </a>
+          <a href="https://script.google.com/macros/s/AKfycbyz3bhoB4dwxYGr4jz_QWyjLbSpk5CaVSVhKBsPa5Fegaf2n3HsM1wFbHSNGxSxSazg/exec" target="_blank" class="btn btn-outline-secondary" style="border-radius:12px;padding:12px 20px;font-weight:500">
+            <i class="bi bi-info-circle me-1"></i> คู่มือการใช้งาน
+          </a>
+        </div>
+      </div>
+      <div class="col-md-4 text-center mt-3 mt-md-0">
+        <img src="../assets/apps/หน้าจอด่านชุมชน.jpg" alt="หน้าจอด่านชุมชน"
+             style="width:100px;height:100px;object-fit:cover;object-position:center top;border-radius:12px;box-shadow:0 4px 14px rgba(0,0,0,.15)"
+             onerror="this.style.display='none'">
+      </div>
+    </div>
+  </div>
+
+  <!-- ส่วนที่ 1: หน้าจอระบบ -->
+  <div class="info-card mb-4">
+    <h5><i class="bi bi-display me-2" style="color:var(--road)"></i>หน้าจอระบบ</h5>
+    <div class="row g-3">
+      <div class="col-6 col-md-3">
+        <a href="../assets/apps/ด่านชุมชน 1.jpg" target="_blank" style="display:block;border-radius:10px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.10)">
+          <img src="../assets/apps/ด่านชุมชน 1.jpg" alt="ด่านชุมชน 1" style="width:100%;height:150px;object-fit:cover;object-position:center top;display:block" onerror="imgFallback(this,150)">
+        </a>
+        <p style="font-size:.82rem;font-weight:500;color:var(--road);margin-top:8px;text-align:center">หน้าจอ 1</p>
+      </div>
+      <div class="col-6 col-md-3">
+        <a href="../assets/apps/ด่านชุมชน 2.jpg" target="_blank" style="display:block;border-radius:10px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.10)">
+          <img src="../assets/apps/ด่านชุมชน 2.jpg" alt="ด่านชุมชน 2" style="width:100%;height:150px;object-fit:cover;object-position:center top;display:block" onerror="imgFallback(this,150)">
+        </a>
+        <p style="font-size:.82rem;font-weight:500;color:var(--road);margin-top:8px;text-align:center">หน้าจอ 2</p>
+      </div>
+      <div class="col-6 col-md-3">
+        <a href="../assets/apps/ด่านชุมชน 3.jpg" target="_blank" style="display:block;border-radius:10px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.10)">
+          <img src="../assets/apps/ด่านชุมชน 3.jpg" alt="ด่านชุมชน 3" style="width:100%;height:150px;object-fit:cover;object-position:center top;display:block" onerror="imgFallback(this,150)">
+        </a>
+        <p style="font-size:.82rem;font-weight:500;color:var(--road);margin-top:8px;text-align:center">หน้าจอ 3</p>
+      </div>
+      <div class="col-6 col-md-3">
+        <a href="../assets/apps/ด่านชุมชน 4.jpg" target="_blank" style="display:block;border-radius:10px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.10)">
+          <img src="../assets/apps/ด่านชุมชน 4.jpg" alt="ด่านชุมชน 4" style="width:100%;height:150px;object-fit:cover;object-position:center top;display:block" onerror="imgFallback(this,150)">
+        </a>
+        <p style="font-size:.82rem;font-weight:500;color:var(--road);margin-top:8px;text-align:center">หน้าจอ 4</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ส่วนที่ 2: ภาพการปฏิบัติงานด่านชุมชน -->
+  <div class="info-card mb-4">
+    <h5><i class="bi bi-sign-stop me-2" style="color:var(--road)"></i>การปฏิบัติงานด่านชุมชนปากหวาน</h5>
+    <div class="row g-3">
+      <div class="col-md-6">
+        <a href="../assets/apps/ด่านชุมชน-real-1.jpg" target="_blank" style="display:block;border-radius:10px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.10)">
+          <img src="../assets/apps/ด่านชุมชน-real-1.jpg" alt="การปฏิบัติงานด่านชุมชน"
+               style="width:100%;height:220px;object-fit:cover;object-position:center;display:block"
+               onerror="imgFallback(this,220)">
+        </a>
+        <p style="font-size:.82rem;font-weight:500;color:var(--text-muted);margin-top:8px;text-align:center">การปฏิบัติงานด่านชุมชน</p>
+      </div>
+      <div class="col-md-6">
+        <a href="../assets/apps/ด่านชุมชน-real-2.jpg" target="_blank" style="display:block;border-radius:10px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.10)">
+          <img src="../assets/apps/ด่านชุมชน-real-2.jpg" alt="ด่านชุมชนปากหวานในพื้นที่"
+               style="width:100%;height:220px;object-fit:cover;object-position:center;display:block"
+               onerror="imgFallback(this,220)">
+        </a>
+        <p style="font-size:.82rem;font-weight:500;color:var(--text-muted);margin-top:8px;text-align:center">ด่านชุมชนปากหวานในพื้นที่</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ฟีเจอร์ + ข้อมูล (equal height) -->
+  <div class="row g-4 mb-4">
+    <div class="col-md-6 d-flex flex-column">
+      <div class="info-card h-100">
+        <h5><i class="bi bi-stars me-2"></i>ฟีเจอร์หลักของระบบ</h5>
+        <div class="feature-item">
+          <div class="fi-icon road"><i class="bi bi-pencil-square"></i></div>
+          <div class="fi-text">
+            <strong>บันทึกข้อมูลด่านชุมชน</strong>
+            บันทึกผลการปฏิบัติงาน จำนวนรถที่ตรวจ ผู้ฝ่าฝืน และกิจกรรมรณรงค์
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon road"><i class="bi bi-map"></i></div>
+          <div class="fi-text">
+            <strong>แผนที่ตำแหน่งด่าน (Leaflet)</strong>
+            แสดงตำแหน่งด่านชุมชนบนแผนที่ interactive พร้อม marker รายละเอียด
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon road"><i class="bi bi-bar-chart"></i></div>
+          <div class="fi-text">
+            <strong>Dashboard วิเคราะห์ข้อมูล</strong>
+            กราฟ Chart.js แสดงสถิติรายด่าน รายอำเภอ และแนวโน้มตามช่วงเวลา
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon road"><i class="bi bi-shield-check"></i></div>
+          <div class="fi-text">
+            <strong>สิทธิ์ 3 ระดับ</strong>
+            จังหวัด (ดูทั้งหมด) · อำเภอ (ดูและแก้ไข) · ตำบล (บันทึกของตนเอง)
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon road"><i class="bi bi-camera"></i></div>
+          <div class="fi-text">
+            <strong>จัดการรูปภาพ</strong>
+            อัปโหลดและจัดเก็บภาพการปฏิบัติงานด่านชุมชนพร้อม folder แยกรายด่าน
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 d-flex flex-column">
+      <div class="info-card h-100">
+        <h5><i class="bi bi-layers me-2"></i>ข้อมูลที่บันทึกในระบบ</h5>
+        <div class="feature-item">
+          <div class="fi-icon road"><i class="bi bi-geo-alt"></i></div>
+          <div class="fi-text">
+            <strong>ตำแหน่งด่านชุมชน</strong>
+            พิกัด GPS จังหวัด อำเภอ ตำบล ชื่อด่าน
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon road"><i class="bi bi-calendar-date"></i></div>
+          <div class="fi-text">
+            <strong>วัน เวลา และผลปฏิบัติงาน</strong>
+            วันที่ตั้งด่าน จำนวนชม. จำนวนรถ/คน พฤติกรรมที่ตรวจพบ
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon road"><i class="bi bi-people"></i></div>
+          <div class="fi-text">
+            <strong>ผู้ปฏิบัติงาน</strong>
+            ชื่อผู้บันทึก หน่วยงาน ตำแหน่ง จำนวนเจ้าหน้าที่
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon road"><i class="bi bi-globe-asia-australia"></i></div>
+          <div class="fi-text">
+            <strong>ครอบคลุม 10 จังหวัดอีสาน</strong>
+            นครราชสีมา · บุรีรัมย์ · สุรินทร์ · ศรีสะเกษ · อุบลฯ · ยโสธร · ชัยภูมิ · อำนาจเจริญ · มหาสารคาม · ร้อยเอ็ด
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon road"><i class="bi bi-sign-stop"></i></div>
+          <div class="fi-text">
+            <strong>ข้อมูลด่านชุมชน</strong>
+            จุดตั้งด่าน ช่วงเวลา ผลการตรวจ ภาพประกอบ
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- เทคโนโลยี full-width -->
+  <div class="info-card mb-4">
+    <h5><i class="bi bi-tools me-2"></i>เทคโนโลยีที่ใช้</h5>
+    <div class="d-flex flex-wrap gap-2">
+      <span class="badge-tech road">Google Apps Script</span>
+      <span class="badge-tech blue">Bootstrap 5</span>
+      <span class="badge-tech blue">Leaflet.js</span>
+      <span class="badge-tech blue">Chart.js 4.4</span>
+      <span class="badge-tech blue">Google Sheets</span>
+      <span class="badge-tech blue">SweetAlert2</span>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <a href="../index.html" class="btn btn-outline-secondary" style="border-radius:12px;font-weight:500">
+      <i class="bi bi-arrow-left me-2"></i>กลับหน้าหลัก
+    </a>
+  </div>
+
+</div>
+
+<div class="partners-section">
+  <div class="partners-label">หน่วยงานที่สนับสนุน</div>
+  <div class="partners-box">
+    <div class="partners-logo-wrap"><img src="../assets/logos/logo-ddpm.png" alt="ปภ." onerror="this.style.display='none'"></div>
+    <div class="partners-divider"></div>
+    <div class="partners-logo-wrap"><img src="../assets/logos/logo-sskru.png" alt="มรภ.ศรีสะเกษ" onerror="this.src='https://www.sskru.ac.th/wp-content/uploads/2023/05/SSKRU-LOGO1.png'"></div>
+    <div class="partners-divider"></div>
+    <div class="partners-logo-wrap"><img src="../assets/logos/logo-thaihealth.png" alt="สสส." onerror="this.src='https://www.thaihealth.or.th/wp-content/uploads/2023/08/Logo-thaihealth.png'"></div>
+    <div class="partners-divider"></div>
+    <div class="partners-logo-wrap"><img src="../assets/logos/logo-section6.png" alt="สำนัก 6" onerror="this.style.display='none'"></div>
+    <div class="partners-divider"></div>
+    <div class="partners-logo-wrap"><img src="../assets/logos/logo-policy-center.png" alt="ศูนย์พัฒนานโยบาย" onerror="this.style.display='none'"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-text">
+      <p class="mb-1"><strong style="opacity:.9">หน่วยจัดการขับเคลื่อนประเด็นยุทธศาสตร์ (Nodeflagship) จังหวัดศรีสะเกษ</strong></p>
+      <p class="mb-0">สนับสนุนโดย สำนักสร้างสรรค์โอกาส (สำนัก 6) สำนักงานกองทุนสนับสนุนการสร้างเสริมสุขภาพ (สสส.) | ปี 2568–2569</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function imgFallback(img, h) {
+  img.style.display = 'none';
+  var ph = document.createElement('div');
+  ph.style.cssText = 'height:'+h+'px;border-radius:10px;background:#f5f7fa;border:2px dashed #d0dae6;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#94a3b8';
+  ph.innerHTML = '<i class="bi bi-image" style="font-size:1.8rem"></i><span style="font-size:.85rem">รอรูปภาพ</span>';
+  img.parentElement.appendChild(ph);
+  img.parentElement.href = '#';
+}
+</script>
+<script>
+(function(){
+  var p=location.pathname.split('/').pop()||'index.html';
+  document.querySelectorAll('.main-navbar .dropdown-item').forEach(function(a){
+    if((a.getAttribute('href')||'')===p){
+      a.classList.add('active');
+      var dt=a.closest('.dropdown')&&a.closest('.dropdown').querySelector('.nav-link.dropdown-toggle');
+      if(dt)dt.classList.add('active');
+    }
+  });
+  document.querySelectorAll('.main-navbar .nav-link:not(.dropdown-toggle)').forEach(function(a){
+    if((a.getAttribute('href')||'').split('/').pop()===p)a.classList.add('active');
+  });
+})();
+</script>
+</body>
+</html>
