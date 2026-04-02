@@ -1022,7 +1022,7 @@
   function renderNews(items){
     const el=document.getElementById('newsList');
     if(!items||!items.length){el.innerHTML='<div class="col-12 text-center py-4 text-muted" style="font-size:.85rem">ยังไม่มีข่าวประชาสัมพันธ์</div>';return;}
-    const cards=items.slice(0,4).map(n=>{
+    const cards=items.slice(0,6).map(n=>{
       const ytId=n.video||'';
       const thumbSrc=n.image||(ytId?'https://img.youtube.com/vi/'+ytId+'/hqdefault.jpg':'');
       const icon=newsIconMap[n.type]||'bi-newspaper';

@@ -11,33 +11,6 @@
       "featured": true
     },
     {
-      "title": "ขับขี่ปลอดภัย ลดความเร็ว ลดอุบัติเหตุ ช่วงเทศกาลสงกรานต์ 2569",
-      "source": "ศปถ.จังหวัดศรีสะเกษ",
-      "date": "1 มี.ค. 2569",
-      "type": "road",
-      "image": "assets/news/songkran-2569.jpg",
-      "video": "",
-      "url": ""
-    },
-    {
-      "title": "10 Agenda + วาระพิเศษ ศรีสะเกษ",
-      "source": "หน่วยจัดการ Nodeflagship ศรีสะเกษ",
-      "date": "2568",
-      "type": "blue",
-      "image": "",
-      "video": "7NOg7-T-bIA",
-      "url": "https://www.youtube.com/watch?v=7NOg7-T-bIA"
-    },
-    {
-      "title": "ศปถ.กันทรลักษ์ติดตามหนุนเสริม ศปถ.อปท.โซนสวนกล้วย",
-      "source": "ศปถ.อำเภอกันทรลักษ์",
-      "date": "26 มี.ค. 2569",
-      "type": "road",
-      "image": "assets/news/suan-kluay-2569.jpg",
-      "video": "",
-      "url": ""
-    },
-    {
       "title": "สื่อเทศกาลสงกรานต์ 2569 — รณรงค์ความปลอดภัยทางถนน",
       "source": "มูลนิธิไทยโรดส์ / ศูนย์ข้อมูลอุบัติเหตุ",
       "date": "เม.ย. 2569",
@@ -54,6 +27,33 @@
       "image": "",
       "video": "",
       "url": "http://www.accident.or.th/th/material/2025-08-24-08-03"
+    },
+    {
+      "title": "ศปถ.กันทรลักษ์ติดตามหนุนเสริม ศปถ.อปท.โซนสวนกล้วย",
+      "source": "ศปถ.อำเภอกันทรลักษ์",
+      "date": "26 มี.ค. 2569",
+      "type": "road",
+      "image": "assets/news/suan-kluay-2569.jpg",
+      "video": "",
+      "url": ""
+    },
+    {
+      "title": "ขับขี่ปลอดภัย ลดความเร็ว ลดอุบัติเหตุ ช่วงเทศกาลสงกรานต์ 2569",
+      "source": "ศปถ.จังหวัดศรีสะเกษ",
+      "date": "1 มี.ค. 2569",
+      "type": "road",
+      "image": "assets/news/songkran-2569.jpg",
+      "video": "",
+      "url": ""
+    },
+    {
+      "title": "10 Agenda + วาระพิเศษ ศรีสะเกษ",
+      "source": "หน่วยจัดการ Nodeflagship ศรีสะเกษ",
+      "date": "2568",
+      "type": "blue",
+      "image": "",
+      "video": "7NOg7-T-bIA",
+      "url": "https://www.youtube.com/watch?v=7NOg7-T-bIA"
     }
   ]
 }
