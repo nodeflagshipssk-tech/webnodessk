@@ -308,13 +308,21 @@
       transition: background .2s;
     }
     .kickoff-banner:hover .kickoff-btn { background: rgba(255,255,255,.35); }
-    /* ข่าวเด่น badge */
+    /* ข่าวเด่น + ใหม่ badge */
     @keyframes featBlink { 0%,100%{opacity:1} 50%{opacity:.4} }
     .news-featured-badge {
       display: inline-flex; align-items: center; gap: 4px;
       background: #e53e3e; color: white; font-size: .68rem; font-weight: 700;
       padding: 2px 10px; border-radius: 20px; margin-bottom: 5px;
       animation: featBlink 1.2s ease-in-out infinite;
+    }
+    @keyframes newBlink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.95)} }
+    .news-new-badge {
+      display: inline-flex; align-items: center; gap: 3px;
+      background: #16a34a; color: white; font-size: .66rem; font-weight: 700;
+      padding: 2px 8px; border-radius: 20px; margin-right: 5px; vertical-align: middle;
+      animation: newBlink 1.6s ease-in-out infinite;
+      letter-spacing: .3px;
     }
 
     /* ─── SECTION COMMON ───────────────────────── */
@@ -600,7 +608,7 @@
 <!-- ══ CALENDAR SECTION ═══════════════════════ -->
 <div class="cal-section">
   <div class="container">
-    <a class="kickoff-banner" href="https://script.google.com/macros/s/AKfycbyEZwahbtePbWxK3WQUO6coXRj35v5kA7i1GEmxllUgbekyPJuPaXJOepy_Xz4CTRnI/exec" target="_blank">
+    <a class="kickoff-banner" href="https://script.google.com/macros/s/AKfycbx4tsP-tBIo4_D5xVr4xc3BrQPJxU6e-zYwJH0rLtg38QIjYQMmaX7XUTqEET9fDubU/exec" target="_blank">
       <span class="kickoff-badge">⚡ Kickoff!!!</span>
       <span class="kickoff-text"><strong>ระบบบูรณาการข้อมูลความปลอดภัยทางถนน</strong><br><span style="font-size:1rem;opacity:.95;font-weight:500">ประเมินศักยภาพ &nbsp;·&nbsp; จุดเสี่ยง &nbsp;·&nbsp; ข้อมูลอุบัติเหตุ &nbsp;·&nbsp; ด่านชุมชน</span><br><span style="font-weight:300;font-size:.9rem;opacity:.85">พื้นที่นำร่อง 8 อำเภอ 9 ตำบล รับทุน สสส. &nbsp;·&nbsp; <i class="bi bi-calendar-event"></i> 7 เม.ย. 2569</span></span>
       <span class="kickoff-btn" style="align-self:stretch;display:flex;align-items:center;gap:8px"><img src="assets/apps/icon-4apps.jpg" alt="4 apps" style="height:32px;width:32px;object-fit:contain;border-radius:6px;flex-shrink:0">เข้าใช้งานระบบ</span>
@@ -675,6 +683,12 @@
     </div>
     <div class="row g-3" id="newsList">
       <div class="col-12 text-center py-4 text-muted" style="font-size:.85rem">กำลังโหลด...</div>
+    </div>
+    <div class="text-center mt-4" id="newsMoreWrap" style="display:none">
+      <button onclick="showAllNews()" id="newsMoreBtn"
+        style="border:1.5px solid #c8d5e0;background:white;border-radius:30px;padding:9px 28px;font-size:1rem;font-weight:500;color:var(--primary);cursor:pointer;transition:all .18s;font-family:Kanit,sans-serif">
+        <i class="bi bi-chevron-down me-1"></i>ดูข่าวทั้งหมด
+      </button>
     </div>
   </div>
 </div>
@@ -1019,14 +1033,15 @@
 
   /* ── NEWS ── */
   const newsIconMap={road:'bi-cone-striped',alc:'bi-droplet-fill',blue:'bi-megaphone-fill'};
-  function renderNews(items){
+  let allNewsItems=[];
+  function renderNewsCards(items){
     const el=document.getElementById('newsList');
-    if(!items||!items.length){el.innerHTML='<div class="col-12 text-center py-4 text-muted" style="font-size:.85rem">ยังไม่มีข่าวประชาสัมพันธ์</div>';return;}
-    const cards=items.slice(0,6).map(n=>{
+    const cards=items.map(n=>{
       const ytId=n.video||'';
       const thumbSrc=n.image||(ytId?'https://img.youtube.com/vi/'+ytId+'/hqdefault.jpg':'');
       const icon=newsIconMap[n.type]||'bi-newspaper';
       const hasAction=!!(ytId||n.url);
+      const isNew=n.newUntil&&new Date()<new Date(n.newUntil);
       let clickAttr='';
       if(ytId) clickAttr='onclick="openYtModal(\''+ytId+'\')" style="cursor:pointer"';
       else if(n.url) clickAttr='onclick="window.open(\''+n.url+'\',\'_blank\')" style="cursor:pointer"';
@@ -1044,13 +1059,26 @@
           '<div class="news-body">'+
             (n.featured?'<div class="news-featured-badge"><i class="bi bi-star-fill me-1"></i>ข่าวเด่น</div>':'')+
             '<div class="news-source-tag '+n.type+'"><i class="bi bi-building me-1"></i>'+n.source+'</div>'+
-            '<div class="news-title">'+n.title+'</div>'+
+            '<div class="news-title">'+(isNew?'<span class="news-new-badge"><i class="bi bi-circle-fill" style="font-size:.45rem"></i>ใหม่</span>':'')+n.title+'</div>'+
             '<div class="news-meta"><i class="bi bi-calendar3 me-1"></i>'+n.date+(ytId?' &nbsp;<i class="bi bi-play-circle" style="font-size:.75rem"></i>':n.url?' &nbsp;<i class="bi bi-box-arrow-up-right" style="font-size:.65rem"></i>':'')+'</div>'+
           '</div>'+
         '</div>';
       return div.outerHTML;
     });
     el.innerHTML=cards.join('');
+  }
+  function renderNews(items){
+    const el=document.getElementById('newsList');
+    if(!items||!items.length){el.innerHTML='<div class="col-12 text-center py-4 text-muted" style="font-size:.85rem">ยังไม่มีข่าวประชาสัมพันธ์</div>';return;}
+    allNewsItems=items;
+    renderNewsCards(items.slice(0,6));
+    const wrap=document.getElementById('newsMoreWrap');
+    if(wrap) wrap.style.display=items.length>6?'block':'none';
+  }
+  function showAllNews(){
+    renderNewsCards(allNewsItems);
+    const wrap=document.getElementById('newsMoreWrap');
+    if(wrap) wrap.style.display='none';
   }
   const newsFallback=[
     {title:'ขับขี่ปลอดภัย ลดความเร็ว ลดอุบัติเหตุ ช่วงเทศกาลสงกรานต์ 2569',source:'ศปถ.จังหวัดศรีสะเกษ',date:'1 มี.ค. 2569',type:'road',image:'assets/news/songkran-2569.jpg',video:'',url:''},

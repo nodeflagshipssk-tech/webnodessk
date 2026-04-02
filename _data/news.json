@@ -8,7 +8,8 @@
       "image": "assets/news/4app-kickoff-2569.jpg",
       "video": "",
       "url": "",
-      "featured": true
+      "featured": true,
+      "newUntil": "2026-04-28"
     },
     {
       "title": "สื่อเทศกาลสงกรานต์ 2569 — รณรงค์ความปลอดภัยทางถนน",
@@ -17,7 +18,8 @@
       "type": "road",
       "image": "",
       "video": "",
-      "url": "http://www.accident.or.th/th/material/2025-08-24-15-13"
+      "url": "http://www.accident.or.th/th/material/2025-08-24-15-13",
+      "newUntil": "2026-04-16"
     },
     {
       "title": "ไฟล์ชุดข้อมูลเทศกาลสงกรานต์ 2569 — ของสำนักงานเครือข่ายอุบัติเหตุ",
@@ -26,7 +28,8 @@
       "type": "road",
       "image": "",
       "video": "",
-      "url": "http://www.accident.or.th/th/material/2025-08-24-08-03"
+      "url": "http://www.accident.or.th/th/material/2025-08-24-08-03",
+      "newUntil": "2026-04-16"
     },
     {
       "title": "ศปถ.กันทรลักษ์ติดตามหนุนเสริม ศปถ.อปท.โซนสวนกล้วย",
