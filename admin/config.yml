@@ -150,7 +150,12 @@ collections:
                 widget: image
                 required: false
                 hint: "อัปโหลดรูปภาพหรือโปสเตอร์ประชาสัมพันธ์"
-              - { label: "ลิงก์ (ถ้ามี)", name: url, widget: string, required: false }
+              - label: "YouTube Video ID (ถ้ามี)"
+                name: video
+                widget: string
+                required: false
+                hint: "วาง ID จาก YouTube เท่านั้น เช่น 7NOg7-T-bIA (ส่วนที่อยู่หลัง ?v= ใน URL)"
+              - { label: "ลิงก์ภายนอก (ถ้ามี)", name: url, widget: string, required: false, hint: "URL เว็บไซต์หรือ Google Drive — ถ้าใส่ YouTube ให้ใช้ช่อง Video ID แทน" }
 
       - name: "docs"
         label: "📁 เอกสารและสื่อ"
