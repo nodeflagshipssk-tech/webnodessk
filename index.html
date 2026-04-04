@@ -708,6 +708,13 @@
     <iframe id="ytFrame" src="" allowfullscreen allow="autoplay"></iframe>
   </div>
 </div>
+<!-- ══ LOCAL VIDEO MODAL ══════════════════════ -->
+<div class="yt-modal-backdrop" id="localVidModal" onclick="closeLocalVid(event)">
+  <div class="yt-modal-box">
+    <button class="yt-modal-close" onclick="closeLocalVid(null)"><i class="bi bi-x-lg"></i></button>
+    <video id="localVidEl" controls playsinline style="width:100%;height:100%;border-radius:10px;background:#000"></video>
+  </div>
+</div>
 
 <!-- ══ PARTNERS ════════════════════════════════ -->
 <div class="partners-section">
@@ -984,7 +991,20 @@
     document.getElementById('ytFrame').src='';
     document.body.style.overflow='';
   };
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeYtModal(null);});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeYtModal(null);closeLocalVid(null);}});
+  window.openLocalVid=function(src){
+    const v=document.getElementById('localVidEl');
+    v.src=src; v.play();
+    document.getElementById('localVidModal').classList.add('open');
+    document.body.style.overflow='hidden';
+  };
+  window.closeLocalVid=function(e){
+    if(e&&e.target!==document.getElementById('localVidModal'))return;
+    const v=document.getElementById('localVidEl');
+    v.pause(); v.src='';
+    document.getElementById('localVidModal').classList.remove('open');
+    document.body.style.overflow='';
+  };
 
   /* ── HIGHLIGHTS ── */
   const hlIconMap={road:'bi-cone-striped',alc:'bi-droplet-fill',blue:'bi-calendar-check-fill'};
@@ -993,16 +1013,21 @@
     const el=document.getElementById('highlightsList');
     if(!items||!items.length){el.innerHTML='<div class="col-12 text-center py-4 text-muted" style="font-size:.85rem">ยังไม่มีกิจกรรมเด่น</div>';return;}
     el.innerHTML=items.slice(0,3).map(h=>{
-      const ytId=h.video||'';
+      const isLocalVid=h.video&&h.video.startsWith('assets/');
+      const ytId=(!isLocalVid&&h.video)||'';
       const thumbSrc=h.image||(ytId?`https://img.youtube.com/vi/${ytId}/hqdefault.jpg`:'');
       const accentColor=h.type==='alc'?'alcohol':h.type==='road'?'road':'primary';
+      const vidClick=isLocalVid?`onclick="openLocalVid('${h.video}')" style="cursor:pointer"`:ytId?`onclick="openYtModal('${ytId}')" style="cursor:pointer"`:'';
+      const hasVid=isLocalVid||!!ytId;
       const thumbHtml=thumbSrc
-        ?`<div class="hl-thumb-wrap" ${ytId?`onclick="openYtModal('${ytId}')" style="cursor:pointer"`:''}>
+        ?`<div class="hl-thumb-wrap" ${vidClick}>
             <img src="${thumbSrc}" class="hl-card-img" alt="${h.title}">
-            ${ytId?`<div class="hl-play-btn"><i class="bi bi-play-fill"></i></div>`:''}
+            ${hasVid?`<div class="hl-play-btn"><i class="bi bi-play-fill"></i></div>`:''}
           </div>`
-        :`<div class="hl-card-img-ph ${h.type}"><i class="bi ${hlIconMap[h.type]}"></i></div>`;
-      const cardClick=!ytId&&h.url?`onclick="window.open('${h.url}','_blank')" style="cursor:pointer"`:'';
+        :(hasVid
+          ?`<div class="hl-card-img-ph ${h.type}" ${vidClick} style="cursor:pointer"><i class="bi bi-play-circle" style="font-size:3rem"></i></div>`
+          :`<div class="hl-card-img-ph ${h.type}"><i class="bi ${hlIconMap[h.type]}"></i></div>`);
+      const cardClick=!hasVid&&h.url?`onclick="window.open('${h.url}','_blank')" style="cursor:pointer"`:'';
       return `
       <div class="col-md-4">
         <div class="hl-card ${h.type}" ${cardClick}>
@@ -1016,7 +1041,7 @@
               <div style="font-size:.72rem;color:var(--text-muted);white-space:nowrap"><i class="bi bi-geo-alt me-1"></i>${h.area} &nbsp;•&nbsp; ${h.date}</div>
             </div>
             <div style="margin-top:8px;display:flex;gap:10px;flex-wrap:wrap">
-              ${ytId?`<span style="font-size:.76rem;font-weight:600;color:var(--${accentColor});cursor:pointer" onclick="openYtModal('${ytId}')"><i class="bi bi-play-circle me-1"></i>ชมวิดีโอ</span>`:''}
+              ${isLocalVid?`<span style="font-size:.76rem;font-weight:600;color:var(--${accentColor});cursor:pointer" onclick="openLocalVid('${h.video}')"><i class="bi bi-play-circle me-1"></i>ชมวิดีโอ</span>`:ytId?`<span style="font-size:.76rem;font-weight:600;color:var(--${accentColor});cursor:pointer" onclick="openYtModal('${ytId}')"><i class="bi bi-play-circle me-1"></i>ชมวิดีโอ</span>`:''}
               ${h.url?`<a href="${h.url}" target="_blank" style="font-size:.76rem;font-weight:600;color:var(--${accentColor});text-decoration:none"><i class="bi bi-box-arrow-up-right me-1"></i>อ่านต่อ</a>`:''}
             </div>
           </div>
