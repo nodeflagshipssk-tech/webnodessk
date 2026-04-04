@@ -1030,9 +1030,14 @@
             <img src="${thumbSrc}" class="hl-card-img" alt="${h.title}">
             ${hasVid?`<div class="hl-play-btn"><i class="bi bi-play-fill"></i></div>`:''}
           </div>`
-        :(hasVid
-          ?`<div class="hl-card-img-ph ${h.type}" ${vidClick} style="cursor:pointer"><i class="bi bi-play-circle" style="font-size:3rem"></i></div>`
-          :`<div class="hl-card-img-ph ${h.type}"><i class="bi ${hlIconMap[h.type]}"></i></div>`);
+        :(isLocalVid
+          ?`<div class="hl-thumb-wrap" ${vidClick}>
+              <video class="hl-card-img hl-localvid" src="${h.video}" preload="metadata" muted playsinline style="pointer-events:none"></video>
+              <div class="hl-play-btn"><i class="bi bi-play-fill"></i></div>
+            </div>`
+          :(ytId
+            ?`<div class="hl-card-img-ph ${h.type}" ${vidClick} style="cursor:pointer"><i class="bi bi-play-circle" style="font-size:3rem"></i></div>`
+            :`<div class="hl-card-img-ph ${h.type}"><i class="bi ${hlIconMap[h.type]}"></i></div>`));
       const cardClick=!hasVid&&h.url?`onclick="window.open('${h.url}','_blank')" style="cursor:pointer"`:'';
       return `
       <div class="col-md-4">
@@ -1054,6 +1059,9 @@
         </div>
       </div>`;
     }).join('');
+    el.querySelectorAll('video.hl-localvid').forEach(v=>{
+      v.addEventListener('loadedmetadata',()=>{ v.currentTime=Math.min(1,v.duration*0.05); });
+    });
   }
   const hlFallback=[
     {type:'road',title:'ชุมชนร่วมปรับจุดเสี่ยงหน้าโรงเรียน',area:'ตำบลน้ำอ้อม อำเภอกันทรลักษ์',date:'มี.ค. 2569',summary:'ชุมชนและผู้ปกครองร่วมกันติดตั้งป้ายเตือน ลดความเร็ว และทาสีทางม้าลายใหม่ ส่งผลให้ลดอุบัติเหตุบริเวณโรงเรียนได้อย่างชัดเจน',tags:['จุดเสี่ยง','ชุมชนมีส่วนร่วม']},
